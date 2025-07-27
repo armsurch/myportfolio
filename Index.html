@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Nzotta Armstrong Uchenna | ICT Specialist skilled in networking, fiber optics, Microsoft 365 and systems administration." />
+    <meta name="keywords" content="ICT, Armstrong, Fiber Optics, LAN, Starlink, Systems Admin, Nigeria" />
+    <meta name="author" content="Nzotta Armstrong Uchenna" />
+    <meta name="robots" content="index, follow" />
+    <meta property="og:title" content="Nzotta Armstrong Uchenna | ICT Specialist" />
+    <meta property="og:description" content="Professional ICT Specialist with expertise in networking, fiber optics, and systems administration." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://armstrongnzotta.com" />
+    <meta property="og:image" content="img/mine.jpg" />
+    <title>Nzotta Armstrong Uchenna | ICT Specialist</title>
+    <link rel="icon" type="image/png" href="img/mine.png" />
+    <link rel="apple-touch-icon" href="img/mine.png" />
+    <link rel="manifest" href="manifest.json" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+    <link rel="stylesheet" href="styles.css" />
+
+    <!-- Google Analytics -->
+    <!-- Replace G-XXXXXXXXXX with your actual Google Analytics Measurement ID -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-B5MG8Q8F9L"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+        gtag('config', 'G-B5MG8Q8F9L');
+    </script>
+</head>
+
+<body data-theme="dark">
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loader"></div>
+        <div class="loading-text">Loading Portfolio...</div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="logo">Armstrong</div>
+            <ul class="nav-menu" id="nav-menu">
+                <li><a href="#home" class="nav-link active">Home</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#skills" class="nav-link">Skills</a></li>
+                <li><a href="#experience" class="nav-link">Experience</a></li>
+                <li><a href="#projects" class="nav-link">Projects</a></li>
+                <li><a href="#testimonials" class="nav-link">Testimonials</a></li>
+                <li><a href="#blog" class="nav-link">Blog</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+            <div style="display: flex; align-items: center;">
+                <button class="theme-toggle" id="themeToggle">
+                    <i class="fas fa-moon" id="themeIcon"></i>
+                    <span id="themeText">Dark</span>
+                </button>
+                <button class="mobile-menu-toggle" id="mobile-toggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-container">
+            <div class="hero-image fade-in">
+                <img src="img/mine.jpg" alt="Nzotta Armstrong Uchenna" />
+            </div>
+            <div class="hero-content fade-in">
+                <h1>Nzotta Armstrong Uchenna</h1>
+                <p class="hero-subtitle">ICT Specialist • Network & Systems Administrator • Fiber Optics Engineer</p>
+                <p class="hero-description">
+                    Engineering resilient networks and empowering seamless connectivity. Passionate about building reliable infrastructure and solving complex technical challenges.
+                </p>
+                <div class="cta-buttons">
+                    <a href="#projects" class="btn btn-primary">
+                        <i class="fas fa-eye"></i> View My Work
+                    </a>
+                    <a href="Proposal.html" target="_blank" class="btn btn-secondary">
+                        <i class="fas fa-file-contract"></i> View Network Proposal
+                    </a>
+                    <a href="Pdf/Arms.pdf" download class="btn btn-secondary">
+                        <i class="fas fa-download"></i> Download Resume
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="section" id="about">
+        <div class="section-header fade-in">
+            <h2 class="section-title">About Me</h2>
+            <p class="section-subtitle">
+                Dedicated ICT professional with expertise in networking, technical support, and digital transformation
+            </p>
+        </div>
+        <div class="fade-in">
+            <p style="font-size: 1.1rem; text-align: center; max-width: 800px; margin: 0 auto; color: var(--text-muted);">
+                I am an ICT professional with a strong background in networking, technical support, and digital transformation, passionate about helping individuals and organizations stay connected and secure. With hands-on experience in fiber optics splicing, LAN/WAN
+                design, Mikrotik & UniFi setup, and network security, I bring practical expertise to building reliable and efficient infrastructure.
+            </p>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section class="section" id="skills">
+        <div class="section-header fade-in">
+            <h2 class="section-title">Skills & Expertise</h2>
+            <p class="section-subtitle">
+                Comprehensive technical skills across networking, systems administration, and digital infrastructure
+            </p>
+        </div>
+
+        <div class="skills-tabs fade-in">
+            <button class="tab-button active" data-tab="technical">Technical Skills</button>
+            <button class="tab-button" data-tab="certifications">Certifications</button>
+            <button class="tab-button" data-tab="tools">Tools & Software</button>
+        </div>
+
+        <div class="tab-content active" id="technical">
+            <div class="skills-grid">
+                <div class="skill-card slide-in-left">
+                    <div class="skill-header">
+                        <i class="fas fa-network-wired skill-icon"></i>
+                        <div>
+                            <h3 class="skill-title">Network Design & Management</h3>
+                            <div class="skill-meter">
+                                <div class="skill-fill" data-width="90%"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <ul class="skill-details">
+                        <li>LAN/Wi-Fi setup and optimization</li>
+                        <li>MikroTik router configuration</li>
+                        <li>TP-Link and UniFi Access Point deployment</li>
+                        <li>Network security implementation</li>
+                        <li>Point-to-point (PtP) setup</li>
+                    </ul>
+                </div>
+
+                <div class="skill-card slide-in-right">
+                    <div class="skill-header">
+                        <i class="fas fa-tools skill-icon"></i>
+                        <div>
+                            <h3 class="skill-title">Technical Support & Troubleshooting</h3>
+                            <div class="skill-meter">
+                                <div class="skill-fill" data-width="85%"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <ul class="skill-details">
+                        <li>Hardware and software support</li>
+                        <li>Network issue diagnosis</li>
+                        <li>System maintenance</li>
+                        <li>Remote troubleshooting</li>
+                        <li>IT helpdesk support</li>
+                    </ul>
+                </div>
+
+                <div class="skill-card slide-in-left">
+                    <div class="skill-header">
+                        <i class="fas fa-ethernet skill-icon"></i>
+                        <div>
+                            <h3 class="skill-title">Fiber Optics & Connectivity</h3>
+                            <div class="skill-meter">
+                                <div class="skill-fill" data-width="90%"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <ul class="skill-details">
+                        <li>Fiber optic cable splicing</li>
+                        <li>Infrastructure installation</li>
+                        <li>Splicing machine operation</li>
+                        <li>Testing and fault tracing</li>
+                        <li>Network patching</li>
+                    </ul>
+                </div>
+
+                <div class="skill-card slide-in-right">
+                    <div class="skill-header">
+                        <i class="fas fa-project-diagram skill-icon"></i>
+                        <div>
+                            <h3 class="skill-title">IT Project Support</h3>
+                            <div class="skill-meter">
+                                <div class="skill-fill" data-width="85%"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <ul class="skill-details">
+                        <li>e-Government systems</li>
+                        <li>Digital transformation</li>
+                        <li>Staff training and onboarding</li>
+                        <li>Device rollout support</li>
+                        <li>System deployment</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="tab-content" id="certifications">
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <div class="skill-header">
+                        <i class="fab fa-cisco skill-icon"></i>
+                        <div>
+                            <h3 class="skill-title">CCNA</h3>
+                            <p style="color: var(--secondary-color);">Cisco - In Progress</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-header">
+                        <i class="fab fa-microsoft skill-icon"></i>
+                        <div>
+                            <h3 class="skill-title">Cybersecurity</h3>
+                            <p style="color: var(--secondary-color);">Udemy - In Progress</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-header">
+                        <i class="fas fa-certificate skill-icon"></i>
+                        <div>
+                            <h3 class="skill-title">Fiber Optic Technician</h3>
+                            <p style="color: var(--secondary-color);">FOA - In Progress</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="tab-content" id="tools">
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <div class="skill-header">
+                        <i class="fas fa-desktop skill-icon"></i>
+                        <div>
+                            <h3 class="skill-title">Operating Systems</h3>
+                        </div>
+                    </div>
+                    <ul class="skill-details">
+                        <li>Windows OS Administration</li>
+                        <li>Linux (Zorin OS)</li>
+                        <li>Command-line interfaces</li>
+                    </ul>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-header">
+                        <i class="fas fa-cogs skill-icon"></i>
+                        <div>
+                            <h3 class="skill-title">Network Tools</h3>
+                        </div>
+                    </div>
+                    <ul class="skill-details">
+                        <li>MikroTik RouterOS</li>
+                        <li>UniFi Controller</li>
+                        <li>Biometric software</li>
+                        <li>Network monitoring tools</li>
+                    </ul>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-header">
+                        <i class="fab fa-microsoft skill-icon"></i>
+                        <div>
+                            <h3 class="skill-title">Microsoft Suite</h3>
+                        </div>
+                    </div>
+                    <ul class="skill-details">
+                        <li>Microsoft Office Suite</li>
+                        <li>Microsoft 365 Admin</li>
+                        <li>PowerPoint presentations</li>
+                        <li>Excel data analysis</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section class="section" id="experience">
+        <div class="section-header fade-in">
+            <h2 class="section-title">Education & Experience</h2>
+            <p class="section-subtitle">
+                Academic background and professional journey in ICT
+            </p>
+        </div>
+
+        <div class="timeline">
+            <div class="timeline-item fade-in">
+                <div class="timeline-content">
+                    <h3 style="color: var(--secondary-color); margin-bottom: 0.5rem;">2022</h3>
+                    <h4 style="margin-bottom: 1rem;">Bachelor of Science (B.Sc.) - ICT</h4>
+                    <p style="color: var(--text-muted); margin-bottom: 1rem;"><strong>Abia State University, Uturu (ABSU)</strong></p>
+                    <ul style="color: var(--text-muted); list-style: none; padding-left: 0;">
+                        <li style="margin-bottom: 0.5rem;">• Focus on networking, systems administration, and digital communication</li>
+                        <li style="margin-bottom: 0.5rem;">• Completed coursework in network design, cybersecurity, programming</li>
+                        <li>• 6-month SIWES/Industrial Training in ICT support and operations</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="timeline-item fade-in">
+                <div class="timeline-content">
+                    <h3 style="color: var(--secondary-color); margin-bottom: 0.5rem;">2016</h3>
+                    <h4 style="margin-bottom: 1rem;">Senior Secondary Certificate (SSCE)</h4>
+                    <p style="color: var(--text-muted); margin-bottom: 1rem;"><strong>Abia State Senior Science School, Umuahia</strong></p>
+                    <ul style="color: var(--text-muted); list-style: none; padding-left: 0;">
+                        <li>• Obtained WASSCE with credits in Mathematics, English, Physics, and ICT-related subjects</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section class="section" id="projects">
+        <div class="section-header fade-in">
+            <h2 class="section-title">Featured Projects</h2>
+            <p class="section-subtitle">
+                Showcasing successful network deployments and technical solutions
+            </p>
+        </div>
+
+        <div class="projects-header fade-in">
+            <div class="project-search">
+                <input type="text" class="search-input" id="projectSearch" placeholder="Search projects...">
+                <div class="filter-buttons">
+                    <button class="filter-btn active" data-filter="all">All</button>
+                    <button class="filter-btn" data-filter="networking">Networking</button>
+                    <button class="filter-btn" data-filter="fiber">Fiber Optics</button>
+                    <button class="filter-btn" data-filter="systems">Systems</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="projects-grid">
+            <div class="project-card fade-in" data-category="networking">
+                <div class="project-image">
+                    <i class="fas fa-network-wired"></i>
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">Network Infrastructure Optimization</h3>
+                    <p class="project-description">
+                        Led comprehensive network redesign and optimization project, implementing advanced routing protocols and security measures.
+                    </p>
+                    <div class="project-tags">
+                        <span class="project-tag">MikroTik</span>
+                        <span class="project-tag">Network Security</span>
+                        <span class="project-tag">LAN/WAN</span>
+                    </div>
+                    <p style="color: var(--secondary-color); font-weight: 600;">Result: 80% reduction in downtime</p>
+                </div>
+            </div>
+
+            <div class="project-card fade-in" data-category="fiber">
+                <div class="project-image">
+                    <i class="fas fa-ethernet"></i>
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">Fiber Optic Network Deployment</h3>
+                    <p class="project-description">
+                        Designed and implemented fiber optic infrastructure for high-speed connectivity, including splicing and testing.
+                    </p>
+                    <div class="project-tags">
+                        <span class="project-tag">Fiber Optics</span>
+                        <span class="project-tag">FusionSplicing</span>
+                        <span class="project-tag">OTDR Testing</span>
+                    </div>
+                    <p style="color: var(--secondary-color); font-weight: 600;">Result: 5x bandwidth increase</p>
+                </div>
+            </div>
+
+            <div class="project-card fade-in" data-category="networking">
+                <div class="project-image">
+                    <i class="fas fa-satellite-dish"></i>
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">ISP Integration for SMEs</h3>
+                    <p class="project-description">
+                        Successfully deployed and configured Starlink internet solutions integrated with MikroTik routers for small businesses.
+                    </p>
+                    <div class="project-tags">
+                        <span class="project-tag">Starlink</span>
+                        <span class="project-tag">MikroTik</span>
+                        <span class="project-tag">SME Solutions</span>
+                    </div>
+                    <p style="color: var(--secondary-color); font-weight: 600;">Result: Enabled remote connectivity</p>
+                </div>
+            </div>
+
+            <div class="project-card fade-in" data-category="systems">
+                <div class="project-image">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">Digital Identity Systems</h3>
+                    <p class="project-description">
+                        Implemented biometric and digital ID systems for government agencies, including staff training and system deployment.
+                    </p>
+                    <div class="project-tags">
+                        <span class="project-tag">Biometrics</span>
+                        <span class="project-tag">e-Government</span>
+                        <span class="project-tag">System Integration</span>
+                        
+                    </div>
+                    <p style="color: var(--secondary-color); font-weight: 600;">Result: Streamlined government processes</p>
+                </div>
+            </div>
+
+            <div class="project-card fade-in" data-category="networking">
+                <div class="project-image">
+                    <i class="fas fa-file-contract"></i>
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">Network Design & Deployment Proposal</h3>
+                    <p class="project-description">
+                        Comprehensive network infrastructure proposal for smart office environments, featuring MikroTik routers, UniFi access points, and fiber optic deployment.
+                    </p>
+                    <div class="project-tags">
+                        <span class="project-tag">Network Design</span>
+                        <span class="project-tag">Business Proposal</span>
+                        <span class="project-tag">Infrastructure</span>
+                    </div>
+                    <div style="margin-top: 1rem;">
+                        <a href="Proposal.html" target="_blank" class="btn btn-primary" style="font-size: 0.9rem; padding: 0.5rem 1rem;">
+                            <i class="fas fa-external-link-alt"></i> View Full Proposal
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Professional Highlights Section -->
+        <div style="margin-top: 4rem; text-align: center;" class="fade-in">
+            <h3 style="margin-bottom: 2rem; color: var(--secondary-color);">Professional Highlights</h3>
+            <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 2rem;">
+                <!-- Network Security Initiatives -->
+                <div style="background: var(--card-bg); padding: 2rem; border-radius: var(--border-radius); width: 320px; margin-bottom: 2rem; box-shadow: var(--shadow-light);">
+                    <h4 style="color: var(--secondary-color); margin-bottom: 1rem;">Network Security Initiatives</h4>
+                    <p style="color: var(--text-muted); margin-bottom: 1rem; font-size: 1rem;">Highlights of recent security upgrades, firewall deployments, and best practices implemented to safeguard client networks.</p>
+                    <img src="img/AP.jpg" alt="Network security illustration" style="max-width: 100%; border-radius: 8px;" />
+                </div>
+                <!-- Cloud Integration Projects -->
+                <div style="background: var(--card-bg); padding: 2rem; border-radius: var(--border-radius); width: 320px; margin-bottom: 2rem; box-shadow: var(--shadow-light);">
+                    <h4 style="color: var(--secondary-color); margin-bottom: 1rem;">Cloud Integration Projects</h4>
+                    <p style="color: var(--text-muted); margin-bottom: 1rem; font-size: 1rem;">Overview of successful migrations to cloud platforms, hybrid infrastructure, and remote access solutions for businesses.</p>
+                    <img src="img/BS.jpg" alt="Cloud integration illustration" style="max-width: 100%; border-radius: 8px;" />
+                </div>
+                <!-- Wireless Network Expansion -->
+                <div style="background: var(--card-bg); padding: 2rem; border-radius: var(--border-radius); width: 320px; margin-bottom: 2rem; box-shadow: var(--shadow-light);">
+                    <h4 style="color: var(--secondary-color); margin-bottom: 1rem;">Wireless Network Expansion</h4>
+                    <p style="color: var(--text-muted); margin-bottom: 1rem; font-size: 1rem;">Recent upgrades and coverage improvements in wireless infrastructure, enabling seamless connectivity for clients.</p>
+                    <img src="img/APS.jpg" alt="Wireless network coverage map" style="max-width: 100%; border-radius: 8px;" />
+                </div>
+                <!-- Digital Transformation Highlights -->
+                <div style="background: var(--card-bg); padding: 2rem; border-radius: var(--border-radius); width: 320px; margin-bottom: 2rem; box-shadow: var(--shadow-light);">
+                    <h4 style="color: var(--secondary-color); margin-bottom: 1rem;">Digital Transformation Highlights</h4>
+                    <p style="color: var(--text-muted); margin-bottom: 1rem; font-size: 1rem;">Key milestones in helping organizations modernize their IT infrastructure, adopt new technologies, and improve efficiency.</p>
+                    <img src="img/ME.jpeg" alt="Digital transformation illustration" style="max-width: 100%; border-radius: 8px;" />
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="section" id="testimonials">
+        <div class="section-header fade-in">
+            <h2 class="section-title">Client Testimonials</h2>
+            <p class="section-subtitle">
+                What clients and colleagues say about my work
+            </p>
+        </div>
+
+        <div class="testimonials-carousel fade-in">
+            <div class="testimonials-container" id="testimonialsContainer">
+                <div class="testimonial-card">
+                    <p class="testimonial-text">
+                        "Armstrong's expertise in network infrastructure is exceptional. He transformed our entire IT setup, resulting in 80% less downtime and significantly improved performance. His attention to detail and professional approach made the project seamless."
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">JD</div>
+                        <div class="author-info">
+                            <h4>John Doe</h4>
+                            <p>IT Manager, Tech Solutions Ltd</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <p class="testimonial-text">
+                        "Working with Armstrong on our fiber optic deployment was a game-changer. His technical knowledge and hands-on experience with splicing and testing ensured our network achieved 5x bandwidth improvement. Highly recommended!"
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">SM</div>
+                        <div class="author-info">
+                            <h4>Sarah Mitchell</h4>
+                            <p>Network Administrator, ConnectCorp</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <p class="testimonial-text">
+                        "Armstrong's implementation of our digital identity system was flawless. His ability to train our staff and ensure smooth deployment made the transition to biometric systems effortless. Outstanding professional service."
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">RJ</div>
+                        <div class="author-info">
+                            <h4>Robert Johnson</h4>
+                            <p>Director, Government Services</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="carousel-controls">
+                <button class="carousel-btn" id="prevBtn">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <button class="carousel-btn" id="nextBtn">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+
+            <div class="carousel-indicators" id="indicators">
+                <div class="indicator active" data-slide="0"></div>
+                <div class="indicator" data-slide="1"></div>
+                <div class="indicator" data-slide="2"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Section -->
+    <section class="section" id="blog">
+        <div class="section-header fade-in">
+            <h2 class="section-title">Latest Articles</h2>
+            <p class="section-subtitle">
+                Insights and knowledge sharing on ICT trends and best practices
+            </p>
+        </div>
+
+        <div class="blog-grid">
+            <article class="blog-card fade-in">
+                <div class="blog-image">
+                    <i class="fas fa-network-wired"></i>
+                </div>
+                <div class="blog-content">
+                    <div class="blog-meta">
+                        <span><i class="fas fa-calendar"></i> Jan 15, 2025</span>
+                        <span><i class="fas fa-tag"></i> Networking</span>
+                    </div>
+                    <h3 class="blog-title">Best Practices for Network Security in 2025</h3>
+                    <p class="blog-excerpt">
+                        Explore the latest network security trends and implementation strategies to protect your infrastructure from emerging threats...
+                    </p>
+                    <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </article>
+
+            <article class="blog-card fade-in">
+                <div class="blog-image">
+                    <i class="fas fa-ethernet"></i>
+                </div>
+                <div class="blog-content">
+                    <div class="blog-meta">
+                        <span><i class="fas fa-calendar"></i> Jan 10, 2025</span>
+                        <span><i class="fas fa-tag"></i> Fiber Optics</span>
+                    </div>
+                    <h3 class="blog-title">Fiber Optic Installation: A Complete Guide</h3>
+                    <p class="blog-excerpt">
+                        Learn the essential steps and best practices for successful fiber optic cable installation and testing procedures...
+                    </p>
+                    <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </article>
+
+            <article class="blog-card fade-in">
+                <div class="blog-image">
+                    <i class="fas fa-satellite-dish"></i>
+                </div>
+                <div class="blog-content">
+                    <div class="blog-meta">
+                        <span><i class="fas fa-calendar"></i> Jan 5, 2025</span>
+                        <span><i class="fas fa-tag"></i> Technology</span>
+                    </div>
+                    <h3 class="blog-title">Starlink for Business: Implementation Guide</h3>
+                    <p class="blog-excerpt">
+                        Discover how to integrate Starlink internet solutions with existing network infrastructure for optimal performance...
+                    </p>
+                    <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="section" id="contact">
+        <div class="section-header fade-in">
+            <h2 class="section-title">Let's Connect</h2>
+            <p class="section-subtitle">
+                Ready to build the future of your infrastructure together
+            </p>
+        </div>
+
+        <div class="contact-grid">
+            <div class="contact-info fade-in">
+                <div class="contact-item">
+                    <i class="fas fa-envelope contact-icon"></i>
+                    <div>
+                        <h4>Email</h4>
+                        <p style="color: var(--text-muted);">armstrongnzotta8@gmail.com</p>
+                    </div>
+                </div>
+
+                <div class="contact-item">
+                    <i class="fab fa-whatsapp contact-icon"></i>
+                    <div>
+                        <h4>WhatsApp</h4>
+                        <p style="color: var(--text-muted);">+234 704 107 4484</p>
+                    </div>
+                </div>
+
+                <div class="contact-item">
+                    <i class="fab fa-linkedin contact-icon"></i>
+                    <div>
+                        <h4>LinkedIn</h4>
+                        <p style="color: var(--text-muted);">armstrong-nzotta-734250354</p>
+                    </div>
+                </div>
+
+                <div class="contact-item">
+                    <i class="fab fa-github contact-icon"></i>
+                    <div>
+                        <h4>GitHub</h4>
+                        <p style="color: var(--text-muted);">armstrongnzotta</p>
+                    </div>
+                </div>
+
+                <div style="margin-top: 2rem;">
+                    <a href="Proposal.html" target="_blank" class="btn btn-primary" style="width: 100%; justify-content: center; margin-bottom: 1rem;">
+                        <i class="fas fa-file-contract"></i> View Network Proposal
+                    </a>
+                    <a href="Pdf/Arms.pdf" download class="btn btn-secondary" style="width: 100%; justify-content: center;">
+                        <i class="fas fa-download"></i> Download Full Resume
+                    </a>
+                </div>
+            </div>
+
+            <div class="contact-form fade-in">
+                <!-- Replace xpzgwqzg with your actual Formspree form ID -->
+                <form action="https://formspree.io/f/xpzgwqzg" method="POST" id="contactForm">
+                    <div class="form-group">
+                        <label for="name" class="form-label">Full Name</label>
+                        <input type="text" id="name" name="name" class="form-input" placeholder="Your full name" required />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email" class="form-label">Email Address</label>
+                        <input type="email" id="email" name="email" class="form-input" placeholder="your.email@example.com" required />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="subject" class="form-label">Subject</label>
+                        <input type="text" id="subject" name="subject" class="form-input" placeholder="Project inquiry, consultation, etc." />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message" class="form-label">Message</label>
+                        <textarea id="message" name="message" rows="5" class="form-textarea" placeholder="Tell me about your project or how I can help..." required></textarea>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center;">
+                        <i class="fas fa-paper-plane"></i>
+                        Send Message
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="social-links">
+            <a href="mailto:armstrongnzotta8@gmail.com" class="social-link" aria-label="Email">
+                <i class="fas fa-envelope"></i>
+            </a>
+            <a href="https://linkedin.com/in/armstrong-nzotta-734250354" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="LinkedIn">
+                <i class="fab fa-linkedin"></i>
+            </a>
+            <a href="https://github.com/armstrongnzotta" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="GitHub">
+                <i class="fab fa-github"></i>
+            </a>
+            <a href="https://twitter.com/armstrongnzotta" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Twitter">
+                <i class="fab fa-twitter"></i>
+            </a>
+            <a href="https://wa.me/2347041074484" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="WhatsApp">
+                <i class="fab fa-whatsapp"></i>
+            </a>
+        </div>
+        <p>&copy; 2025 Nzotta Armstrong Uchenna. All rights reserved.</p>
+        <p style="color: var(--text-muted); margin-top: 0.5rem;">Designed with passion for technology and connectivity.</p>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop" aria-label="Back to top">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <script src="app.js"></script>
+</body>
+
+</html>

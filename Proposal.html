@@ -1,0 +1,965 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Network Design Proposal - Nzotta Armstrong Uchenna | ICT Solutions</title>
+    <meta name="description" content="Professional network design and deployment services for smart office environments. Secure, scalable infrastructure solutions by Nzotta Armstrong Uchenna.">
+    <meta name="keywords" content="network design, ICT solutions, MikroTik, UniFi, network security, smart office">
+    <meta name="author" content="Nzotta Armstrong Uchenna">
+
+    <!-- Open Graph Tags -->
+    <meta property="og:title" content="Network Design Proposal - Professional ICT Solutions">
+    <meta property="og:description" content="Comprehensive network infrastructure design and deployment for modern office environments">
+    <meta property="og:type" content="website">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        * {
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.8s ease-in;
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .pulse-animation {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%,
+            100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+        
+        .smooth-scroll {
+            scroll-behavior: smooth;
+        }
+        
+        .nav-link {
+            transition: all 0.3s ease;
+        }
+        
+        .nav-link:hover {
+            color: #4f46e5;
+            transform: translateY(-2px);
+        }
+        
+        .timeline-item {
+            position: relative;
+            padding-left: 2rem;
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0.5rem;
+            width: 12px;
+            height: 12px;
+            background: #4f46e5;
+            border-radius: 50%;
+        }
+        
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            left: 5px;
+            top: 1.5rem;
+            width: 2px;
+            height: calc(100% - 1rem);
+            background: #e5e7eb;
+        }
+        
+        .timeline-item:last-child::after {
+            display: none;
+        }
+        
+        .network-diagram {
+            background: linear-gradient(45deg, #f3f4f6, #e5e7eb);
+            border: 2px dashed #9ca3af;
+        }
+        
+        .pricing-card {
+            background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+            border: 1px solid #e2e8f0;
+        }
+        
+        .testimonial-card {
+            background: linear-gradient(135deg, #fef7ff 0%, #f3e8ff 100%);
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50 text-gray-800 smooth-scroll">
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full bg-white/90 backdrop-blur-md shadow-sm z-50">
+        <div class="max-w-6xl mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full flex items-center justify-center">
+                        <i class="fas fa-network-wired text-white text-lg"></i>
+                    </div>
+                    <div>
+                        <h1 class="font-bold text-lg text-gray-800">Nzotta Armstrong</h1>
+                        <p class="text-sm text-gray-600">ICT Solutions Expert</p>
+                    </div>
+                </div>
+                <div class="hidden md:flex space-x-6">
+                    <a href="#overview" class="nav-link text-gray-600 hover:text-blue-600">Overview</a>
+                    <a href="#scope" class="nav-link text-gray-600 hover:text-blue-600">Scope</a>
+                    <a href="#pricing" class="nav-link text-gray-600 hover:text-blue-600">Pricing</a>
+                    <a href="#timeline" class="nav-link text-gray-600 hover:text-blue-600">Timeline</a>
+                    <a href="#contact" class="nav-link text-gray-600 hover:text-blue-600">Contact</a>
+                </div>
+                <button onclick="downloadPDF()" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors">
+                    <i class="fas fa-download mr-2"></i>Download PDF
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="gradient-bg text-white py-20 mt-16">
+        <div class="max-w-6xl mx-auto px-6 text-center">
+            <div class="fade-in">
+                <h1 class="text-5xl md:text-6xl font-bold mb-6">
+                    🌐 Network Design & Deployment
+                </h1>
+                <p class="text-xl md:text-2xl mb-8 text-blue-100">
+                    Integrated Network Infrastructure for Smart Office Environments
+                </p>
+                <div class="flex flex-col md:flex-row justify-center items-center space-y-4 md:space-y-0 md:space-x-6">
+                    <div class="flex items-center space-x-2">
+                        <i class="fas fa-shield-alt text-green-400"></i>
+                        <span>Secure & Reliable</span>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <i class="fas fa-expand-arrows-alt text-green-400"></i>
+                        <span>Scalable Solutions</span>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <i class="fas fa-clock text-green-400"></i>
+                        <span>24/7 Support</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <main class="max-w-6xl mx-auto p-6 space-y-12 -mt-10 relative z-10">
+        <!-- Contact Info Card -->
+        <div class="bg-white rounded-xl shadow-xl p-6 card-hover fade-in">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="flex items-center space-x-4 mb-4 md:mb-0">
+                    <div class="w-16 h-16 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full flex items-center justify-center">
+                        <i class="fas fa-user-tie text-white text-2xl"></i>
+                    </div>
+                    <div>
+                        <h2 class="text-2xl font-bold text-gray-800">Nzotta Armstrong Uchenna</h2>
+                        <p class="text-lg text-gray-600">Senior ICT Support Specialist</p>
+                    </div>
+                </div>
+                <div class="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-6 text-center md:text-left">
+                    <div class="flex items-center space-x-2">
+                        <i class="fas fa-envelope text-blue-600"></i>
+                        <span>nzotta.armstrong@email.com</span>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <i class="fas fa-phone text-blue-600"></i>
+                        <span>+234 XXX XXX XXXX</span>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <i class="fas fa-map-marker-alt text-blue-600"></i>
+                        <span>Nigeria</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Project Overview -->
+        <section id="overview" class="bg-white p-8 rounded-xl shadow-xl card-hover fade-in">
+            <div class="flex items-center mb-6">
+                <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mr-4">
+                    <i class="fas fa-bullseye text-blue-600 text-xl"></i>
+                </div>
+                <h2 class="text-3xl font-bold text-gray-800">🔧 Project Objective</h2>
+            </div>
+            <p class="text-lg text-gray-700 leading-relaxed">
+                Design and implement a secure, scalable, and reliable network infrastructure for modern smart office environments. Our solution integrates cutting-edge hardware with industry best practices to deliver exceptional performance, security, and user experience
+                for your organization.
+            </p>
+        </section>
+
+        <!-- Client Overview -->
+        <section class="bg-white p-8 rounded-xl shadow-xl card-hover fade-in">
+            <div class="flex items-center mb-6">
+                <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mr-4">
+                    <i class="fas fa-building text-green-600 text-xl"></i>
+                </div>
+                <h2 class="text-3xl font-bold text-gray-800">🏢 Client Overview</h2>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="bg-gradient-to-br from-blue-50 to-blue-100 p-6 rounded-lg">
+                    <h3 class="font-semibold text-blue-800 mb-2">Target Clients</h3>
+                    <ul class="text-blue-700 space-y-1">
+                        <li>• Law Firms</li>
+                        <li>• Government Agencies</li>
+                        <li>• Tech SMEs</li>
+                    </ul>
+                </div>
+                <div class="bg-gradient-to-br from-green-50 to-green-100 p-6 rounded-lg">
+                    <h3 class="font-semibold text-green-800 mb-2">User Capacity</h3>
+                    <p class="text-green-700">~50 users including executives, staff, and remote workers</p>
+                </div>
+                <div class="bg-gradient-to-br from-purple-50 to-purple-100 p-6 rounded-lg">
+                    <h3 class="font-semibold text-purple-800 mb-2">Device Support</h3>
+                    <ul class="text-purple-700 space-y-1">
+                        <li>• PCs & Laptops</li>
+                        <li>• Printers & Scanners</li>
+                        <li>• Mobile Devices</li>
+                        <li>• Biometric Systems</li>
+                        <li>• CCTV Cameras</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Scope of Work -->
+        <section id="scope" class="bg-white p-8 rounded-xl shadow-xl card-hover fade-in">
+            <div class="flex items-center mb-6">
+                <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mr-4">
+                    <i class="fas fa-tasks text-purple-600 text-xl"></i>
+                </div>
+                <h2 class="text-3xl font-bold text-gray-800">🧩 Scope of Work</h2>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="space-y-4">
+                    <div class="flex items-start space-x-3">
+                        <i class="fas fa-check-circle text-green-500 mt-1"></i>
+                        <div>
+                            <h3 class="font-semibold text-gray-800">Network Topology Design</h3>
+                            <p class="text-gray-600">Fiber backbone infrastructure with redundancy</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start space-x-3">
+                        <i class="fas fa-check-circle text-green-500 mt-1"></i>
+                        <div>
+                            <h3 class="font-semibold text-gray-800">MikroTik Router Configuration</h3>
+                            <p class="text-gray-600">Advanced routing with hotspot portal integration</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start space-x-3">
+                        <i class="fas fa-check-circle text-green-500 mt-1"></i>
+                        <div>
+                            <h3 class="font-semibold text-gray-800">Wireless Access Points</h3>
+                            <p class="text-gray-600">UniFi/TP-Link AP deployment and optimization</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="space-y-4">
+                    <div class="flex items-start space-x-3">
+                        <i class="fas fa-check-circle text-green-500 mt-1"></i>
+                        <div>
+                            <h3 class="font-semibold text-gray-800">Structured Cabling</h3>
+                            <p class="text-gray-600">CAT6 and fiber optic cable installation</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start space-x-3">
+                        <i class="fas fa-check-circle text-green-500 mt-1"></i>
+                        <div>
+                            <h3 class="font-semibold text-gray-800">Security Implementation</h3>
+                            <p class="text-gray-600">Firewall, VPN, and VLAN segmentation</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start space-x-3">
+                        <i class="fas fa-check-circle text-green-500 mt-1"></i>
+                        <div>
+                            <h3 class="font-semibold text-gray-800">System Integration</h3>
+                            <p class="text-gray-600">Biometric & ID systems with bandwidth control</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Network Diagram -->
+        <section class="bg-white p-8 rounded-xl shadow-xl card-hover fade-in">
+            <div class="flex items-center mb-6">
+                <div class="w-12 h-12 bg-indigo-100 rounded-lg flex items-center justify-center mr-4">
+                    <i class="fas fa-project-diagram text-indigo-600 text-xl"></i>
+                </div>
+                <h2 class="text-3xl font-bold text-gray-800">🗺️ Network Topology</h2>
+            </div>
+            <div class="network-diagram p-8 rounded-lg">
+                <div class="flex flex-col items-center space-y-6">
+                    <!-- Internet -->
+                    <div class="bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold">
+                        <i class="fas fa-globe mr-2"></i>Internet Service Provider
+                    </div>
+
+                    <!-- Router -->
+                    <div class="bg-red-600 text-white px-6 py-3 rounded-lg font-semibold">
+                        <i class="fas fa-router mr-2"></i>MikroTik CCR1009 Router
+                    </div>
+
+                    <!-- Switches -->
+                    <div class="flex space-x-8">
+                        <div class="bg-green-600 text-white px-4 py-2 rounded-lg">
+                            <i class="fas fa-network-wired mr-2"></i>Core Switch
+                        </div>
+                        <div class="bg-green-600 text-white px-4 py-2 rounded-lg">
+                            <i class="fas fa-network-wired mr-2"></i>Access Switch
+                        </div>
+                    </div>
+
+                    <!-- End Devices -->
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                        <div class="bg-purple-600 text-white px-3 py-2 rounded text-center text-sm">
+                            <i class="fas fa-wifi mb-1"></i><br>WiFi APs
+                        </div>
+                        <div class="bg-purple-600 text-white px-3 py-2 rounded text-center text-sm">
+                            <i class="fas fa-desktop mb-1"></i><br>Workstations
+                        </div>
+                        <div class="bg-purple-600 text-white px-3 py-2 rounded text-center text-sm">
+                            <i class="fas fa-print mb-1"></i><br>Printers
+                        </div>
+                        <div class="bg-purple-600 text-white px-3 py-2 rounded text-center text-sm">
+                            <i class="fas fa-video mb-1"></i><br>CCTV System
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Infrastructure Components -->
+        <section class="bg-white p-8 rounded-xl shadow-xl card-hover fade-in">
+            <div class="flex items-center mb-6">
+                <div class="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center mr-4">
+                    <i class="fas fa-server text-orange-600 text-xl"></i>
+                </div>
+                <h2 class="text-3xl font-bold text-gray-800">🗂️ Infrastructure Components</h2>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                <div class="bg-gradient-to-br from-blue-50 to-blue-100 p-4 rounded-lg text-center">
+                    <i class="fas fa-router text-blue-600 text-2xl mb-2"></i>
+                    <h3 class="font-semibold text-blue-800">MikroTik CCR1009</h3>
+                    <p class="text-sm text-blue-600">Core Router</p>
+                </div>
+                <div class="bg-gradient-to-br from-green-50 to-green-100 p-4 rounded-lg text-center">
+                    <i class="fas fa-wifi text-green-600 text-2xl mb-2"></i>
+                    <h3 class="font-semibold text-green-800">UniFi AP-AC-Lite</h3>
+                    <p class="text-sm text-green-600">Wireless Access Points</p>
+                </div>
+                <div class="bg-gradient-to-br from-purple-50 to-purple-100 p-4 rounded-lg text-center">
+                    <i class="fas fa-network-wired text-purple-600 text-2xl mb-2"></i>
+                    <h3 class="font-semibold text-purple-800">TP-Link Switches</h3>
+                    <p class="text-sm text-purple-600">Gigabit Switching</p>
+                </div>
+                <div class="bg-gradient-to-br from-yellow-50 to-yellow-100 p-4 rounded-lg text-center">
+                    <i class="fas fa-cable text-yellow-600 text-2xl mb-2"></i>
+                    <h3 class="font-semibold text-yellow-800">CAT6 + Fiber</h3>
+                    <p class="text-sm text-yellow-600">Structured Cabling</p>
+                </div>
+                <div class="bg-gradient-to-br from-red-50 to-red-100 p-4 rounded-lg text-center">
+                    <i class="fas fa-battery-full text-red-600 text-2xl mb-2"></i>
+                    <h3 class="font-semibold text-red-800">3kVA Inverter</h3>
+                    <p class="text-sm text-red-600">Power Backup</p>
+                </div>
+                <div class="bg-gradient-to-br from-indigo-50 to-indigo-100 p-4 rounded-lg text-center">
+                    <i class="fas fa-shield-alt text-indigo-600 text-2xl mb-2"></i>
+                    <h3 class="font-semibold text-indigo-800">RouterOS Firewall</h3>
+                    <p class="text-sm text-indigo-600">Security Rules</p>
+                </div>
+                <div class="bg-gradient-to-br from-pink-50 to-pink-100 p-4 rounded-lg text-center">
+                    <i class="fas fa-key text-pink-600 text-2xl mb-2"></i>
+                    <h3 class="font-semibold text-pink-800">Captive Portal</h3>
+                    <p class="text-sm text-pink-600">User Authentication</p>
+                </div>
+                <div class="bg-gradient-to-br from-teal-50 to-teal-100 p-4 rounded-lg text-center">
+                    <i class="fas fa-layer-group text-teal-600 text-2xl mb-2"></i>
+                    <h3 class="font-semibold text-teal-800">VLAN Segmentation</h3>
+                    <p class="text-sm text-teal-600">Network Isolation</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Security Measures -->
+        <section class="bg-white p-8 rounded-xl shadow-xl card-hover fade-in">
+            <div class="flex items-center mb-6">
+                <div class="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center mr-4">
+                    <i class="fas fa-shield-alt text-red-600 text-xl"></i>
+                </div>
+                <h2 class="text-3xl font-bold text-gray-800">🔐 Security Measures</h2>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="space-y-4">
+                    <div class="flex items-start space-x-3">
+                        <i class="fas fa-lock text-red-500 mt-1"></i>
+                        <div>
+                            <h3 class="font-semibold text-gray-800">Access Control</h3>
+                            <p class="text-gray-600">Strong password policies and user isolation protocols</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start space-x-3">
+                        <i class="fas fa-firewall text-red-500 mt-1"></i>
+                        <div>
+                            <h3 class="font-semibold text-gray-800">Firewall Protection</h3>
+                            <p class="text-gray-600">Custom firewall rules for comprehensive network protection</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="space-y-4">
+                    <div class="flex items-start space-x-3">
+                        <i class="fas fa-layer-group text-red-500 mt-1"></i>
+                        <div>
+                            <h3 class="font-semibold text-gray-800">Network Segmentation</h3>
+                            <p class="text-gray-600">Segmented VLANs for staff, guest, and IoT devices</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start space-x-3">
+                        <i class="fas fa-chart-line text-red-500 mt-1"></i>
+                        <div>
+                            <h3 class="font-semibold text-gray-800">Monitoring & Logging</h3>
+                            <p class="text-gray-600">User activity logs and real-time network monitoring</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pricing Section -->
+        <section id="pricing" class="bg-white p-8 rounded-xl shadow-xl card-hover fade-in">
+            <div class="flex items-center mb-6">
+                <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mr-4">
+                    <i class="fas fa-dollar-sign text-green-600 text-xl"></i>
+                </div>
+                <h2 class="text-3xl font-bold text-gray-800">💰 Investment Breakdown</h2>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="pricing-card p-6 rounded-lg">
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">Hardware & Equipment</h3>
+                    <div class="space-y-2 text-sm">
+                        <div class="flex justify-between">
+                            <span>MikroTik CCR1009 Router</span>
+                            <span class="font-semibold">$800</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span>UniFi Access Points (4x)</span>
+                            <span class="font-semibold">$600</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span>TP-Link Switches</span>
+                            <span class="font-semibold">$400</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span>Cabling & Infrastructure</span>
+                            <span class="font-semibold">$1,200</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span>Power Systems</span>
+                            <span class="font-semibold">$1,000</span>
+                        </div>
+                        <hr class="my-2">
+                        <div class="flex justify-between font-bold text-lg">
+                            <span>Hardware Total</span>
+                            <span class="text-green-600">$4,000</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pricing-card p-6 rounded-lg">
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">Professional Services</h3>
+                    <div class="space-y-2 text-sm">
+                        <div class="flex justify-between">
+                            <span>Network Design & Planning</span>
+                            <span class="font-semibold">$500</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span>Installation & Configuration</span>
+                            <span class="font-semibold">$1,500</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span>Testing & Optimization</span>
+                            <span class="font-semibold">$300</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span>Documentation & Training</span>
+                            <span class="font-semibold">$400</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span>3-Month Support</span>
+                            <span class="font-semibold">$300</span>
+                        </div>
+                        <hr class="my-2">
+                        <div class="flex justify-between font-bold text-lg">
+                            <span>Services Total</span>
+                            <span class="text-blue-600">$3,000</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-gradient-to-br from-blue-600 to-purple-600 text-white p-6 rounded-lg">
+                    <h3 class="text-xl font-bold mb-4">Total Investment</h3>
+                    <div class="text-center">
+                        <div class="text-4xl font-bold mb-2">$7,000</div>
+                        <p class="text-blue-100 mb-4">Complete Network Solution</p>
+                        <div class="space-y-2 text-sm">
+                            <div class="flex items-center justify-center space-x-2">
+                                <i class="fas fa-check"></i>
+                                <span>All Hardware Included</span>
+                            </div>
+                            <div class="flex items-center justify-center space-x-2">
+                                <i class="fas fa-check"></i>
+                                <span>Professional Installation</span>
+                            </div>
+                            <div class="flex items-center justify-center space-x-2">
+                                <i class="fas fa-check"></i>
+                                <span>3-Month Warranty</span>
+                            </div>
+                            <div class="flex items-center justify-center space-x-2">
+                                <i class="fas fa-check"></i>
+                                <span>24/7 Support Available</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-8 text-center">
+                <p class="text-gray-600 mb-4">Flexible payment options available</p>
+                <div class="flex flex-col md:flex-row justify-center space-y-2 md:space-y-0 md:space-x-4">
+                    <span class="bg-green-100 text-green-800 px-4 py-2 rounded-full">💳 50% Upfront, 50% on Completion</span>
+                    <span class="bg-blue-100 text-blue-800 px-4 py-2 rounded-full">📅 Extended Payment Plans Available</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Timeline Section -->
+        <section id="timeline" class="bg-white p-8 rounded-xl shadow-xl card-hover fade-in">
+            <div class="flex items-center mb-6">
+                <div class="w-12 h-12 bg-yellow-100 rounded-lg flex items-center justify-center mr-4">
+                    <i class="fas fa-calendar-alt text-yellow-600 text-xl"></i>
+                </div>
+                <h2 class="text-3xl font-bold text-gray-800">📅 Project Timeline</h2>
+            </div>
+            <div class="space-y-6">
+                <div class="timeline-item">
+                    <div class="bg-blue-50 p-4 rounded-lg">
+                        <h3 class="font-bold text-blue-800">Week 1: Planning & Design</h3>
+                        <p class="text-blue-700 mt-1">Site survey, network design, equipment procurement</p>
+                        <div class="flex items-center mt-2 text-sm text-blue-600">
+                            <i class="fas fa-clock mr-1"></i>
+                            <span>5-7 business days</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="bg-green-50 p-4 rounded-lg">
+                        <h3 class="font-bold text-green-800">Week 2-3: Infrastructure Installation</h3>
+                        <p class="text-green-700 mt-1">Cabling, hardware installation, power systems setup</p>
+                        <div class="flex items-center mt-2 text-sm text-green-600">
+                            <i class="fas fa-clock mr-1"></i>
+                            <span>10-14 business days</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="bg-purple-50 p-4 rounded-lg">
+                        <h3 class="font-bold text-purple-800">Week 4: Configuration & Testing</h3>
+                        <p class="text-purple-700 mt-1">Router configuration, security setup, system testing</p>
+                        <div class="flex items-center mt-2 text-sm text-purple-600">
+                            <i class="fas fa-clock mr-1"></i>
+                            <span>5-7 business days</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="bg-orange-50 p-4 rounded-lg">
+                        <h3 class="font-bold text-orange-800">Week 5: Training & Handover</h3>
+                        <p class="text-orange-700 mt-1">Staff training, documentation, system handover</p>
+                        <div class="flex items-center mt-2 text-sm text-orange-600">
+                            <i class="fas fa-clock mr-1"></i>
+                            <span>3-5 business days</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-6 bg-gradient-to-r from-green-100 to-blue-100 p-4 rounded-lg">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <h3 class="font-bold text-gray-800">Total Project Duration</h3>
+                        <p class="text-gray-600">From planning to completion</p>
+                    </div>
+                    <div class="text-right">
+                        <div class="text-2xl font-bold text-blue-600">4-5 Weeks</div>
+                        <p class="text-sm text-gray-600">Including testing & training</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Expected Outcomes -->
+        <section class="bg-white p-8 rounded-xl shadow-xl card-hover fade-in">
+            <div class="flex items-center mb-6">
+                <div class="w-12 h-12 bg-teal-100 rounded-lg flex items-center justify-center mr-4">
+                    <i class="fas fa-chart-line text-teal-600 text-xl"></i>
+                </div>
+                <h2 class="text-3xl font-bold text-gray-800">📈 Expected Outcomes</h2>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="space-y-4">
+                    <div class="flex items-start space-x-3">
+                        <i class="fas fa-tachometer-alt text-green-500 text-xl mt-1"></i>
+                        <div>
+                            <h3 class="font-semibold text-gray-800">High-Speed Connectivity</h3>
+                            <p class="text-gray-600">Fast, stable internet access across the entire office environment</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start space-x-3">
+                        <i class="fas fa-shield-alt text-blue-500 text-xl mt-1"></i>
+                        <div>
+                            <h3 class="font-semibold text-gray-800">Enhanced Security</h3>
+                            <p class="text-gray-600">Secure internet access with comprehensive login control and monitoring</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="space-y-4">
+                    <div class="flex items-start space-x-3">
+                        <i class="fas fa-users text-purple-500 text-xl mt-1"></i>
+                        <div>
+                            <h3 class="font-semibold text-gray-800">Centralized Management</h3>
+                            <p class="text-gray-600">Central user tracking and bandwidth control for optimal performance</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start space-x-3">
+                        <i class="fas fa-expand-arrows-alt text-orange-500 text-xl mt-1"></i>
+                        <div>
+                            <h3 class="font-semibold text-gray-800">Future-Ready Infrastructure</h3>
+                            <p class="text-gray-600">Scalable infrastructure designed for future expansion and growth</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials -->
+        <section class="bg-white p-8 rounded-xl shadow-xl card-hover fade-in">
+            <div class="flex items-center mb-6">
+                <div class="w-12 h-12 bg-pink-100 rounded-lg flex items-center justify-center mr-4">
+                    <i class="fas fa-quote-left text-pink-600 text-xl"></i>
+                </div>
+                <h2 class="text-3xl font-bold text-gray-800">💬 Client Testimonials</h2>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="testimonial-card p-6 rounded-lg">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full flex items-center justify-center mr-3">
+                            <i class="fas fa-user text-white"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-semibold text-gray-800">Sarah Johnson</h3>
+                            <p class="text-sm text-gray-600">IT Director, Lagos Law Firm</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 italic">
+                        "Armstrong delivered an exceptional network infrastructure that transformed our office productivity. The security features and user management system exceeded our expectations."
+                    </p>
+                    <div class="flex text-yellow-400 mt-3">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                </div>
+                <div class="testimonial-card p-6 rounded-lg">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-gradient-to-r from-green-500 to-blue-500 rounded-full flex items-center justify-center mr-3">
+                            <i class="fas fa-user text-white"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-semibold text-gray-800">Michael Okafor</h3>
+                            <p class="text-sm text-gray-600">CTO, TechStart Nigeria</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 italic">
+                        "Professional service from start to finish. The network design is robust, scalable, and perfectly suited for our growing team. Highly recommended!"
+                    </p>
+                    <div class="flex text-yellow-400 mt-3">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Why Choose Me -->
+        <section class="bg-gradient-to-br from-blue-600 to-purple-600 text-white p-8 rounded-xl shadow-xl card-hover fade-in">
+            <div class="text-center mb-8">
+                <h2 class="text-3xl font-bold mb-4">🧠 Why Choose Nzotta Armstrong?</h2>
+                <p class="text-xl text-blue-100">Proven expertise in enterprise network solutions</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-award text-2xl"></i>
+                    </div>
+                    <h3 class="font-semibold mb-2">5+ Years Experience</h3>
+                    <p class="text-blue-100 text-sm">Extensive experience in network design and deployment for government, judiciary, and enterprise environments</p>
+                </div>
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-certificate text-2xl"></i>
+                    </div>
+                    <h3 class="font-semibold mb-2">Certified Professional</h3>
+                    <p class="text-blue-100 text-sm">MikroTik certified with expertise in RouterOS, UniFi systems, and enterprise security protocols</p>
+                </div>
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-handshake text-2xl"></i>
+                    </div>
+                    <h3 class="font-semibold mb-2">Reliable Support</h3>
+                    <p class="text-blue-100 text-sm">Committed to long-term partnerships with comprehensive support and maintenance services</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Form -->
+        <section id="contact" class="bg-white p-8 rounded-xl shadow-xl card-hover fade-in">
+            <div class="flex items-center mb-6">
+                <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mr-4">
+                    <i class="fas fa-envelope text-blue-600 text-xl"></i>
+                </div>
+                <h2 class="text-3xl font-bold text-gray-800">📞 Get Started Today</h2>
+            </div>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <div>
+                    <h3 class="text-xl font-semibold mb-4 text-gray-800">Ready to Transform Your Network?</h3>
+                    <p class="text-gray-600 mb-6">
+                        Contact me today to discuss your network infrastructure needs. I'll provide a customized solution that fits your budget and requirements.
+                    </p>
+                    <div class="space-y-4">
+                        <div class="flex items-center space-x-3">
+                            <i class="fas fa-phone text-blue-600"></i>
+                            <span class="text-gray-700">+2347041074484</span>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <i class="fas fa-envelope text-blue-600"></i>
+                            <span class="text-gray-700">nzottaarmstrong8@email.com</span>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <i class="fas fa-linkedin text-blue-600"></i>
+                            <span class="text-gray-700">linkedin.com/in/nzotta-armstrong</span>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <i class="fas fa-map-marker-alt text-blue-600"></i>
+                            <span class="text-gray-700">Lagos, Nigeria</span>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <form class="space-y-4" onsubmit="handleFormSubmit(event)">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
+                            <input type="text" required class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
+                            <input type="email" required class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Company/Organization</label>
+                            <input type="text" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Project Requirements</label>
+                            <textarea rows="4" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="Tell me about your network infrastructure needs..."></textarea>
+                        </div>
+                        <button type="submit" class="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white py-3 px-6 rounded-lg hover:from-blue-700 hover:to-purple-700 transition-all duration-300 font-semibold">
+                            <i class="fas fa-paper-plane mr-2"></i>Send Proposal Request
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- Call to Action -->
+        <section class="bg-gradient-to-r from-green-600 to-blue-600 text-white p-8 rounded-xl shadow-xl text-center fade-in">
+            <h2 class="text-3xl font-bold mb-4">🚀 Ready to Get Started?</h2>
+            <p class="text-xl mb-6 text-green-100">
+                Transform your office with a professional network infrastructure solution
+            </p>
+            <div class="flex flex-col md:flex-row justify-center space-y-4 md:space-y-0 md:space-x-4">
+                <button onclick="scrollToSection('contact')" class="bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors pulse-animation">
+                    <i class="fas fa-comments mr-2"></i>Schedule Consultation
+                </button>
+                <button onclick="downloadPDF()" class="bg-blue-700 text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-800 transition-colors">
+                    <i class="fas fa-download mr-2"></i>Download Proposal
+                </button>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="text-center text-gray-500 text-sm mt-12 pb-8">
+            <div class="border-t border-gray-200 pt-8">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <div class="mb-4 md:mb-0">
+                        <p class="font-semibold text-gray-700">Nzotta Armstrong Uchenna</p>
+                        <p>Senior ICT Support Specialist • Network Infrastructure Expert</p>
+                    </div>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-blue-600 transition-colors">
+                            <i class="fab fa-linkedin text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-blue-600 transition-colors">
+                            <i class="fab fa-twitter text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-blue-600 transition-colors">
+                            <i class="fas fa-envelope text-xl"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="mt-4 text-xs">
+                    <p>&copy; 2025 Nzotta Armstrong Uchenna. All rights reserved.</p>
+                    <p>Professional Network Design & ICT Solutions</p>
+                </div>
+            </div>
+        </footer>
+    </main>
+
+    <script>
+        // Smooth scrolling for navigation links
+        function scrollToSection(sectionId) {
+            document.getElementById(sectionId).scrollIntoView({
+                behavior: 'smooth'
+            });
+        }
+
+        // Add smooth scrolling to all navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Form submission handler
+        function handleFormSubmit(event) {
+            event.preventDefault();
+            alert('Thank you for your interest! I will contact you within 24 hours to discuss your network infrastructure needs.');
+        }
+
+        // PDF Download functionality
+        function downloadPDF() {
+            // Simple PDF generation using jsPDF
+            const {
+                jsPDF
+            } = window.jspdf;
+            const doc = new jsPDF();
+
+            // Add content to PDF
+            doc.setFontSize(20);
+            doc.text('Network Design & Deployment Proposal', 20, 30);
+
+            doc.setFontSize(14);
+            doc.text('Nzotta Armstrong Uchenna - ICT Solutions Expert', 20, 50);
+
+            doc.setFontSize(12);
+            doc.text('Professional network infrastructure design and deployment', 20, 70);
+            doc.text('for smart office environments.', 20, 80);
+
+            doc.text('Key Features:', 20, 100);
+            doc.text('• Secure, scalable network design', 25, 110);
+            doc.text('• MikroTik router configuration', 25, 120);
+            doc.text('• UniFi wireless access points', 25, 130);
+            doc.text('• Comprehensive security measures', 25, 140);
+            doc.text('• Professional installation & support', 25, 150);
+
+            doc.text('Investment: $7,000 (Complete solution)', 20, 170);
+            doc.text('Timeline: 4-5 weeks from planning to completion', 20, 180);
+
+            doc.text('Contact: nzottaarmstrong8@email.com', 20, 200);
+            doc.text('Phone: +2347041074484', 20, 210);
+
+            // Save the PDF
+            doc.save('Network-Design-Proposal-Nzotta-Armstrong.pdf');
+        }
+
+        // Add fade-in animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all sections
+        document.querySelectorAll('section').forEach(section => {
+            observer.observe(section);
+        });
+
+        // Mobile menu toggle (if needed)
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            if (mobileMenu) {
+                mobileMenu.classList.toggle('hidden');
+            }
+        }
+
+        // Add loading animation
+        window.addEventListener('load', () => {
+            document.body.classList.add('loaded');
+        });
+    </script>
+</body>
+
+</html>
