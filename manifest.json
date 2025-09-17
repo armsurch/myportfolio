@@ -1,0 +1,13 @@
+{
+  "name": "Nzotta Armstrong Uchenna | ICT Specialist",
+  "short_name": "Armstrong ICT",
+  "start_url": "Index.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#001122",
+  "theme_color": "#00aadd",
+  "icons": [
+    { "src": "img/mine.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "img/mine.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}

@@ -20,29 +20,35 @@ const themeToggle = document.getElementById('themeToggle');
 const themeIcon = document.getElementById('themeIcon');
 const themeText = document.getElementById('themeText');
 
-// Check if required elements exist
-if (!navbar || !navLinks.length || !mobileToggle || !navMenu || !backToTop || !loadingScreen || !themeToggle || !themeIcon || !themeText) {
-    console.warn('Some required DOM elements are missing. Check HTML structure.');
-}
+// Hide loading screen when DOM is ready
+document.addEventListener('DOMContentLoaded', function() {
+  if (loadingScreen) {
+    loadingScreen.classList.add('hidden');
+  }
+  // Initialize AOS if available
+  if (window.AOS && typeof AOS.init === 'function') {
+    AOS.init();
+  }
+});
 
-// Loading Screen
+// Loading Screen - backup for window load event
 window.addEventListener('load', () => {
     if (loadingScreen) {
         setTimeout(() => {
             loadingScreen.classList.add('hidden');
-        }, 1500);
+        }, 800);
     }
 });
 
 // Theme Toggle Functionality
 let currentTheme = localStorage.getItem('theme') || 'dark';
-document.documentElement.setAttribute('data-theme', currentTheme);
+document.body.setAttribute('data-theme', currentTheme);
 updateThemeButton();
 
 if (themeToggle) {
     themeToggle.addEventListener('click', () => {
         currentTheme = currentTheme === 'dark' ? 'light' : 'dark';
-        document.documentElement.setAttribute('data-theme', currentTheme);
+        document.body.setAttribute('data-theme', currentTheme);
         localStorage.setItem('theme', currentTheme);
         updateThemeButton();
 
@@ -67,7 +73,7 @@ function updateThemeButton() {
     }
 }
 
-// Navbar scroll effect
+// Navbar scroll effect and top progress bar
 window.addEventListener('scroll', () => {
     if (navbar && backToTop) {
         if (window.scrollY > 100) {
@@ -78,12 +84,22 @@ window.addEventListener('scroll', () => {
             backToTop.classList.remove('visible');
         }
     }
+    // Update scroll progress bar width
+    const progress = document.getElementById('scrollProgress');
+    if (progress) {
+        const doc = document.documentElement;
+        const scrollTop = doc.scrollTop || document.body.scrollTop;
+        const scrollHeight = doc.scrollHeight - doc.clientHeight;
+        const percent = scrollHeight ? (scrollTop / scrollHeight) * 100 : 0;
+        progress.style.width = percent + '%';
+    }
 });
 
 // Mobile menu toggle
 if (mobileToggle && navMenu) {
     mobileToggle.addEventListener('click', () => {
-        navMenu.classList.toggle('active');
+        const isOpen = navMenu.classList.toggle('active');
+        mobileToggle.setAttribute('aria-expanded', String(isOpen));
         const icon = mobileToggle.querySelector('i');
         if (icon) {
             icon.classList.toggle('fa-bars');
@@ -288,6 +304,18 @@ if (prevBtn) {
     });
 }
 
+// Keyboard navigation for carousel (Left/Right arrows)
+window.addEventListener('keydown', (e) => {
+    if (!testimonialsContainer) return;
+    if (e.key === 'ArrowRight') {
+        nextSlide();
+        resetCarouselInterval();
+    } else if (e.key === 'ArrowLeft') {
+        prevSlide();
+        resetCarouselInterval();
+    }
+});
+
 // Indicator clicks
 indicators.forEach((indicator, index) => {
     indicator.addEventListener('click', () => {
@@ -381,7 +409,7 @@ window.addEventListener('scroll', () => {
 // Form submission enhancement
 const contactForm = document.getElementById('contactForm');
 if (contactForm) {
-    contactForm.addEventListener('submit', (e) => {
+    contactForm.addEventListener('submit', async (e) => {
         e.preventDefault();
 
         const submitBtn = contactForm.querySelector('button[type="submit"]');
@@ -390,26 +418,40 @@ if (contactForm) {
         submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
         submitBtn.disabled = true;
 
-        // Simulate form submission (replace with actual form handling)
-        setTimeout(() => {
-            submitBtn.innerHTML = '<i class="fas fa-check"></i> Message Sent!';
-            submitBtn.style.background = '#28a745';
+        // Send to Formspree directly to match HTML action
+        try {
+            const formData = new FormData(contactForm);
+            const response = await fetch(contactForm.action, {
+                method: 'POST',
+                body: formData,
+                headers: { 'Accept': 'application/json' }
+            });
 
-            // Reset form
-            contactForm.reset();
-
-            // Reset button after 3 seconds
-            setTimeout(() => {
-                submitBtn.innerHTML = originalText;
-                submitBtn.disabled = false;
-                submitBtn.style.background = '';
-            }, 3000);
-
-            // Analytics tracking
-            if (typeof gtag !== 'undefined') {
-                gtag('event', 'contact_form_submit');
+            if (response.ok) {
+                submitBtn.innerHTML = '<i class="fas fa-check"></i> Message Sent!';
+                submitBtn.style.background = '#28a745';
+                contactForm.reset();
+            } else {
+                throw new Error('Submission failed');
             }
-        }, 2000);
+        } catch (err) {
+            console.error(err);
+            submitBtn.innerHTML = originalText;
+            submitBtn.disabled = false;
+            alert('There was a problem sending your message. Please try again.');
+        }
+
+        // Reset button after 3 seconds
+        setTimeout(() => {
+            submitBtn.innerHTML = originalText;
+            submitBtn.disabled = false;
+            submitBtn.style.background = '';
+        }, 3000);
+
+        // Analytics tracking
+        if (typeof gtag !== 'undefined') {
+            gtag('event', 'contact_form_submit');
+        }
     });
 }
 
@@ -573,9 +615,378 @@ function hideTooltip(e) {
     // Tooltip implementation
 }
 
+// ------------------ Resume Generator ------------------
+function setupResumeGenerator() {
+    const openBtn = document.getElementById('openResumeModal');
+    if (!openBtn) return;
+    let overlay;
+
+    openBtn.addEventListener('click', () => {
+        if (!overlay) overlay = createResumeModal();
+        overlay.classList.add('active');
+    });
+}
+
+function createResumeModal() {
+    const overlay = document.createElement('div');
+    overlay.className = 'modal-overlay';
+    overlay.innerHTML = `
+      <div class="modal" role="dialog" aria-modal="true">
+        <div class="modal-header">
+          <h3 class="modal-title">Generate Resume</h3>
+          <button class="modal-close" aria-label="Close">✕</button>
+        </div>
+        <div class="modal-grid">
+          <div class="form-group">
+            <label class="form-label">Full Name</label>
+            <input class="form-input" id="res-name" value="Nzotta Armstrong Uchenna" />
+          </div>
+          <div class="form-group">
+            <label class="form-label">Title</label>
+            <input class="form-input" id="res-title" value="ICT Specialist" />
+          </div>
+          <div class="form-group" style="grid-column: 1/-1">
+            <label class="form-label">Summary</label>
+            <textarea class="form-textarea" id="res-summary" rows="3">Network & Systems Administration, Fiber Optics, and Technical Support.</textarea>
+          </div>
+          <div class="form-group" style="grid-column: 1/-1">
+            <label class="form-label">Skills (comma separated)</label>
+            <input class="form-input" id="res-skills" value="Networking, Fiber Optics, Mikrotik, UniFi, Microsoft 365, Troubleshooting"/>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Experience (bullets; ; separated)</label>
+            <input class="form-input" id="res-exp" value="Designed and deployed LAN/Wi‑Fi networks; Configured MikroTik routers; Delivered IT support and maintenance"/>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Education</label>
+            <input class="form-input" id="res-edu" value="B.Sc — ICT (or related)"/>
+          </div>
+        </div>
+        <div class="actions">
+          <button class="btn btn-secondary" id="res-preview">Preview</button>
+          <button class="btn btn-primary" id="res-export">Export PDF</button>
+        </div>
+      </div>`;
+
+    document.body.appendChild(overlay);
+
+    const close = () => overlay.classList.remove('active');
+    overlay.addEventListener('click', (e) => { if (e.target === overlay) close(); });
+    overlay.querySelector('.modal-close').addEventListener('click', close);
+
+    const collect = () => ({
+      name: document.getElementById('res-name').value.trim(),
+      title: document.getElementById('res-title').value.trim(),
+      summary: document.getElementById('res-summary').value.trim(),
+      skills: document.getElementById('res-skills').value.split(',').map(s=>s.trim()).filter(Boolean),
+      exp: document.getElementById('res-exp').value.split(';').map(s=>s.trim()).filter(Boolean),
+      edu: document.getElementById('res-edu').value.trim()
+    });
+
+    const buildHTML = (data) => `
+      <div style="font-family:Poppins,Arial,sans-serif;padding:24px;max-width:900px;margin:auto;color:#222">
+        <div style="display:flex;gap:16px;align-items:center;border-bottom:2px solid #0aa; padding-bottom:12px;margin-bottom:16px">
+          <img src="img/mine.png" alt="Avatar" style="width:64px;height:64px;border-radius:50%"/>
+          <div>
+            <h1 style="margin:0;font-size:26px">${data.name}</h1>
+            <div style="color:#0aa">${data.title}</div>
+          </div>
+        </div>
+        <p style="line-height:1.6">${data.summary}</p>
+        <h3 style="margin-top:18px">Skills</h3>
+        <ul style="display:flex;flex-wrap:wrap;gap:8px;list-style:none;padding:0;margin:8px 0 0">
+          ${data.skills.map(s=>`<li style=\"background:#eef;padding:6px 10px;border-radius:999px\">${s}</li>`).join('')}
+        </ul>
+        <h3 style="margin-top:18px">Experience</h3>
+        <ul>
+          ${data.exp.map(e=>`<li style=\"margin:6px 0\">${e}</li>`).join('')}
+        </ul>
+        <h3 style="margin-top:18px">Education</h3>
+        <p>${data.edu}</p>
+      </div>`;
+
+    const previewBtn = overlay.querySelector('#res-preview');
+    const exportBtn = overlay.querySelector('#res-export');
+
+    previewBtn.addEventListener('click', () => {
+      const data = collect();
+      const w = window.open('', '_blank');
+      w.document.write(buildHTML(data));
+      w.document.close();
+    });
+
+    exportBtn.addEventListener('click', () => {
+      const data = collect();
+      const w = window.open('', '_blank');
+      w.document.write(buildHTML(data) + '<script>window.onload=()=>{setTimeout(()=>{window.print();},300)}<\/script>');
+      w.document.close();
+    });
+
+    return overlay;
+}
+
+// ------------------ Proposal Generator ------------------
+function setupProposalGenerator() {
+    const openBtn = document.getElementById('openProposalModal');
+    if (!openBtn) return;
+    let overlay;
+    openBtn.addEventListener('click', () => {
+        if (!overlay) overlay = createProposalModal();
+        overlay.classList.add('active');
+    });
+}
+
+function createProposalModal() {
+    const overlay = document.createElement('div');
+    overlay.className = 'modal-overlay';
+    overlay.innerHTML = `
+      <div class="modal" role="dialog" aria-modal="true">
+        <div class="modal-header">
+          <h3 class="modal-title">Generate Proposal</h3>
+          <button class="modal-close" aria-label="Close">✕</button>
+        </div>
+        <div class="modal-grid">
+          <div class="form-group">
+            <label class="form-label">Client Name</label>
+            <input class="form-input" id="p-client" placeholder="Client / Company"/>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Location</label>
+            <input class="form-input" id="p-location" placeholder="City, Country"/>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Contact</label>
+            <input class="form-input" id="p-contact" placeholder="email@domain.com"/>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Proposal Type</label>
+            <select id="p-type">
+              <option>Home/Office LAN setup</option>
+              <option>Fiber optics installation</option>
+              <option>Wi‑Fi coverage and AP deployment</option>
+              <option>Network security hardening</option>
+              <option>Starlink setup</option>
+              <option>Custom</option>
+            </select>
+          </div>
+          <div class="form-group" style="grid-column:1/-1">
+            <label class="form-label">Scope Details</label>
+            <textarea class="form-textarea" id="p-scope" rows="3" placeholder="Devices, floors, cable length, AP count, etc."></textarea>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Budget Range</label>
+            <input class="form-input" id="p-budget" placeholder="$2,000 - $5,000"/>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Timeline</label>
+            <input class="form-input" id="p-timeline" placeholder="2–4 weeks"/>
+          </div>
+          <div class="form-group" style="grid-column:1/-1">
+            <label class="form-label">Deliverables</label>
+            <input class="form-input" id="p-deliverables" placeholder="Site survey, cabling, configuration, documentation"/>
+          </div>
+          <div class="form-group" style="grid-column:1/-1">
+            <label class="form-label">Milestones</label>
+            <input class="form-input" id="p-milestones" placeholder="Deposit, procurement, installation, testing, handover"/>
+          </div>
+          <div class="form-group" style="grid-column:1/-1">
+            <label class="form-label">Warranty</label>
+            <input class="form-input" id="p-warranty" placeholder="12-month hardware and workmanship warranty"/>
+          </div>
+          <div class="form-group" style="grid-column:1/-1">
+            <label class="form-label">Payment Terms</label>
+            <input class="form-input" id="p-payment" placeholder="50% upfront, 50% on completion"/>
+          </div>
+        </div>
+        <div class="actions">
+          <button class="btn btn-secondary" id="p-preview">Preview</button>
+          <button class="btn btn-primary" id="p-export">Export PDF</button>
+        </div>
+      </div>`;
+
+    document.body.appendChild(overlay);
+
+    const close = () => overlay.classList.remove('active');
+    overlay.addEventListener('click', (e) => { if (e.target === overlay) close(); });
+    overlay.querySelector('.modal-close').addEventListener('click', close);
+
+    const collect = () => ({
+      client: document.getElementById('p-client').value.trim(),
+      location: document.getElementById('p-location').value.trim(),
+      contact: document.getElementById('p-contact').value.trim(),
+      type: document.getElementById('p-type').value,
+      scope: document.getElementById('p-scope').value.trim(),
+      budget: document.getElementById('p-budget').value.trim(),
+      timeline: document.getElementById('p-timeline').value.trim(),
+      deliverables: document.getElementById('p-deliverables').value.trim(),
+      milestones: document.getElementById('p-milestones').value.trim(),
+      warranty: document.getElementById('p-warranty').value.trim(),
+      payment: document.getElementById('p-payment').value.trim(),
+    });
+
+    const defaultIntro = (type) => {
+      const map = {
+        'Home/Office LAN setup': 'A reliable, scalable LAN designed for seamless device connectivity and efficient data flow.',
+        'Fiber optics installation': 'High‑bandwidth, low‑latency fiber backbone for future‑proof connectivity.',
+        'Wi‑Fi coverage and AP deployment': 'Optimized Wi‑Fi coverage using strategic AP placement and professional tuning.',
+        'Network security hardening': 'Defense‑in‑depth security controls to reduce risk and improve posture.',
+        'Starlink setup': 'High‑speed satellite internet deployment, mounting and network integration.',
+        'Custom': 'A tailored solution aligned with your specific business needs.'
+      };
+      return map[type] || map['Custom'];
+    };
+
+    const buildHTML = (d) => `
+      <div style="font-family:Poppins,Arial,sans-serif;padding:24px;max-width:900px;margin:auto;color:#222">
+        <div style="display:flex;align-items:center;gap:12px;border-bottom:2px solid #0aa;padding-bottom:10px;margin-bottom:16px">
+          <img src="img/mine.png" alt="Logo" style="width:48px;height:48px;border-radius:10px;"/>
+          <div>
+            <h1 style="margin:0;font-size:22px">Proposal — ${d.type}</h1>
+            <div style="color:#0aa">Prepared by Nzotta Armstrong Uchenna</div>
+          </div>
+        </div>
+        <p style="margin:.25rem 0"><strong>Client:</strong> ${d.client || '-'} | <strong>Location:</strong> ${d.location || '-'} | <strong>Contact:</strong> ${d.contact || '-'}</p>
+        <p style="line-height:1.6">${defaultIntro(d.type)}</p>
+        ${d.scope ? `<h3>Scope</h3><p style="white-space:pre-line">${d.scope}</p>`:''}
+        ${d.deliverables ? `<h3>Deliverables</h3><p>${d.deliverables}</p>`:''}
+        ${d.milestones ? `<h3>Milestones</h3><p>${d.milestones}</p>`:''}
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-top:8px">
+          ${d.budget?`<div style="background:#eef;padding:10px;border-radius:10px"><strong>Budget</strong><div>${d.budget}</div></div>`:''}
+          ${d.timeline?`<div style="background:#eef;padding:10px;border-radius:10px"><strong>Timeline</strong><div>${d.timeline}</div></div>`:''}
+          ${d.warranty?`<div style="background:#eef;padding:10px;border-radius:10px"><strong>Warranty</strong><div>${d.warranty}</div></div>`:''}
+          ${d.payment?`<div style="background:#eef;padding:10px;border-radius:10px"><strong>Payment Terms</strong><div>${d.payment}</div></div>`:''}
+        </div>
+        <p style="margin-top:16px;color:#555">Thank you for the opportunity. I look forward to collaborating.</p>
+      </div>`;
+
+    const previewBtn = overlay.querySelector('#p-preview');
+    const exportBtn = overlay.querySelector('#p-export');
+
+    previewBtn.addEventListener('click', () => {
+      const d = collect();
+      const w = window.open('', '_blank');
+      w.document.write(buildHTML(d));
+      w.document.close();
+    });
+
+    exportBtn.addEventListener('click', () => {
+      const d = collect();
+      const w = window.open('', '_blank');
+      w.document.write(buildHTML(d) + '<script>window.onload=()=>{setTimeout(()=>{window.print();},300)}<\/script>');
+      w.document.close();
+    });
+
+    return overlay;
+}
+
+// Quick Contact Modal
+function setupQuickContact() {
+    const openBtn = document.getElementById('openContactModal');
+    const modal = document.getElementById('contactModal');
+    const closeBtn = modal ? modal.querySelector('.close') : null;
+    const form = document.getElementById('quickContactForm');
+
+    if (!openBtn || !modal) return;
+
+    openBtn.addEventListener('click', () => {
+        modal.style.display = 'block';
+        document.body.style.overflow = 'hidden';
+    });
+
+    if (closeBtn) {
+        closeBtn.addEventListener('click', () => {
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        });
+    }
+
+    window.addEventListener('click', (e) => {
+        if (e.target === modal) {
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+    });
+
+    if (form) {
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Thank you for your message! I will get back to you soon.');
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+            form.reset();
+        });
+    }
+}
+
+// Modal functionality for existing modals in HTML
+function setupModals() {
+    const modals = document.querySelectorAll('.modal');
+    modals.forEach(modal => {
+        const closeBtn = modal.querySelector('.close');
+        if (closeBtn) {
+            closeBtn.addEventListener('click', () => {
+                modal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            });
+        }
+    });
+
+    // Resume modal functionality
+    const resumeModal = document.getElementById('resumeModal');
+    const openResumeBtn = document.getElementById('openResumeModal');
+    if (openResumeBtn && resumeModal) {
+        openResumeBtn.addEventListener('click', () => {
+            resumeModal.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        });
+    }
+
+    // Proposal modal functionality
+    const proposalModal = document.getElementById('proposalModal');
+    const openProposalBtn = document.getElementById('openProposalModal');
+    if (openProposalBtn && proposalModal) {
+        openProposalBtn.addEventListener('click', () => {
+            proposalModal.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        });
+    }
+
+    window.addEventListener('click', (e) => {
+        modals.forEach(modal => {
+            if (e.target === modal) {
+                modal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        });
+    });
+}
+
+// Resume download functionality
+function downloadResume(format) {
+    if (format === 'pdf') {
+        // In a real implementation, this would generate and download a PDF
+        alert('PDF Resume download would start here. Redirecting to resume PDF...');
+        window.open('Pdf/Arms.pdf', '_blank');
+    } else if (format === 'word') {
+        alert('Word format download would be implemented here.');
+    }
+    
+    const modal = document.getElementById('resumeModal');
+    if (modal) {
+        modal.style.display = 'none';
+        document.body.style.overflow = 'auto';
+    }
+}
+
 // Initialize all functionality
 document.addEventListener('DOMContentLoaded', () => {
     initializeTooltips();
+
+    // Resume/Proposal modal triggers
+    setupResumeGenerator();
+    setupProposalGenerator();
+    setupQuickContact();
+    setupModals();
 
     // Add any additional initialization here
     console.log('Portfolio loaded successfully!');

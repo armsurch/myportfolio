@@ -1,24 +1,21 @@
 // Service Worker for Portfolio
 // Version 1.0.0
 
-const CACHE_NAME = 'armstrong-portfolio-v1';
+const CACHE_NAME = 'armstrong-portfolio-v3';
 const urlsToCache = [
-    '/',
-    '/Index.html',
-    '/styles.css',
-    '/app.js',
-    '/manifest.json',
-    '/img/mine.jpg',
-    '/img/mine.png',
-    '/img/network.jpg',
-    '/img/TP Link.png',
-    '/img/Mikrotic.png',
-    '/img/Professional ICT Portfolio Showcase.png',
-    '/img/My.png',
-    '/Pdf/Arms.pdf',
-    '/Proposal.html',
-    'https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap',
-    'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css'
+    'Index.html',
+    'styles.css',
+    'app.js',
+    'manifest.json',
+    'img/mine.jpg',
+    'img/mine.png',
+    'img/network.jpg',
+    'img/TP Link.png',
+    'img/Mikrotic.png',
+    'img/Professional ICT Portfolio Showcase.png',
+    'img/My.png',
+    'Pdf/Arms.pdf',
+    'Proposal.html'
 ];
 
 // Install event - cache resources
@@ -33,6 +30,8 @@ self.addEventListener('install', (event) => {
             console.error('Failed to cache resources:', error);
         })
     );
+    // Activate new SW immediately on install
+    self.skipWaiting();
 });
 
 // Fetch event - serve cached content when offline
@@ -65,26 +64,30 @@ self.addEventListener('fetch', (event) => {
         .catch(() => {
             // Return offline page for navigation requests
             if (event.request.destination === 'document') {
-                return caches.match('/Index.html');
+                return caches.match('Index.html');
             }
         })
     );
 });
 
-// Activate event - clean up old caches
+// Activate event - claim clients and clean up old caches
 self.addEventListener('activate', (event) => {
     const cacheWhitelist = [CACHE_NAME];
 
     event.waitUntil(
-        caches.keys().then((cacheNames) => {
-            return Promise.all(
-                cacheNames.map((cacheName) => {
-                    if (cacheWhitelist.indexOf(cacheName) === -1) {
-                        return caches.delete(cacheName);
-                    }
-                })
-            );
-        })
+        Promise.all([
+            caches.keys().then((cacheNames) => {
+                return Promise.all(
+                    cacheNames.map((cacheName) => {
+                        if (cacheWhitelist.indexOf(cacheName) === -1) {
+                            return caches.delete(cacheName);
+                        }
+                    })
+                );
+            }),
+            // Control any existing clients immediately
+            self.clients.claim()
+        ])
     );
 });
 
