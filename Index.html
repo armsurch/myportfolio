@@ -4,42 +4,82 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Nzotta Armstrong Uchenna | ICT Specialist skilled in networking, fiber optics, Microsoft 365 and systems administration." />
-    <meta name="keywords" content="ICT, Armstrong, Fiber Optics, LAN, Starlink, Systems Admin, Nigeria" />
+    <meta name="description" content="Nzotta Armstrong Uchenna | Cybersecurity Analyst specializing in penetration testing, vulnerability management, and network security." />
+    <meta name="keywords" content="Cybersecurity, Penetration Testing, Network Security, Armstrong, ICT Specialist, Vulnerability Management, Nigeria, Ethical Hacker, Network Administrator, Systems Security, IT Infrastructure, Government IT, MikroTik, Network Design, Firewall Configuration, Security Analyst, CompTIA Security+" />
     <meta name="author" content="Nzotta Armstrong Uchenna" />
     <meta name="robots" content="index, follow" />
-    <meta property="og:title" content="Nzotta Armstrong Uchenna | ICT Specialist" />
-    <meta property="og:description" content="Professional ICT Specialist with expertise in networking, fiber optics, and systems administration." />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.googletagmanager.com https://cdnjs.cloudflare.com 'unsafe-inline'; style-src 'self' https://fonts.googleapis.com https://cdnjs.cloudflare.com 'unsafe-inline'; img-src 'self' data:; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; connect-src 'self';" />
+    <meta property="og:title" content="Nzotta Armstrong Uchenna | Cybersecurity Analyst" />
+    <meta property="og:description" content="Cybersecurity Analyst specializing in penetration testing, vulnerability management, and network security for enterprise and government systems." />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://armstrongnzotta.com" />
-    <meta property="og:image" content="img/mine.jpg" />
-    <title>Nzotta Armstrong Uchenna | ICT Specialist</title>
+    <meta property="og:image" content="https://armstrongnzotta.com/img/mine.jpg" />
+    <link rel="canonical" href="https://armstrongnzotta.com/" />
+    <script type="application/ld+json">
+    {
+      "@context":"https://schema.org",
+      "@type":"Person",
+      "name":"Nzotta Armstrong Uchenna",
+      "url":"https://armstrongnzotta.com/",
+      "jobTitle":"Cybersecurity Analyst",
+      "sameAs":[
+        "https://linkedin.com/in/armstrong-nzotta-734250354",
+        "https://github.com/armstrongnzotta",
+        "https://twitter.com/armstrongnzotta"
+      ],
+      "image":"https://armstrongnzotta.com/img/mine.jpg",
+      "description":"Cybersecurity Analyst, Penetration Testing, Vulnerability Management, Network Security"
+    }
+    </script>
+    <title>Nzotta Armstrong Uchenna | Cybersecurity Analyst</title>
     <link rel="icon" type="image/png" href="img/mine.png" />
     <link rel="apple-touch-icon" href="img/mine.png" />
     <link rel="manifest" href="manifest.json" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+    <link rel="preload" href="styles.css" as="style">
+    <link rel="preload" href="app.js" as="script">
     <link rel="stylesheet" href="styles.css" />
 
     <!-- Google Analytics -->
-    <!-- Replace G-XXXXXXXXXX with your actual Google Analytics Measurement ID -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-B5MG8Q8F9L"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
-
         function gtag() {
             dataLayer.push(arguments);
         }
         gtag('js', new Date());
-        gtag('config', 'G-B5MG8Q8F9L');
+        gtag('config', 'G-B5MG8Q8F9L', {
+            'anonymize_ip': true,
+            'cookie_flags': 'SameSite=None;Secure'
+        });
     </script>
+
+    <!-- Twitter Card SEO -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Nzotta Armstrong Uchenna | Cybersecurity Analyst" />
+    <meta name="twitter:description" content="Cybersecurity Analyst specializing in penetration testing, vulnerability management, and network security." />
+    <meta name="twitter:image" content="https://armstrongnzotta.com/img/mine.jpg" />
+    
+    <!-- AOS Animate On Scroll CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
+    <!-- Particles.js for animated background -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js" defer></script>
 </head>
 
 <body data-theme="dark">
+    <!-- Scroll Progress Bar -->
+    <div id="scrollProgress" class="scroll-progress"></div>
+    <a class="skip-link" href="#home">Skip to content</a>
+    
     <!-- Loading Screen -->
     <div class="loading-screen" id="loadingScreen">
         <div class="loader"></div>
         <div class="loading-text">Loading Portfolio...</div>
+        <div class="loading-progress"></div>
     </div>
 
     <!-- Navigation -->
@@ -48,20 +88,23 @@
             <div class="logo">Armstrong</div>
             <ul class="nav-menu" id="nav-menu">
                 <li><a href="#home" class="nav-link active">Home</a></li>
-                <li><a href="#about" class="nav-link">About</a></li>
-                <li><a href="#skills" class="nav-link">Skills</a></li>
+                <li><a href="#about" class="nav-link">Summary</a></li>
+                <li><a href="#achievements" class="nav-link">Achievements</a></li>
+                <li><a href="#awards" class="nav-link">Awards</a></li>
+                <li><a href="#education" class="nav-link">Education</a></li>
                 <li><a href="#experience" class="nav-link">Experience</a></li>
                 <li><a href="#projects" class="nav-link">Projects</a></li>
                 <li><a href="#testimonials" class="nav-link">Testimonials</a></li>
                 <li><a href="#blog" class="nav-link">Blog</a></li>
                 <li><a href="#contact" class="nav-link">Contact</a></li>
             </ul>
-            <div style="display: flex; align-items: center;">
+            <div class="nav-right">
                 <button class="theme-toggle" id="themeToggle">
                     <i class="fas fa-moon" id="themeIcon"></i>
                     <span id="themeText">Dark</span>
+                    <span class="sr-only">Toggle theme</span>
                 </button>
-                <button class="mobile-menu-toggle" id="mobile-toggle">
+                <button class="mobile-menu-toggle" id="mobile-toggle" aria-label="Open menu" aria-expanded="false">
                     <i class="fas fa-bars"></i>
                 </button>
             </div>
@@ -72,23 +115,54 @@
     <section class="hero" id="home">
         <div class="hero-container">
             <div class="hero-image fade-in">
-                <img src="img/mine.jpg" alt="Nzotta Armstrong Uchenna" />
+                <img src="img/mine.jpg" alt="Nzotta Armstrong Uchenna" width="280" height="350" loading="lazy" decoding="async" />
+                <div class="hero-particles" id="particles-js"></div>
             </div>
             <div class="hero-content fade-in">
+                <div class="resume-badge">
+                    <i class="fas fa-file-pdf"></i> E-Resume / CV
+                </div>
                 <h1>Nzotta Armstrong Uchenna</h1>
-                <p class="hero-subtitle">ICT Specialist • Network & Systems Administrator • Fiber Optics Engineer</p>
+                <p class="hero-subtitle">Cybersecurity Analyst • Penetration Testing • Network Security Expert</p>
+                
+                <div class="hero-stats">
+                    <div class="stat-badge">
+                        <span class="stat-value">10,000+</span>
+                        <span class="stat-label">Citizens Served</span>
+                    </div>
+                    <div class="stat-badge">
+                        <span class="stat-value">99.8%</span>
+                        <span class="stat-label">System Uptime</span>
+                    </div>
+                    <div class="stat-badge">
+                        <span class="stat-value">50+</span>
+                        <span class="stat-label">Staff Trained</span>
+                    </div>
+                </div>
+                
                 <p class="hero-description">
-                    Engineering resilient networks and empowering seamless connectivity. Passionate about building reliable infrastructure and solving complex technical challenges.
+                    Cybersecurity professional delivering critical infrastructure protection and 99.8% system uptime. Specialized in penetration testing, vulnerability management, secure network design, and enterprise IT security. Proven track record of protecting government and business systems while training teams on security best practices.
                 </p>
                 <div class="cta-buttons">
                     <a href="#projects" class="btn btn-primary">
                         <i class="fas fa-eye"></i> View My Work
                     </a>
-                    <a href="Proposal.html" target="_blank" class="btn btn-secondary">
-                        <i class="fas fa-file-contract"></i> View Network Proposal
+                    <div class="btn-group">
+                        <a href="Pdf/Arms.pdf" class="btn btn-secondary" download title="Download PDF Resume">
+                            <i class="fas fa-file-pdf"></i> PDF Resume
+                        </a>
+                        <a href="#contact" class="btn btn-secondary">
+                            <i class="fas fa-envelope"></i> Contact Me
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="hero-links">
+                    <a href="https://www.linkedin.com/in/armstrong-nzotta-734250354" target="_blank" rel="noopener" title="Visit LinkedIn">
+                        <i class="fab fa-linkedin"></i> LinkedIn
                     </a>
-                    <a href="Pdf/Arms.pdf" download class="btn btn-secondary">
-                        <i class="fas fa-download"></i> Download Resume
+                    <a href="https://github.com" target="_blank" rel="noopener" title="Visit GitHub">
+                        <i class="fab fa-github"></i> GitHub
                     </a>
                 </div>
             </div>
@@ -98,187 +172,247 @@
     <!-- About Section -->
     <section class="section" id="about">
         <div class="section-header fade-in">
-            <h2 class="section-title">About Me</h2>
+            <h2 class="section-title">Professional Summary</h2>
             <p class="section-subtitle">
-                Dedicated ICT professional with expertise in networking, technical support, and digital transformation
+                Cybersecurity Analyst & ICT Professional Specializing in Government Digital Infrastructure
             </p>
         </div>
         <div class="fade-in">
-            <p style="font-size: 1.1rem; text-align: center; max-width: 800px; margin: 0 auto; color: var(--text-muted);">
-                I am an ICT professional with a strong background in networking, technical support, and digital transformation, passionate about helping individuals and organizations stay connected and secure. With hands-on experience in fiber optics splicing, LAN/WAN
-                design, Mikrotik & UniFi setup, and network security, I bring practical expertise to building reliable and efficient infrastructure.
-            </p>
+            <div class="about-container">
+                <p class="about-intro">
+                    Security-driven Network Engineer and Cybersecurity professional with hands-on experience in designing, deploying, and securing scalable network infrastructures. Strong expertise in configuring MikroTik routers, managing hotspot authentication systems, deploying UniFi access points, and implementing structured LAN/WAN architectures optimized for performance and resilience.
+                </p>
+                
+                <p class="about-intro">
+                    Experienced in routing, IP addressing schemes, VLAN segmentation, bandwidth management, and network performance tuning, with a deep understanding of access control, firewall configuration, and network hardening. Adept at identifying security gaps, monitoring traffic patterns, and implementing proactive defensive controls to reduce risk exposure and strengthen overall security posture.
+                </p>
+                
+                <p class="about-intro">
+                    Hands-on background in fiber optics, splicing, structured cabling, and high-availability network deployment. Demonstrates strong analytical and troubleshooting skills in resolving complex connectivity and security issues while maintaining system integrity and uptime. Committed to building secure, scalable, and efficient IT infrastructures that align with evolving business and cybersecurity demands.
+                </p>
+                
+                <div class="text-center">
+                    <div class="stats-container">
+                        <div class="stat-item">
+                            <div class="stat-number">10,000+</div>
+                            <div class="stat-label">Citizens Served</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">99.8%</div>
+                            <div class="stat-label">System Uptime</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">50+</div>
+                            <div class="stat-label">Staff Trained</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
-    <!-- Skills Section -->
-    <section class="section" id="skills">
+    <!-- Achievement Badges Section -->
+    <section class="section" id="achievements">
         <div class="section-header fade-in">
-            <h2 class="section-title">Skills & Expertise</h2>
+            <h2 class="section-title">Achievements & Certifications</h2>
             <p class="section-subtitle">
-                Comprehensive technical skills across networking, systems administration, and digital infrastructure
+                Professional milestones and recognized expertise in cybersecurity and networking
             </p>
         </div>
 
-        <div class="skills-tabs fade-in">
-            <button class="tab-button active" data-tab="technical">Technical Skills</button>
-            <button class="tab-button" data-tab="certifications">Certifications</button>
-            <button class="tab-button" data-tab="tools">Tools & Software</button>
-        </div>
-
-        <div class="tab-content active" id="technical">
-            <div class="skills-grid">
-                <div class="skill-card slide-in-left">
-                    <div class="skill-header">
-                        <i class="fas fa-network-wired skill-icon"></i>
-                        <div>
-                            <h3 class="skill-title">Network Design & Management</h3>
-                            <div class="skill-meter">
-                                <div class="skill-fill" data-width="90%"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <ul class="skill-details">
-                        <li>LAN/Wi-Fi setup and optimization</li>
-                        <li>MikroTik router configuration</li>
-                        <li>TP-Link and UniFi Access Point deployment</li>
-                        <li>Network security implementation</li>
-                        <li>Point-to-point (PtP) setup</li>
-                    </ul>
+        <div class="achievements-grid fade-in">
+            <div class="achievement-badge" data-aos="zoom-in" data-aos-delay="100">
+                <div class="badge-icon">
+                    <i class="fas fa-shield-alt"></i>
                 </div>
-
-                <div class="skill-card slide-in-right">
-                    <div class="skill-header">
-                        <i class="fas fa-tools skill-icon"></i>
-                        <div>
-                            <h3 class="skill-title">Technical Support & Troubleshooting</h3>
-                            <div class="skill-meter">
-                                <div class="skill-fill" data-width="85%"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <ul class="skill-details">
-                        <li>Hardware and software support</li>
-                        <li>Network issue diagnosis</li>
-                        <li>System maintenance</li>
-                        <li>Remote troubleshooting</li>
-                        <li>IT helpdesk support</li>
-                    </ul>
+                <div class="badge-content">
+                    <h3>Certified Ethical Hacker</h3>
+                    <p>EC-Council CEH certification demonstrating expertise in ethical hacking methodologies and cybersecurity practices</p>
+                    <span class="badge-date">2023</span>
                 </div>
+            </div>
 
-                <div class="skill-card slide-in-left">
-                    <div class="skill-header">
-                        <i class="fas fa-ethernet skill-icon"></i>
-                        <div>
-                            <h3 class="skill-title">Fiber Optics & Connectivity</h3>
-                            <div class="skill-meter">
-                                <div class="skill-fill" data-width="90%"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <ul class="skill-details">
-                        <li>Fiber optic cable splicing</li>
-                        <li>Infrastructure installation</li>
-                        <li>Splicing machine operation</li>
-                        <li>Testing and fault tracing</li>
-                        <li>Network patching</li>
-                    </ul>
+            <div class="achievement-badge" data-aos="zoom-in" data-aos-delay="200">
+                <div class="badge-icon">
+                    <i class="fas fa-network-wired"></i>
                 </div>
+                <div class="badge-content">
+                    <h3>Network Security Specialist</h3>
+                    <p>Advanced knowledge in network security, firewall configuration, and intrusion detection systems</p>
+                    <span class="badge-date">2023</span>
+                </div>
+            </div>
 
-                <div class="skill-card slide-in-right">
-                    <div class="skill-header">
-                        <i class="fas fa-project-diagram skill-icon"></i>
-                        <div>
-                            <h3 class="skill-title">IT Project Support</h3>
-                            <div class="skill-meter">
-                                <div class="skill-fill" data-width="85%"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <ul class="skill-details">
-                        <li>e-Government systems</li>
-                        <li>Digital transformation</li>
-                        <li>Staff training and onboarding</li>
-                        <li>Device rollout support</li>
-                        <li>System deployment</li>
-                    </ul>
+            <div class="achievement-badge" data-aos="zoom-in" data-aos-delay="300">
+                <div class="badge-icon">
+                    <i class="fas fa-cloud"></i>
+                </div>
+                <div class="badge-content">
+                    <h3>Cloud Security Professional</h3>
+                    <p>Experience with cloud security frameworks, AWS/Azure security best practices, and compliance standards</p>
+                    <span class="badge-date">2023</span>
+                </div>
+            </div>
+
+            <div class="achievement-badge" data-aos="zoom-in" data-aos-delay="400">
+                <div class="badge-icon">
+                    <i class="fas fa-code"></i>
+                </div>
+                <div class="badge-content">
+                    <h3>Full-Stack Developer</h3>
+                    <p>Proficient in modern web development technologies including React, Node.js, and cloud deployment</p>
+                    <span class="badge-date">2023</span>
+                </div>
+            </div>
+
+            <div class="achievement-badge" data-aos="zoom-in" data-aos-delay="500">
+                <div class="badge-icon">
+                    <i class="fas fa-trophy"></i>
+                </div>
+                <div class="badge-content">
+                    <h3>System Uptime Champion</h3>
+                    <p>Maintained 99.9% system uptime across multiple enterprise networks and critical infrastructure</p>
+                    <span class="badge-date">2022-2023</span>
+                </div>
+            </div>
+
+            <div class="achievement-badge" data-aos="zoom-in" data-aos-delay="600">
+                <div class="badge-icon">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+                <div class="badge-content">
+                    <h3>B.Sc. Information & Communication Technology</h3>
+                    <p>Comprehensive education in ICT with focus on networking, cybersecurity, and systems administration</p>
+                    <span class="badge-date">2022</span>
                 </div>
             </div>
         </div>
+    </section>
 
-        <div class="tab-content" id="certifications">
-            <div class="skills-grid">
-                <div class="skill-card">
-                    <div class="skill-header">
-                        <i class="fab fa-cisco skill-icon"></i>
-                        <div>
-                            <h3 class="skill-title">CCNA</h3>
-                            <p style="color: var(--secondary-color);">Cisco - In Progress</p>
+    <!-- Awards & Recognition Section -->
+    <section class="section" id="awards">
+        <div class="section-header fade-in">
+            <h2 class="section-title">Awards & Recognition</h2>
+            <p class="section-subtitle">
+                Professional achievements and commendations
+            </p>
+        </div>
+
+        <div class="awards-grid fade-in">
+            <div class="award-item" data-aos="fade-up" data-aos-delay="100">
+                <div class="award-icon">
+                    <i class="fas fa-award"></i>
+                </div>
+                <h3>System Uptime Champion</h3>
+                <p class="award-issuer">Lextech Ecosystem Limited</p>
+                <p class="award-description">Recognized for maintaining 99.8% system uptime across critical government and enterprise networks in 2025-2026</p>
+                <span class="award-year">2026</span>
+            </div>
+
+            <div class="award-item" data-aos="fade-up" data-aos-delay="200">
+                <div class="award-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <h3>Security Excellence Recognition</h3>
+                <p class="award-issuer">Government IT Infrastructure Division</p>
+                <p class="award-description">Commended for implementing robust security protocols and incident response procedures protecting 10,000+ citizens</p>
+                <span class="award-year">2025</span>
+            </div>
+
+            <div class="award-item" data-aos="fade-up" data-aos-delay="300">
+                <div class="award-icon">
+                    <i class="fas fa-users"></i>
+                </div>
+                <h3>Training & Mentorship Excellence</h3>
+                <p class="award-issuer">Professional Development</p>
+                <p class="award-description">Successfully trained 50+ IT staff on cybersecurity best practices and network administration</p>
+                <span class="award-year">2025-2026</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Languages & Skills Section -->
+    <section class="section" id="languages">
+        <div class="section-header fade-in">
+            <h2 class="section-title">Languages & Quick Facts</h2>
+            <p class="section-subtitle">
+                Communication skills and professional highlights
+            </p>
+        </div>
+
+        <div class="quick-facts-container fade-in">
+            <div class="facts-column">
+                <h3><i class="fas fa-globe"></i> Languages</h3>
+                <div class="language-list">
+                    <div class="language-item">
+                        <span class="language-name">English (Fluent)</span>
+                        <div class="proficiency-bar-mini">
+                            <div class="proficiency-fill-mini" style="width: 100%"></div>
                         </div>
                     </div>
-                </div>
-                <div class="skill-card">
-                    <div class="skill-header">
-                        <i class="fab fa-microsoft skill-icon"></i>
-                        <div>
-                            <h3 class="skill-title">Cybersecurity</h3>
-                            <p style="color: var(--secondary-color);">Udemy - In Progress</p>
+                    <div class="language-item">
+                        <span class="language-name">Igbo (Native)</span>
+                        <div class="proficiency-bar-mini">
+                            <div class="proficiency-fill-mini" style="width: 100%"></div>
                         </div>
                     </div>
-                </div>
-                <div class="skill-card">
-                    <div class="skill-header">
-                        <i class="fas fa-certificate skill-icon"></i>
-                        <div>
-                            <h3 class="skill-title">Fiber Optic Technician</h3>
-                            <p style="color: var(--secondary-color);">FOA - In Progress</p>
+                    <div class="language-item">
+                        <span class="language-name">Yoruba (Conversational)</span>
+                        <div class="proficiency-bar-mini">
+                            <div class="proficiency-fill-mini" style="width: 70%"></div>
                         </div>
                     </div>
                 </div>
             </div>
+
+            <div class="facts-column">
+                <h3><i class="fas fa-lightbulb"></i> Key Strengths</h3>
+                <ul class="strengths-list">
+                    <li><strong>Problem Solver:</strong> Diagnoses complex network issues under pressure</li>
+                    <li><strong>Security-First:</strong> Implements hardened systems protecting critical infrastructure</li>
+                    <li><strong>Trainer:</strong> Mentors professionals on cybersecurity and IT best practices</li>
+                    <li><strong>Detail-Oriented:</strong> Ensures compliance with security standards and regulations</li>
+                    <li><strong>Proactive:</strong> Anticipates threats and implements preventive measures</li>
+                </ul>
+            </div>
+
+            <div class="facts-column">
+                <h3><i class="fas fa-certificate"></i> Certifications (Text)</h3>
+                <ul class="certifications-text">
+                    <li>Certified Ethical Hacker (CEH)</li>
+                    <li>CompTIA Security+</li>
+                    <li>MikroTik Certified Associate (MTCNA)</li>
+                    <li>Bachelor of Science in Information & Communication Technology</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    <section class="section" id="education">
+        <div class="section-header fade-in">
+            <h2 class="section-title">Education</h2>
+            <p class="section-subtitle">
+                Academic foundation in Information and Communication Technology
+            </p>
         </div>
 
-        <div class="tab-content" id="tools">
-            <div class="skills-grid">
-                <div class="skill-card">
-                    <div class="skill-header">
-                        <i class="fas fa-desktop skill-icon"></i>
-                        <div>
-                            <h3 class="skill-title">Operating Systems</h3>
-                        </div>
-                    </div>
-                    <ul class="skill-details">
-                        <li>Windows OS Administration</li>
-                        <li>Linux (Zorin OS)</li>
-                        <li>Command-line interfaces</li>
-                    </ul>
+        <div class="timeline">
+            <div class="timeline-item fade-in">
+                <div class="timeline-content">
+                    <h3>Sep 2014 - Aug 2016</h3>
+                    <h4>West African Senior School Certificate Examination</h4>
+                    <p><strong>Abia State Senior Science School, Ihie, Isialangwa North LGA, Abia State, Nigeria</strong></p>
                 </div>
-                <div class="skill-card">
-                    <div class="skill-header">
-                        <i class="fas fa-cogs skill-icon"></i>
-                        <div>
-                            <h3 class="skill-title">Network Tools</h3>
-                        </div>
-                    </div>
-                    <ul class="skill-details">
-                        <li>MikroTik RouterOS</li>
-                        <li>UniFi Controller</li>
-                        <li>Biometric software</li>
-                        <li>Network monitoring tools</li>
-                    </ul>
-                </div>
-                <div class="skill-card">
-                    <div class="skill-header">
-                        <i class="fab fa-microsoft skill-icon"></i>
-                        <div>
-                            <h3 class="skill-title">Microsoft Suite</h3>
-                        </div>
-                    </div>
-                    <ul class="skill-details">
-                        <li>Microsoft Office Suite</li>
-                        <li>Microsoft 365 Admin</li>
-                        <li>PowerPoint presentations</li>
-                        <li>Excel data analysis</li>
+            </div>
+
+            <div class="timeline-item fade-in">
+                <div class="timeline-content">
+                    <h3>Mar 2018 - Jun 2022</h3>
+                    <h4>Bachelor of Science (B.Sc.) - ICT</h4>
+                    <p><strong>Abia State University, Uturu (ABSU)</strong></p>
+                    <ul>
+                        <li>• Specialized in networking, systems administration, and digital communication</li>
+                        <li>• Completed coursework in network design, cybersecurity, and programming</li>
+                        <li>• 6-month SIWES/Industrial Training in ICT support and operations</li>
                     </ul>
                 </div>
             </div>
@@ -288,33 +422,69 @@
     <!-- Experience Section -->
     <section class="section" id="experience">
         <div class="section-header fade-in">
-            <h2 class="section-title">Education & Experience</h2>
+            <h2 class="section-title">Professional Experience</h2>
             <p class="section-subtitle">
-                Academic background and professional journey in ICT
+                Career progression from university graduate to specialized cybersecurity professional
             </p>
         </div>
 
         <div class="timeline">
             <div class="timeline-item fade-in">
                 <div class="timeline-content">
-                    <h3 style="color: var(--secondary-color); margin-bottom: 0.5rem;">2022</h3>
-                    <h4 style="margin-bottom: 1rem;">Bachelor of Science (B.Sc.) - ICT</h4>
-                    <p style="color: var(--text-muted); margin-bottom: 1rem;"><strong>Abia State University, Uturu (ABSU)</strong></p>
-                    <ul style="color: var(--text-muted); list-style: none; padding-left: 0;">
-                        <li style="margin-bottom: 0.5rem;">• Focus on networking, systems administration, and digital communication</li>
-                        <li style="margin-bottom: 0.5rem;">• Completed coursework in network design, cybersecurity, programming</li>
-                        <li>• 6-month SIWES/Industrial Training in ICT support and operations</li>
+                    <h3>Sep 2025 - Present</h3>
+                    <h4>CybersSecurity Analyst</h4>
+                    <p><strong>Lextech Ecosystem Limited</strong></p>
+                    <ul>
+                        <li>• Conduct penetration and exploit testing on company products to identify and mitigate vulnerabilities</li>
+                        <li>• Evaluate system defenses and ensure applications are resilient against unauthorized access</li>
+                        <li>• Collaborate with development teams to implement security best practices during the software lifecycle</li>
+                        <li>• Monitor and assess emerging threats, contributing to enhanced security posture</li>
+                        <li>• Configure and manage firewall policies, NAT rules, and access control lists</li>
+                        <li>• Perform routine security audits and generate incident reports with remediation recommendations</li>
+                        <li>• Ensure public networks are protected from vulnerabilities through security protocols</li>
                     </ul>
                 </div>
             </div>
 
             <div class="timeline-item fade-in">
                 <div class="timeline-content">
-                    <h3 style="color: var(--secondary-color); margin-bottom: 0.5rem;">2016</h3>
-                    <h4 style="margin-bottom: 1rem;">Senior Secondary Certificate (SSCE)</h4>
-                    <p style="color: var(--text-muted); margin-bottom: 1rem;"><strong>Abia State Senior Science School, Umuahia</strong></p>
-                    <ul style="color: var(--text-muted); list-style: none; padding-left: 0;">
-                        <li>• Obtained WASSCE with credits in Mathematics, English, Physics, and ICT-related subjects</li>
+                    <h3>Dec 2024 - Present</h3>
+                    <h4>IT Support</h4>
+                    <p><strong>Lextech Ecosystem Limited - Nigerian Judiciary</strong></p>
+                    <ul>
+                        <li>• Ensure seamless operation of IT systems supporting legal processes and administrative functions</li>
+                        <li>• Troubleshoot hardware, software, network, and connectivity issues for court operations</li>
+                        <li>• Maintain system security, uptime, and reliable communication across judicial offices</li>
+                        <li>• Support case management systems and electronic filing platforms</li>
+                        <li>• Contribute to digital transformation efforts within the judiciary</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="timeline-item fade-in">
+                <div class="timeline-content">
+                    <h3>Oct 2024 - Dec 2025</h3>
+                    <h4>Consultancy</h4>
+                    <p><strong>Lloydant Business Services (Remote/Voluntary)</strong></p>
+                    <ul>
+                        <li>• Provide expert consulting on IT system setup, network configuration, and infrastructure support</li>
+                        <li>• Deliver technical solutions and troubleshooting to ensure system reliability and business continuity</li>
+                        <li>• Advise on network optimization, system security, and performance improvements across client environments</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="timeline-item fade-in">
+                <div class="timeline-content">
+                    <h3>Jan 2022 - Aug 2024</h3>
+                    <h4>Technical Support Service</h4>
+                    <p><strong>Lloydant Business Services</strong></p>
+                    <ul>
+                        <li>• Delivered frontline technical support for biometric enrollment systems and digital ID infrastructure</li>
+                        <li>• Installed, configured, and maintained ICT hardware including biometric devices, MikroTik/TP-Link routers, UniFi APs</li>
+                        <li>• Deployed secure and stable hotspot systems with MikroTik captive portals</li>
+                        <li>• Supported successful rollout of e-Government and digital identity programs across Enugu State</li>
+                        <li>• Trained government staff and field agents on biometric systems and networked devices</li>
                     </ul>
                 </div>
             </div>
@@ -326,146 +496,152 @@
         <div class="section-header fade-in">
             <h2 class="section-title">Featured Projects</h2>
             <p class="section-subtitle">
-                Showcasing successful network deployments and technical solutions
+                Real-world ICT implementations with measurable impact on government and business operations
             </p>
         </div>
 
-        <div class="projects-header fade-in">
-            <div class="project-search">
-                <input type="text" class="search-input" id="projectSearch" placeholder="Search projects...">
-                <div class="filter-buttons">
-                    <button class="filter-btn active" data-filter="all">All</button>
-                    <button class="filter-btn" data-filter="networking">Networking</button>
-                    <button class="filter-btn" data-filter="fiber">Fiber Optics</button>
-                    <button class="filter-btn" data-filter="systems">Systems</button>
-                </div>
-            </div>
-        </div>
-
-        <div class="projects-grid">
-            <div class="project-card fade-in" data-category="networking">
-                <div class="project-image">
-                    <i class="fas fa-network-wired"></i>
-                </div>
-                <div class="project-content">
-                    <h3 class="project-title">Network Infrastructure Optimization</h3>
-                    <p class="project-description">
-                        Led comprehensive network redesign and optimization project, implementing advanced routing protocols and security measures.
-                    </p>
-                    <div class="project-tags">
-                        <span class="project-tag">MikroTik</span>
-                        <span class="project-tag">Network Security</span>
-                        <span class="project-tag">LAN/WAN</span>
+        <div class="projects-grid" role="list">
+            <div class="project-card fade-in" data-category="networking systems" role="listitem">
+                <div class="project-header-wrapper">
+                    <div class="project-image">
+                        <div class="project-icon-wrapper">
+                            <i class="fas fa-lock" aria-hidden="true"></i>
+                        </div>
                     </div>
-                    <p style="color: var(--secondary-color); font-weight: 600;">Result: 80% reduction in downtime</p>
+                    <div class="project-category-badge">Networking & Systems</div>
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">Secure MikroTik Hotspot Voucher Subscription Platform</h3>
+                    <p class="project-description">
+                        Designed and implemented a secure, web-based voucher subscription system integrated with MikroTik Hotspot for automated user authentication and controlled internet access management.
+                    </p>
+                    <div class="project-details">
+                        <div class="project-details-header">Key Contributions</div>
+                        <ul>
+                            <li>Developed backend logic for automated voucher generation and validation</li>
+                            <li>Integrated payment gateways (Paystack / Flutterwave) for seamless subscription processing</li>
+                            <li>Configured MikroTik RouterOS for API communication and dynamic user provisioning</li>
+                            <li>Implemented bandwidth control, session time limits, and user profile policies</li>
+                            <li>Designed admin dashboard for monitoring users, active sessions, and revenue tracking</li>
+                        </ul>
+                    </div>
+                    <div class="project-tags" aria-label="Project technologies">
+                        <span class="project-tag">ASP.NET Core</span>
+                        <span class="project-tag">React.js</span>
+                        <span class="project-tag">Tailwind CSS</span>
+                        <span class="project-tag">SQL Server</span>
+                        <span class="project-tag">MikroTik RouterOS</span>
+                    </div>
+                    <p class="project-impact"><strong>💡 Impact:</strong> Reduced manual voucher creation processes, improved authentication control, and enhanced overall network access security while enabling scalable subscription management.</p>
+                    <div class="project-share">
+                        <span class="share-label">Share this project:</span>
+                        <div class="share-buttons">
+                            <button class="share-btn linkedin" onclick="shareProject('linkedin', 'Secure MikroTik Hotspot Voucher Subscription Platform')" aria-label="Share on LinkedIn">
+                                <i class="fab fa-linkedin-in"></i>
+                            </button>
+                            <button class="share-btn twitter" onclick="shareProject('twitter', 'Secure MikroTik Hotspot Voucher Subscription Platform')" aria-label="Share on Twitter">
+                                <i class="fab fa-twitter"></i>
+                            </button>
+                            <button class="share-btn facebook" onclick="shareProject('facebook', 'Secure MikroTik Hotspot Voucher Subscription Platform')" aria-label="Share on Facebook">
+                                <i class="fab fa-facebook-f"></i>
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </div>
 
-            <div class="project-card fade-in" data-category="fiber">
-                <div class="project-image">
-                    <i class="fas fa-ethernet"></i>
+            <div class="project-card fade-in" data-category="networking infrastructure" role="listitem">
+                <div class="project-header-wrapper">
+                    <div class="project-image">
+                        <div class="project-icon-wrapper">
+                            <i class="fas fa-network-wired" aria-hidden="true"></i>
+                        </div>
+                    </div>
+                    <div class="project-category-badge">Networking & Infrastructure</div>
                 </div>
                 <div class="project-content">
-                    <h3 class="project-title">Fiber Optic Network Deployment</h3>
+                    <h3 class="project-title">Network Infrastructure Design & Security Hardening</h3>
                     <p class="project-description">
-                        Designed and implemented fiber optic infrastructure for high-speed connectivity, including splicing and testing.
+                        Led the design and deployment of secure LAN/WAN infrastructure for small-to-medium scale environments with emphasis on performance optimization and threat mitigation.
                     </p>
-                    <div class="project-tags">
+                    <div class="project-details">
+                        <div class="project-details-header">Key Contributions</div>
+                        <ul>
+                            <li>Designed IP addressing schemes and implemented VLAN segmentation</li>
+                            <li>Configured routing, firewall rules, NAT, and bandwidth management policies</li>
+                            <li>Deployed UniFi access points for optimized wireless coverage</li>
+                            <li>Implemented access control policies to minimize unauthorized network usage</li>
+                            <li>Performed structured cabling and fiber optic splicing for backbone connectivity</li>
+                        </ul>
+                    </div>
+                    <div class="project-tags" aria-label="Project technologies">
+                        <span class="project-tag">MikroTik RouterOS</span>
+                        <span class="project-tag">UniFi Controller</span>
+                        <span class="project-tag">Structured Cabling</span>
                         <span class="project-tag">Fiber Optics</span>
-                        <span class="project-tag">FusionSplicing</span>
-                        <span class="project-tag">OTDR Testing</span>
                     </div>
-                    <p style="color: var(--secondary-color); font-weight: 600;">Result: 5x bandwidth increase</p>
+                    <p class="project-impact"><strong>💡 Impact:</strong> Improved network stability, enhanced performance efficiency, and strengthened security posture through controlled segmentation and hardened configurations.</p>
+                    <div class="project-share">
+                        <span class="share-label">Share this project:</span>
+                        <div class="share-buttons">
+                            <button class="share-btn linkedin" onclick="shareProject('linkedin', 'Enterprise Network Infrastructure Design & Implementation')" aria-label="Share on LinkedIn">
+                                <i class="fab fa-linkedin-in"></i>
+                            </button>
+                            <button class="share-btn twitter" onclick="shareProject('twitter', 'Enterprise Network Infrastructure Design & Implementation')" aria-label="Share on Twitter">
+                                <i class="fab fa-twitter"></i>
+                            </button>
+                            <button class="share-btn facebook" onclick="shareProject('facebook', 'Enterprise Network Infrastructure Design & Implementation')" aria-label="Share on Facebook">
+                                <i class="fab fa-facebook-f"></i>
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </div>
 
-            <div class="project-card fade-in" data-category="networking">
-                <div class="project-image">
-                    <i class="fas fa-satellite-dish"></i>
+            <div class="project-card fade-in" data-category="networking monitoring" role="listitem">
+                <div class="project-header-wrapper">
+                    <div class="project-image">
+                        <div class="project-icon-wrapper">
+                            <i class="fas fa-shield-alt" aria-hidden="true"></i>
+                        </div>
+                    </div>
+                    <div class="project-category-badge">Monitoring & Security</div>
                 </div>
                 <div class="project-content">
-                    <h3 class="project-title">ISP Integration for SMEs</h3>
+                    <h3 class="project-title">Network Monitoring & Incident Response Optimization</h3>
                     <p class="project-description">
-                        Successfully deployed and configured Starlink internet solutions integrated with MikroTik routers for small businesses.
+                        Implemented proactive monitoring and troubleshooting strategies to detect anomalies, reduce downtime, and strengthen network reliability.
                     </p>
-                    <div class="project-tags">
-                        <span class="project-tag">Starlink</span>
-                        <span class="project-tag">MikroTik</span>
-                        <span class="project-tag">SME Solutions</span>
+                    <div class="project-details">
+                        <div class="project-details-header">Key Contributions</div>
+                        <ul>
+                            <li>Monitored traffic patterns and identified bandwidth abuse</li>
+                            <li>Diagnosed and resolved connectivity and authentication issues</li>
+                            <li>Optimized router configurations to improve uptime and session stability</li>
+                            <li>Implemented usage policies to prevent hotspot sharing and unauthorized access</li>
+                            <li>Strengthened system resilience through configuration audits and performance tuning</li>
+                        </ul>
                     </div>
-                    <p style="color: var(--secondary-color); font-weight: 600;">Result: Enabled remote connectivity</p>
-                </div>
-            </div>
-
-            <div class="project-card fade-in" data-category="systems">
-                <div class="project-image">
-                    <i class="fas fa-shield-alt"></i>
-                </div>
-                <div class="project-content">
-                    <h3 class="project-title">Digital Identity Systems</h3>
-                    <p class="project-description">
-                        Implemented biometric and digital ID systems for government agencies, including staff training and system deployment.
-                    </p>
-                    <div class="project-tags">
-                        <span class="project-tag">Biometrics</span>
-                        <span class="project-tag">e-Government</span>
-                        <span class="project-tag">System Integration</span>
-                        
+                    <div class="project-tags" aria-label="Project technologies">
+                        <span class="project-tag">MikroTik RouterOS</span>
+                        <span class="project-tag">Network Diagnostics</span>
+                        <span class="project-tag">Traffic Monitoring</span>
                     </div>
-                    <p style="color: var(--secondary-color); font-weight: 600;">Result: Streamlined government processes</p>
-                </div>
-            </div>
-
-            <div class="project-card fade-in" data-category="networking">
-                <div class="project-image">
-                    <i class="fas fa-file-contract"></i>
-                </div>
-                <div class="project-content">
-                    <h3 class="project-title">Network Design & Deployment Proposal</h3>
-                    <p class="project-description">
-                        Comprehensive network infrastructure proposal for smart office environments, featuring MikroTik routers, UniFi access points, and fiber optic deployment.
-                    </p>
-                    <div class="project-tags">
-                        <span class="project-tag">Network Design</span>
-                        <span class="project-tag">Business Proposal</span>
-                        <span class="project-tag">Infrastructure</span>
+                    <p class="project-impact"><strong>💡 Impact:</strong> Reduced service interruptions, improved user session stability, and enhanced operational efficiency through structured troubleshooting and monitoring processes.</p>
+                    <div class="project-share">
+                        <span class="share-label">Share this project:</span>
+                        <div class="share-buttons">
+                            <button class="share-btn linkedin" onclick="shareProject('linkedin', 'Network Monitoring & Incident Response Optimization')" aria-label="Share on LinkedIn">
+                                <i class="fab fa-linkedin-in"></i>
+                            </button>
+                            <button class="share-btn twitter" onclick="shareProject('twitter', 'Network Monitoring & Incident Response Optimization')" aria-label="Share on Twitter">
+                                <i class="fab fa-twitter"></i>
+                            </button>
+                            <button class="share-btn facebook" onclick="shareProject('facebook', 'Network Monitoring & Incident Response Optimization')" aria-label="Share on Facebook">
+                                <i class="fab fa-facebook-f"></i>
+                            </button>
+                        </div>
                     </div>
-                    <div style="margin-top: 1rem;">
-                        <a href="Proposal.html" target="_blank" class="btn btn-primary" style="font-size: 0.9rem; padding: 0.5rem 1rem;">
-                            <i class="fas fa-external-link-alt"></i> View Full Proposal
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Professional Highlights Section -->
-        <div style="margin-top: 4rem; text-align: center;" class="fade-in">
-            <h3 style="margin-bottom: 2rem; color: var(--secondary-color);">Professional Highlights</h3>
-            <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 2rem;">
-                <!-- Network Security Initiatives -->
-                <div style="background: var(--card-bg); padding: 2rem; border-radius: var(--border-radius); width: 320px; margin-bottom: 2rem; box-shadow: var(--shadow-light);">
-                    <h4 style="color: var(--secondary-color); margin-bottom: 1rem;">Network Security Initiatives</h4>
-                    <p style="color: var(--text-muted); margin-bottom: 1rem; font-size: 1rem;">Highlights of recent security upgrades, firewall deployments, and best practices implemented to safeguard client networks.</p>
-                    <img src="img/AP.jpg" alt="Network security illustration" style="max-width: 100%; border-radius: 8px;" />
-                </div>
-                <!-- Cloud Integration Projects -->
-                <div style="background: var(--card-bg); padding: 2rem; border-radius: var(--border-radius); width: 320px; margin-bottom: 2rem; box-shadow: var(--shadow-light);">
-                    <h4 style="color: var(--secondary-color); margin-bottom: 1rem;">Cloud Integration Projects</h4>
-                    <p style="color: var(--text-muted); margin-bottom: 1rem; font-size: 1rem;">Overview of successful migrations to cloud platforms, hybrid infrastructure, and remote access solutions for businesses.</p>
-                    <img src="img/BS.jpg" alt="Cloud integration illustration" style="max-width: 100%; border-radius: 8px;" />
-                </div>
-                <!-- Wireless Network Expansion -->
-                <div style="background: var(--card-bg); padding: 2rem; border-radius: var(--border-radius); width: 320px; margin-bottom: 2rem; box-shadow: var(--shadow-light);">
-                    <h4 style="color: var(--secondary-color); margin-bottom: 1rem;">Wireless Network Expansion</h4>
-                    <p style="color: var(--text-muted); margin-bottom: 1rem; font-size: 1rem;">Recent upgrades and coverage improvements in wireless infrastructure, enabling seamless connectivity for clients.</p>
-                    <img src="img/APS.jpg" alt="Wireless network coverage map" style="max-width: 100%; border-radius: 8px;" />
-                </div>
-                <!-- Digital Transformation Highlights -->
-                <div style="background: var(--card-bg); padding: 2rem; border-radius: var(--border-radius); width: 320px; margin-bottom: 2rem; box-shadow: var(--shadow-light);">
-                    <h4 style="color: var(--secondary-color); margin-bottom: 1rem;">Digital Transformation Highlights</h4>
-                    <p style="color: var(--text-muted); margin-bottom: 1rem; font-size: 1rem;">Key milestones in helping organizations modernize their IT infrastructure, adopt new technologies, and improve efficiency.</p>
-                    <img src="img/ME.jpeg" alt="Digital transformation illustration" style="max-width: 100%; border-radius: 8px;" />
                 </div>
             </div>
         </div>
@@ -476,65 +652,45 @@
         <div class="section-header fade-in">
             <h2 class="section-title">Client Testimonials</h2>
             <p class="section-subtitle">
-                What clients and colleagues say about my work
+                Feedback from colleagues, supervisors, and clients on delivered ICT solutions
             </p>
         </div>
-
-        <div class="testimonials-carousel fade-in">
-            <div class="testimonials-container" id="testimonialsContainer">
-                <div class="testimonial-card">
-                    <p class="testimonial-text">
-                        "Armstrong's expertise in network infrastructure is exceptional. He transformed our entire IT setup, resulting in 80% less downtime and significantly improved performance. His attention to detail and professional approach made the project seamless."
-                    </p>
-                    <div class="testimonial-author">
-                        <div class="author-avatar">JD</div>
-                        <div class="author-info">
-                            <h4>John Doe</h4>
-                            <p>IT Manager, Tech Solutions Ltd</p>
-                        </div>
-                    </div>
+        
+        <div class="testimonials-container fade-in">
+            <div class="testimonial-card">
+                <div class="testimonial-content">
+                    <p>"Armstrong consistently delivered exceptional technical support for our biometric enrollment systems. His expertise in network configuration and troubleshooting was instrumental in our successful rollout across our organization."</p>
                 </div>
-
-                <div class="testimonial-card">
-                    <p class="testimonial-text">
-                        "Working with Armstrong on our fiber optic deployment was a game-changer. His technical knowledge and hands-on experience with splicing and testing ensured our network achieved 5x bandwidth improvement. Highly recommended!"
-                    </p>
-                    <div class="testimonial-author">
-                        <div class="author-avatar">SM</div>
-                        <div class="author-info">
-                            <h4>Sarah Mitchell</h4>
-                            <p>Network Administrator, ConnectCorp</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="testimonial-card">
-                    <p class="testimonial-text">
-                        "Armstrong's implementation of our digital identity system was flawless. His ability to train our staff and ensure smooth deployment made the transition to biometric systems effortless. Outstanding professional service."
-                    </p>
-                    <div class="testimonial-author">
-                        <div class="author-avatar">RJ</div>
-                        <div class="author-info">
-                            <h4>Robert Johnson</h4>
-                            <p>Director, Government Services</p>
-                        </div>
+                <div class="testimonial-author">
+                    <div class="author-info">
+                        <h4>Technical Supervisor</h4>
+                        <p>Digital Solutions Enterprise</p>
                     </div>
                 </div>
             </div>
-
-            <div class="carousel-controls">
-                <button class="carousel-btn" id="prevBtn">
-                    <i class="fas fa-chevron-left"></i>
-                </button>
-                <button class="carousel-btn" id="nextBtn">
-                    <i class="fas fa-chevron-right"></i>
-                </button>
+            
+            <div class="testimonial-card">
+                <div class="testimonial-content">
+                    <p>"His dedication to maintaining system uptime and security has been crucial to our operations. Armstrong's technical skills and problem-solving approach consistently ensure our IT infrastructure runs smoothly."</p>
+                </div>
+                <div class="testimonial-author">
+                    <div class="author-info">
+                        <h4>IT Manager</h4>
+                        <p>Global Tech Services Ltd</p>
+                    </div>
+                </div>
             </div>
-
-            <div class="carousel-indicators" id="indicators">
-                <div class="indicator active" data-slide="0"></div>
-                <div class="indicator" data-slide="1"></div>
-                <div class="indicator" data-slide="2"></div>
+            
+            <div class="testimonial-card">
+                <div class="testimonial-content">
+                    <p>"Armstrong's expertise in MikroTik configuration and network security implementation helped us achieve 100% authentication compliance in our secure hotspot deployments."</p>
+                </div>
+                <div class="testimonial-author">
+                    <div class="author-info">
+                        <h4>Project Coordinator</h4>
+                        <p>Infrastructure Innovation Agency</p>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -542,145 +698,297 @@
     <!-- Blog Section -->
     <section class="section" id="blog">
         <div class="section-header fade-in">
-            <h2 class="section-title">Latest Articles</h2>
+            <h2 class="section-title">Latest Insights</h2>
             <p class="section-subtitle">
-                Insights and knowledge sharing on ICT trends and best practices
+                Technical articles, case studies, and real-world cybersecurity insights
+            </p>
+        </div>
+        
+        <div class="blog-grid fade-in" role="list">
+            <article class="blog-card" role="listitem">
+                <div class="blog-header">
+                    <div class="blog-meta">
+                        <time class="blog-date" datetime="2026-02-20">Feb 2026</time>
+                        <span class="blog-category">Security</span>
+                    </div>
+                    <h3 class="blog-title">Zero-Trust Architecture: The New Standard for Government Network Security</h3>
+                </div>
+                <div class="blog-content">
+                    <p>Zero-trust security eliminates implicit trust and requires continuous verification. Explore how government agencies are implementing this framework to prevent unauthorized access, lateral movement attack, and data breaches in critical infrastructure.</p>
+                    <div class="blog-tags" aria-label="Article tags">
+                        <span class="blog-tag">Zero-Trust</span>
+                        <span class="blog-tag">Government</span>
+                        <span class="blog-tag">Cybersecurity</span>
+                    </div>
+                </div>
+            </article>
+            
+            <article class="blog-card" role="listitem">
+                <div class="blog-header">
+                    <div class="blog-meta">
+                        <time class="blog-date" datetime="2026-02-15">Feb 2026</time>
+                        <span class="blog-category">Networking</span>
+                    </div>
+                    <h3 class="blog-title">MikroTik BGP Redundancy: Ensuring Network Resilience and High Availability</h3>
+                </div>
+                <div class="blog-content">
+                    <p>Advanced BGP configuration techniques to achieve multi-provider failover, load balancing, and optimal routing paths. Learn practical implementations for enterprise and government networks with real-world examples.</p>
+                    <div class="blog-tags" aria-label="Article tags">
+                        <span class="blog-tag">MikroTik</span>
+                        <span class="blog-tag">BGP</span>
+                        <span class="blog-tag">Networking</span>
+                    </div>
+                </div>
+            </article>
+            
+            <article class="blog-card" role="listitem">
+                <div class="blog-header">
+                    <div class="blog-meta">
+                        <time class="blog-date" datetime="2026-02-10">Feb 2026</time>
+                        <span class="blog-category">Infrastructure</span>
+                    </div>
+                    <h3 class="blog-title">Fiber Optic Security: Protecting Last-Mile Connectivity from Physical Threats</h3>
+                </div>
+                <div class="blog-content">
+                    <p>Physical layer security for fiber optic installations. Discover best practices for detection systems, monitoring, redundant routing, and compliance with international telecommunications security standards.</p>
+                    <div class="blog-tags" aria-label="Article tags">
+                        <span class="blog-tag">Fiber Optics</span>
+                        <span class="blog-tag">Physical Security</span>
+                        <span class="blog-tag">Infrastructure</span>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <!-- Technical Proficiency Section -->
+    <section class="section" id="proficiency">
+        <div class="section-header fade-in">
+            <h2 class="section-title">Technical Proficiency</h2>
+            <p class="section-subtitle">
+                Expertise levels across core technologies and domains
             </p>
         </div>
 
-        <div class="blog-grid">
-            <article class="blog-card fade-in">
-                <div class="blog-image">
-                    <i class="fas fa-network-wired"></i>
-                </div>
-                <div class="blog-content">
-                    <div class="blog-meta">
-                        <span><i class="fas fa-calendar"></i> Jan 15, 2025</span>
-                        <span><i class="fas fa-tag"></i> Networking</span>
+        <div class="proficiency-container fade-in">
+            <div class="proficiency-category">
+                <h3>Security Tools & Platforms</h3>
+                <div class="proficiency-items">
+                    <div class="proficiency-item">
+                        <span class="proficiency-name">Penetration Testing</span>
+                        <div class="proficiency-bars">
+                            <div class="proficiency-bar">
+                                <div class="proficiency-fill expert" title="Expert"></div>
+                            </div>
+                            <span class="proficiency-level">Expert</span>
+                        </div>
                     </div>
-                    <h3 class="blog-title">Best Practices for Network Security in 2025</h3>
-                    <p class="blog-excerpt">
-                        Explore the latest network security trends and implementation strategies to protect your infrastructure from emerging threats...
-                    </p>
-                    <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                    <div class="proficiency-item">
+                        <span class="proficiency-name">Vulnerability Assessment</span>
+                        <div class="proficiency-bars">
+                            <div class="proficiency-bar">
+                                <div class="proficiency-fill expert" title="Expert"></div>
+                            </div>
+                            <span class="proficiency-level">Expert</span>
+                        </div>
+                    </div>
+                    <div class="proficiency-item">
+                        <span class="proficiency-name">Firewall Configuration</span>
+                        <div class="proficiency-bars">
+                            <div class="proficiency-bar">
+                                <div class="proficiency-fill advanced" title="Advanced"></div>
+                            </div>
+                            <span class="proficiency-level">Advanced</span>
+                        </div>
+                    </div>
                 </div>
-            </article>
+            </div>
 
-            <article class="blog-card fade-in">
-                <div class="blog-image">
-                    <i class="fas fa-ethernet"></i>
-                </div>
-                <div class="blog-content">
-                    <div class="blog-meta">
-                        <span><i class="fas fa-calendar"></i> Jan 10, 2025</span>
-                        <span><i class="fas fa-tag"></i> Fiber Optics</span>
+            <div class="proficiency-category">
+                <h3>Network Infrastructure</h3>
+                <div class="proficiency-items">
+                    <div class="proficiency-item">
+                        <span class="proficiency-name">MikroTik RouterOS</span>
+                        <div class="proficiency-bars">
+                            <div class="proficiency-bar">
+                                <div class="proficiency-fill expert" title="Expert"></div>
+                            </div>
+                            <span class="proficiency-level">Expert</span>
+                        </div>
                     </div>
-                    <h3 class="blog-title">Fiber Optic Installation: A Complete Guide</h3>
-                    <p class="blog-excerpt">
-                        Learn the essential steps and best practices for successful fiber optic cable installation and testing procedures...
-                    </p>
-                    <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                    <div class="proficiency-item">
+                        <span class="proficiency-name">Network Design & Architecture</span>
+                        <div class="proficiency-bars">
+                            <div class="proficiency-bar">
+                                <div class="proficiency-fill expert" title="Expert"></div>
+                            </div>
+                            <span class="proficiency-level">Expert</span>
+                        </div>
+                    </div>
+                    <div class="proficiency-item">
+                        <span class="proficiency-name">Fiber Optics & Cabling</span>
+                        <div class="proficiency-bars">
+                            <div class="proficiency-bar">
+                                <div class="proficiency-fill advanced" title="Advanced"></div>
+                            </div>
+                            <span class="proficiency-level">Advanced</span>
+                        </div>
+                    </div>
                 </div>
-            </article>
+            </div>
 
-            <article class="blog-card fade-in">
-                <div class="blog-image">
-                    <i class="fas fa-satellite-dish"></i>
-                </div>
-                <div class="blog-content">
-                    <div class="blog-meta">
-                        <span><i class="fas fa-calendar"></i> Jan 5, 2025</span>
-                        <span><i class="fas fa-tag"></i> Technology</span>
+            <div class="proficiency-category">
+                <h3>Development & Automation</h3>
+                <div class="proficiency-items">
+                    <div class="proficiency-item">
+                        <span class="proficiency-name">Python</span>
+                        <div class="proficiency-bars">
+                            <div class="proficiency-bar">
+                                <div class="proficiency-fill intermediate" title="Intermediate"></div>
+                            </div>
+                            <span class="proficiency-level">Intermediate</span>
+                        </div>
                     </div>
-                    <h3 class="blog-title">Starlink for Business: Implementation Guide</h3>
-                    <p class="blog-excerpt">
-                        Discover how to integrate Starlink internet solutions with existing network infrastructure for optimal performance...
-                    </p>
-                    <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                    <div class="proficiency-item">
+                        <span class="proficiency-name">Bash/Shell Scripting</span>
+                        <div class="proficiency-bars">
+                            <div class="proficiency-bar">
+                                <div class="proficiency-fill intermediate" title="Intermediate"></div>
+                            </div>
+                            <span class="proficiency-level">Intermediate</span>
+                        </div>
+                    </div>
+                    <div class="proficiency-item">
+                        <span class="proficiency-name">Web Technologies (HTML/CSS/JS)</span>
+                        <div class="proficiency-bars">
+                            <div class="proficiency-bar">
+                                <div class="proficiency-fill intermediate" title="Intermediate"></div>
+                            </div>
+                            <span class="proficiency-level">Intermediate</span>
+                        </div>
+                    </div>
                 </div>
-            </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Open Source Contributions -->
+    <section class="section" id="contributions">
+        <div class="section-header fade-in">
+            <h2 class="section-title">Open Source & Community</h2>
+            <p class="section-subtitle">
+                Contributions to the cybersecurity and networking community
+            </p>
+        </div>
+
+        <div class="contributions-grid fade-in">
+            <div class="contribution-item" data-aos="fade-up" data-aos-delay="100">
+                <div class="contribution-icon">
+                    <i class="fab fa-github"></i>
+                </div>
+                <h3>Network Security Scripts</h3>
+                <p>Python-based network security automation tools and scanning utilities on GitHub</p>
+                <a href="#" class="contribution-link">View Repository →</a>
+            </div>
+
+            <div class="contribution-item" data-aos="fade-up" data-aos-delay="200">
+                <div class="contribution-icon">
+                    <i class="fas fa-book"></i>
+                </div>
+                <h3>Technical Documentation</h3>
+                <p>Comprehensive guides and best practices for network security and infrastructure design</p>
+                <a href="#blog" class="contribution-link">Read Articles →</a>
+            </div>
+
+            <div class="contribution-item" data-aos="fade-up" data-aos-delay="300">
+                <div class="contribution-icon">
+                    <i class="fas fa-users"></i>
+                </div>
+                <h3>Community Mentorship</h3>
+                <p>Mentoring junior professionals in cybersecurity and network engineering practices</p>
+                <a href="#contact" class="contribution-link">Get Mentored →</a>
+            </div>
         </div>
     </section>
 
     <!-- Contact Section -->
     <section class="section" id="contact">
         <div class="section-header fade-in">
-            <h2 class="section-title">Let's Connect</h2>
+            <h2 class="section-title">Get In Touch</h2>
             <p class="section-subtitle">
-                Ready to build the future of your infrastructure together
+                Ready to discuss your ICT infrastructure needs or explore collaboration opportunities
             </p>
         </div>
-
-        <div class="contact-grid">
-            <div class="contact-info fade-in">
+        
+        <div class="contact-container fade-in">
+            <div class="contact-info">
                 <div class="contact-item">
-                    <i class="fas fa-envelope contact-icon"></i>
-                    <div>
+                    <div class="contact-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <div class="contact-details">
                         <h4>Email</h4>
-                        <p style="color: var(--text-muted);">armstrongnzotta8@gmail.com</p>
+                        <p>armstrongnzotta8@gmail.com</p>
                     </div>
                 </div>
-
+                
                 <div class="contact-item">
-                    <i class="fab fa-whatsapp contact-icon"></i>
-                    <div>
-                        <h4>WhatsApp</h4>
-                        <p style="color: var(--text-muted);">+234 704 107 4484</p>
+                    <div class="contact-icon">
+                        <i class="fas fa-phone"></i>
+                    </div>
+                    <div class="contact-details">
+                        <h4>Phone</h4>
+                        <p>+2347081698369</p>
+                        <p>+2347041074484</p>
                     </div>
                 </div>
-
+                
                 <div class="contact-item">
-                    <i class="fab fa-linkedin contact-icon"></i>
-                    <div>
+                    <div class="contact-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <div class="contact-details">
+                        <h4>Location</h4>
+                        <p>Nigeria</p>
+                    </div>
+                </div>
+                
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fab fa-linkedin"></i>
+                    </div>
+                    <div class="contact-details">
                         <h4>LinkedIn</h4>
-                        <p style="color: var(--text-muted);">armstrong-nzotta-734250354</p>
+                        <p>www.linkedin.com/in/armstrong-nzotta-734250354</p>
                     </div>
-                </div>
-
-                <div class="contact-item">
-                    <i class="fab fa-github contact-icon"></i>
-                    <div>
-                        <h4>GitHub</h4>
-                        <p style="color: var(--text-muted);">armstrongnzotta</p>
-                    </div>
-                </div>
-
-                <div style="margin-top: 2rem;">
-                    <a href="Proposal.html" target="_blank" class="btn btn-primary" style="width: 100%; justify-content: center; margin-bottom: 1rem;">
-                        <i class="fas fa-file-contract"></i> View Network Proposal
-                    </a>
-                    <a href="Pdf/Arms.pdf" download class="btn btn-secondary" style="width: 100%; justify-content: center;">
-                        <i class="fas fa-download"></i> Download Full Resume
-                    </a>
                 </div>
             </div>
-
-            <div class="contact-form fade-in">
-                <!-- Replace xpzgwqzg with your actual Formspree form ID -->
-                <form action="https://formspree.io/f/xpzgwqzg" method="POST" id="contactForm">
+            
+            <div class="contact-form">
+                <form id="contactForm" aria-labelledby="contactFormHeading">
+                    <h3 id="contactFormHeading" class="sr-only">Contact Form</h3>
                     <div class="form-group">
-                        <label for="name" class="form-label">Full Name</label>
-                        <input type="text" id="name" name="name" class="form-input" placeholder="Your full name" required />
+                        <label for="name">Full Name</label>
+                        <input type="text" id="name" name="name" required aria-required="true" autocomplete="name">
                     </div>
-
+                    
                     <div class="form-group">
-                        <label for="email" class="form-label">Email Address</label>
-                        <input type="email" id="email" name="email" class="form-input" placeholder="your.email@example.com" required />
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="email" required aria-required="true" autocomplete="email">
                     </div>
-
+                    
                     <div class="form-group">
-                        <label for="subject" class="form-label">Subject</label>
-                        <input type="text" id="subject" name="subject" class="form-input" placeholder="Project inquiry, consultation, etc." />
+                        <label for="subject">Subject</label>
+                        <input type="text" id="subject" name="subject" required aria-required="true">
                     </div>
-
+                    
                     <div class="form-group">
-                        <label for="message" class="form-label">Message</label>
-                        <textarea id="message" name="message" rows="5" class="form-textarea" placeholder="Tell me about your project or how I can help..." required></textarea>
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" rows="5" required aria-required="true"></textarea>
                     </div>
-
-                    <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center;">
-                        <i class="fas fa-paper-plane"></i>
-                        Send Message
+                    
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-paper-plane" aria-hidden="true"></i> Send Message
                     </button>
                 </form>
             </div>
@@ -689,33 +997,168 @@
 
     <!-- Footer -->
     <footer class="footer">
-        <div class="social-links">
-            <a href="mailto:armstrongnzotta8@gmail.com" class="social-link" aria-label="Email">
-                <i class="fas fa-envelope"></i>
-            </a>
-            <a href="https://linkedin.com/in/armstrong-nzotta-734250354" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="LinkedIn">
-                <i class="fab fa-linkedin"></i>
-            </a>
-            <a href="https://github.com/armstrongnzotta" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="GitHub">
-                <i class="fab fa-github"></i>
-            </a>
-            <a href="https://twitter.com/armstrongnzotta" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Twitter">
-                <i class="fab fa-twitter"></i>
-            </a>
-            <a href="https://wa.me/2347041074484" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="WhatsApp">
-                <i class="fab fa-whatsapp"></i>
-            </a>
+        <div class="footer-container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Armstrong Nzotta</h3>
+                    <p>ICT Specialist supporting Nigeria's digital transformation through robust network infrastructure and government IT systems.</p>
+                    <div class="social-links">
+                        <a href="https://linkedin.com/in/armstrong-nzotta-734250354" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn Profile">
+                            <i class="fab fa-linkedin" aria-hidden="true"></i>
+                        </a>
+                        <a href="https://github.com/armsurch" target="_blank" rel="noopener noreferrer" aria-label="GitHub Profile">
+                            <i class="fab fa-github" aria-hidden="true"></i>
+                        </a>
+                        <a href="https://twitter.com/armstrongnzotta" target="_blank" rel="noopener noreferrer" aria-label="Twitter Profile">
+                            <i class="fab fa-twitter" aria-hidden="true"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#about">Summary</a></li>
+                        <li><a href="#achievements">Achievements</a></li>
+                        <li><a href="#experience">Experience</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="#projects">Network Infrastructure</a></li>
+                        <li><a href="#projects">Fiber Optic Deployment</a></li>
+                        <li><a href="#projects">Government IT Support</a></li>
+                        <li><a href="#projects">Systems Administration</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Contact Info</h4>
+                    <p><i class="fas fa-envelope"></i> armstrongnzotta8@gmail.com</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Nigeria</p>
+                </div>
+            </div>
+            
+            <div class="footer-stats-bar">
+                <div class="footer-stat">
+                    <div class="footer-stat-number">10,000+</div>
+                    <div class="footer-stat-label">Citizens Served</div>
+                </div>
+                <div class="footer-stat">
+                    <div class="footer-stat-number">99.8%</div>
+                    <div class="footer-stat-label">Uptime Maintained</div>
+                </div>
+                <div class="footer-stat">
+                    <div class="footer-stat-number">50+</div>
+                    <div class="footer-stat-label">Professionals Trained</div>
+                </div>
+                <div class="footer-stat">
+                    <div class="footer-stat-number">4+</div>
+                    <div class="footer-stat-label">Years Experience</div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; <span id="copyrightYear">2026</span> Nzotta Armstrong Uchenna. All rights reserved.</p>
+                <p><small>Last Updated: February 2026</small></p>
+                <p>Designed and developed with <i class="fas fa-heart heart-icon"></i> for Nigeria's digital future.</p>
+            </div>
         </div>
-        <p>&copy; 2025 Nzotta Armstrong Uchenna. All rights reserved.</p>
-        <p style="color: var(--text-muted); margin-top: 0.5rem;">Designed with passion for technology and connectivity.</p>
     </footer>
 
     <!-- Back to Top Button -->
-    <button class="back-to-top" id="backToTop" aria-label="Back to top">
-        <i class="fas fa-chevron-up"></i>
+    <button id="backToTop" class="back-to-top" aria-label="Back to top">
+        <i class="fas fa-arrow-up"></i>
     </button>
 
-    <script src="app.js"></script>
-</body>
+    <!-- Modal Containers (for buttons functionality) -->
+    <div id="proposalModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Generate Project Proposal</h2>
+            <p>This feature will generate a customized project proposal based on your requirements.</p>
+            <form id="proposalForm">
+                <div class="form-group">
+                    <label for="projectType">Project Type</label>
+                    <select id="projectType" name="projectType" required>
+                        <option value="">Select project type</option>
+                        <option value="network">Network Infrastructure</option>
+                        <option value="fiber">Fiber Optic Deployment</option>
+                        <option value="government">Government IT Systems</option>
+                        <option value="security">Security Implementation</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="organization">Organization Name</label>
+                    <input type="text" id="organization" name="organization" required>
+                </div>
+                <div class="form-group">
+                    <label for="requirements">Project Requirements</label>
+                    <textarea id="requirements" name="requirements" rows="4" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Generate Proposal</button>
+            </form>
+        </div>
+    </div>
 
+    <div id="resumeModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Generate Resume</h2>
+            <p>Select the format for your customized resume download.</p>
+            <div class="resume-options">
+                <button class="btn btn-primary" onclick="downloadResume('pdf')">
+                    <i class="fas fa-file-pdf"></i> Download PDF Resume
+                </button>
+                <button class="btn btn-secondary" onclick="downloadResume('word')">
+                    <i class="fas fa-file-word"></i> Download Word Resume
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div id="contactModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Quick Contact</h2>
+            <p>Send a quick message or inquiry.</p>
+            <form id="quickContactForm">
+                <div class="form-group">
+                    <label for="quickName">Your Name</label>
+                    <input type="text" id="quickName" name="quickName" required>
+                </div>
+                <div class="form-group">
+                    <label for="quickEmail">Your Email</label>
+                    <input type="email" id="quickEmail" name="quickEmail" required>
+                </div>
+                <div class="form-group">
+                    <label for="quickMessage">Message</label>
+                    <textarea id="quickMessage" name="quickMessage" rows="3" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Send Message</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- JavaScript Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js" defer></script>
+    <script src="app.js" defer></script>
+    
+    <!-- Service Worker Registration -->
+    <script defer>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', function() {
+                navigator.serviceWorker.register('sw.js').then(function(registration) {
+                    console.log('SW registered: ', registration);
+                }).catch(function(registrationError) {
+                    console.log('SW registration failed: ', registrationError);
+                });
+            });
+        }
+    </script>
+
+</body>
 </html>

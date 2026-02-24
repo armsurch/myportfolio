@@ -20,15 +20,45 @@ const themeToggle = document.getElementById('themeToggle');
 const themeIcon = document.getElementById('themeIcon');
 const themeText = document.getElementById('themeText');
 
-// Hide loading screen when DOM is ready
+// Update copyright year automatically
+function updateCopyrightYear() {
+  const copyrightYear = document.getElementById('copyrightYear');
+  if (copyrightYear) {
+    copyrightYear.textContent = new Date().getFullYear();
+  }
+}
+
+// Hide loading screen and initialize when DOM is ready
 document.addEventListener('DOMContentLoaded', function() {
+  // Hide loading screen immediately
   if (loadingScreen) {
     loadingScreen.classList.add('hidden');
   }
+  
+  updateCopyrightYear();
+  
   // Initialize AOS if available
   if (window.AOS && typeof AOS.init === 'function') {
     AOS.init();
   }
+  
+  // Initialize all functionality
+  initializeTooltips();
+  setupResumeGenerator();
+  setupProposalGenerator();
+  setupQuickContact();
+  setupModals();
+  initImageLoading();
+  
+  // Animation initialization
+  enhanceModalAnimations();
+  initTypewriter();
+  initParallax();
+  initParticles();
+  initTouchGestures();
+  
+  console.log('Portfolio loaded successfully!');
+  console.log('All animations initialized!');
 });
 
 // Loading Screen - backup for window load event
@@ -406,11 +436,31 @@ window.addEventListener('scroll', () => {
     });
 });
 
-// Form submission enhancement
+// Form validation and submission enhancement
 const contactForm = document.getElementById('contactForm');
 if (contactForm) {
+    // Real-time validation
+    const inputs = contactForm.querySelectorAll('input, textarea');
+    inputs.forEach(input => {
+        input.addEventListener('blur', validateField);
+        input.addEventListener('input', clearFieldError);
+    });
+
     contactForm.addEventListener('submit', async (e) => {
         e.preventDefault();
+
+        // Validate all fields
+        let isValid = true;
+        inputs.forEach(input => {
+            if (!validateField.call(input)) {
+                isValid = false;
+            }
+        });
+
+        if (!isValid) {
+            showFormError('Please correct the errors above and try again.');
+            return;
+        }
 
         const submitBtn = contactForm.querySelector('button[type="submit"]');
         const originalText = submitBtn.innerHTML;
@@ -418,7 +468,6 @@ if (contactForm) {
         submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
         submitBtn.disabled = true;
 
-        // Send to Formspree directly to match HTML action
         try {
             const formData = new FormData(contactForm);
             const response = await fetch(contactForm.action, {
@@ -428,6 +477,7 @@ if (contactForm) {
             });
 
             if (response.ok) {
+                showFormSuccess();
                 submitBtn.innerHTML = '<i class="fas fa-check"></i> Message Sent!';
                 submitBtn.style.background = '#28a745';
                 contactForm.reset();
@@ -435,10 +485,10 @@ if (contactForm) {
                 throw new Error('Submission failed');
             }
         } catch (err) {
-            console.error(err);
+            console.error('Form submission error:', err);
+            showFormError('There was a problem sending your message. Please try again.');
             submitBtn.innerHTML = originalText;
             submitBtn.disabled = false;
-            alert('There was a problem sending your message. Please try again.');
         }
 
         // Reset button after 3 seconds
@@ -455,12 +505,265 @@ if (contactForm) {
     });
 }
 
-// Add loading animation for images
-document.querySelectorAll('img').forEach(img => {
-    img.addEventListener('load', () => {
-        img.style.opacity = '1';
+// Field validation function
+function validateField() {
+    const field = this;
+    const fieldName = field.name;
+    const value = field.value.trim();
+    const fieldGroup = field.closest('.form-group');
+
+    // Remove existing error messages
+    clearFieldError.call(field);
+
+    let isValid = true;
+    let errorMessage = '';
+
+    switch (fieldName) {
+        case 'name':
+            if (!value) {
+                errorMessage = 'Full name is required';
+                isValid = false;
+            } else if (value.length < 2) {
+                errorMessage = 'Name must be at least 2 characters long';
+                isValid = false;
+            } else if (!/^[a-zA-Z\s'-]+$/.test(value)) {
+                errorMessage = 'Name can only contain letters, spaces, hyphens, and apostrophes';
+                isValid = false;
+            }
+            break;
+
+        case 'email':
+            if (!value) {
+                errorMessage = 'Email address is required';
+                isValid = false;
+            } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
+                errorMessage = 'Please enter a valid email address';
+                isValid = false;
+            }
+            break;
+
+        case 'subject':
+            if (!value) {
+                errorMessage = 'Subject is required';
+                isValid = false;
+            } else if (value.length < 5) {
+                errorMessage = 'Subject must be at least 5 characters long';
+                isValid = false;
+            }
+            break;
+
+        case 'message':
+            if (!value) {
+                errorMessage = 'Message is required';
+                isValid = false;
+            } else if (value.length < 10) {
+                errorMessage = 'Message must be at least 10 characters long';
+                isValid = false;
+            } else if (value.length > 1000) {
+                errorMessage = 'Message must be less than 1000 characters';
+                isValid = false;
+            }
+            break;
+    }
+
+    if (!isValid) {
+        showFieldError(field, errorMessage);
+        field.setAttribute('aria-invalid', 'true');
+    } else {
+        field.setAttribute('aria-invalid', 'false');
+        fieldGroup.classList.add('valid');
+    }
+
+    return isValid;
+}
+
+// Show field error
+function showFieldError(field, message) {
+    const fieldGroup = field.closest('.form-group');
+    const errorDiv = document.createElement('div');
+    errorDiv.className = 'field-error';
+    errorDiv.innerHTML = `<i class="fas fa-exclamation-circle"></i> ${message}`;
+    fieldGroup.appendChild(errorDiv);
+    fieldGroup.classList.add('error');
+    fieldGroup.classList.remove('valid');
+}
+
+// Clear field error
+function clearFieldError() {
+    const fieldGroup = this.closest('.form-group');
+    const errorDiv = fieldGroup.querySelector('.field-error');
+    if (errorDiv) {
+        errorDiv.remove();
+    }
+    fieldGroup.classList.remove('error', 'valid');
+}
+
+// Show form error
+function showFormError(message) {
+    const existingError = contactForm.querySelector('.form-error');
+    if (existingError) {
+        existingError.remove();
+    }
+
+    const errorDiv = document.createElement('div');
+    errorDiv.className = 'form-error';
+    errorDiv.innerHTML = `<i class="fas fa-exclamation-triangle"></i> ${message}`;
+    contactForm.insertBefore(errorDiv, contactForm.firstChild);
+
+    // Auto-remove after 5 seconds
+    setTimeout(() => {
+        if (errorDiv.parentNode) {
+            errorDiv.remove();
+        }
+    }, 5000);
+}
+
+// Enhanced form success animation
+function showFormSuccess() {
+    const contactForm = document.getElementById('contactForm');
+    if (!contactForm) return;
+
+    // Add success animation
+    contactForm.classList.add('form-success');
+
+    // Create checkmark animation
+    const successMessage = document.createElement('div');
+    successMessage.className = 'success-notification';
+    successMessage.innerHTML = `
+        <div class="success-content">
+            <i class="fas fa-check-circle"></i>
+            <h3>Message Sent Successfully!</h3>
+            <p>Thank you for reaching out. I'll get back to you within 24 hours.</p>
+        </div>
+    `;
+
+    contactForm.parentNode.insertBefore(successMessage, contactForm.nextSibling);
+
+    // Remove form and success message after animation
+    setTimeout(() => {
+        successMessage.style.animation = 'slideOutUp 0.4s ease-out forwards';
+        setTimeout(() => {
+            successMessage.remove();
+            contactForm.classList.remove('form-success');
+        }, 400);
+    }, 4000);
+}
+
+// Enhanced error handling and loading states
+function showLoadingState(element, show = true) {
+    if (show) {
+        element.classList.add('loading');
+    } else {
+        element.classList.remove('loading');
+    }
+}
+
+function showErrorState(container, message, retryCallback = null) {
+    const errorDiv = document.createElement('div');
+    errorDiv.className = 'error-state';
+    errorDiv.innerHTML = `
+        <i class="fas fa-exclamation-triangle"></i>
+        <h3>Oops! Something went wrong</h3>
+        <p>${message}</p>
+        ${retryCallback ? '<button class="retry-btn" onclick="retryCallback()">Try Again</button>' : ''}
+    `;
+
+    container.innerHTML = '';
+    container.appendChild(errorDiv);
+
+    // Auto-remove error after 10 seconds if no retry button
+    if (!retryCallback) {
+        setTimeout(() => {
+            if (errorDiv.parentNode) {
+                errorDiv.remove();
+            }
+        }, 10000);
+    }
+}
+
+// Enhanced image loading with error handling
+function initImageLoading() {
+    const images = document.querySelectorAll('img[data-src], img:not([src])');
+
+    images.forEach(img => {
+        // Add loading class initially
+        img.classList.add('loading');
+
+        // Handle load event
+        img.addEventListener('load', () => {
+            img.classList.remove('loading');
+            img.classList.add('loaded');
+        });
+
+        // Handle error event
+        img.addEventListener('error', () => {
+            img.classList.remove('loading');
+            img.classList.add('error');
+
+            // Create fallback
+            if (!img.hasAttribute('data-fallback-shown')) {
+                img.setAttribute('data-fallback-shown', 'true');
+                const fallback = document.createElement('div');
+                fallback.className = 'image-fallback';
+                fallback.innerHTML = '<i class="fas fa-image"></i><span>Image unavailable</span>';
+                img.parentNode.insertBefore(fallback, img.nextSibling);
+            }
+        });
+
+        // Lazy loading for images with data-src
+        if (img.hasAttribute('data-src')) {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const src = img.getAttribute('data-src');
+                        img.src = src;
+                        img.removeAttribute('data-src');
+                        observer.unobserve(img);
+                    }
+                });
+            });
+            observer.observe(img);
+        }
     });
+}
+
+// Global error handler
+window.addEventListener('error', (e) => {
+    console.error('Global error:', e.error);
+
+    // Show user-friendly error notification for critical errors
+    if (e.error && e.error.name === 'TypeError') {
+        showGlobalNotification('A script error occurred. Some features may not work properly.', 'warning');
+    }
 });
+
+// Unhandled promise rejection handler
+window.addEventListener('unhandledrejection', (e) => {
+    console.error('Unhandled promise rejection:', e.reason);
+    showGlobalNotification('An unexpected error occurred. Please refresh the page if issues persist.', 'error');
+});
+
+// Global notification system
+function showGlobalNotification(message, type = 'info') {
+    const notification = document.createElement('div');
+    notification.className = `global-notification ${type}`;
+    notification.innerHTML = `
+        <i class="fas fa-${type === 'error' ? 'exclamation-triangle' : type === 'warning' ? 'exclamation-circle' : 'info-circle'}"></i>
+        <span>${message}</span>
+        <button class="notification-close" onclick="this.parentNode.remove()">&times;</button>
+    `;
+
+    document.body.appendChild(notification);
+
+    // Auto-remove after 5 seconds
+    setTimeout(() => {
+        if (notification.parentNode) {
+            notification.remove();
+        }
+    }, 5000);
+}
+
+// Add loading animation for images
 
 // Initialize skill bar animations for visible elements
 document.addEventListener('DOMContentLoaded', () => {
@@ -961,6 +1264,40 @@ function setupModals() {
     });
 }
 
+// Project sharing functionality
+function shareProject(platform, projectTitle) {
+    const url = encodeURIComponent(window.location.href);
+    const title = encodeURIComponent(`Check out this amazing project: ${projectTitle} by Armstrong Nzotta`);
+    const text = encodeURIComponent(`🚀 ${projectTitle} - A cybersecurity & networking project by Armstrong Nzotta`);
+
+    let shareUrl = '';
+
+    switch (platform) {
+        case 'linkedin':
+            shareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${url}`;
+            break;
+        case 'twitter':
+            shareUrl = `https://twitter.com/intent/tweet?url=${url}&text=${text}&hashtags=cybersecurity,networking,portfolio`;
+            break;
+        case 'facebook':
+            shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${url}&quote=${text}`;
+            break;
+        default:
+            return;
+    }
+
+    // Open share dialog in new window
+    window.open(shareUrl, '_blank', 'width=600,height=400,scrollbars=yes,resizable=yes');
+
+    // Analytics tracking
+    if (typeof gtag !== 'undefined') {
+        gtag('event', 'share_project', {
+            'platform': platform,
+            'project': projectTitle
+        });
+    }
+}
+
 // Resume download functionality
 function downloadResume(format) {
     if (format === 'pdf') {
@@ -978,20 +1315,370 @@ function downloadResume(format) {
     }
 }
 
-// Initialize all functionality
+// Counter Animation for Stats
+function animateCounter(element, target, duration = 2000) {
+    let current = 0;
+    const increment = target / (duration / 16);
+    
+    const counter = setInterval(() => {
+        current += increment;
+        if (current >= target) {
+            current = target;
+            clearInterval(counter);
+        }
+        
+        // Format number with commas
+        if (target > 1000) {
+            element.textContent = Math.floor(current).toLocaleString() + (element.textContent.includes('+') ? '+' : '');
+        } else {
+            element.textContent = Math.floor(current) + (element.textContent.includes('%') ? '%' : '');
+        }
+    }, 16);
+}
+
+// Intersection Observer for Scroll-Triggered Animations (Stats Counter)
+const statObserverOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -100px 0px'
+};
+
+const statObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            // Trigger counter animation for stats
+            if (entry.target.classList.contains('stat-number')) {
+                const text = entry.target.textContent;
+                const number = parseInt(text.replace(/\D/g, ''));
+                animateCounter(entry.target, number, 2000);
+            }
+            
+            // Trigger animations for elements
+            entry.target.classList.add('aos-animate');
+            statObserver.unobserve(entry.target);
+        }
+    });
+}, statObserverOptions);
+
+// Observe all stat numbers for counter animation
 document.addEventListener('DOMContentLoaded', () => {
-    initializeTooltips();
-
-    // Resume/Proposal modal triggers
-    setupResumeGenerator();
-    setupProposalGenerator();
-    setupQuickContact();
-    setupModals();
-
-    // Add any additional initialization here
-    console.log('Portfolio loaded successfully!');
-    console.log('All console errors have been fixed!');
+    const statNumbers = document.querySelectorAll('.stat-number');
+    statNumbers.forEach(stat => statObserver.observe(stat));
 });
+
+
+
+// Modal Animation Enhancements
+function enhanceModalAnimations() {
+    // Handle data-modal buttons
+    const modalButtons = document.querySelectorAll('[data-modal]');
+    const modals = document.querySelectorAll('.modal');
+    const closeButtons = document.querySelectorAll('.close');
+    
+    // Handle data-modal attribute triggers
+    modalButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            const modalId = this.getAttribute('data-modal');
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.style.display = 'flex';
+                modal.classList.add('visible');
+                modal.classList.remove('hidden');
+                document.body.style.overflow = 'hidden';
+            }
+        });
+    });
+    
+    // Handle close buttons
+    closeButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            const modal = this.closest('.modal');
+            if (modal) {
+                modal.classList.add('hidden');
+                modal.classList.remove('visible');
+                setTimeout(() => {
+                    modal.style.display = 'none';
+                    document.body.style.overflow = 'auto';
+                }, 300);
+            }
+        });
+    });
+    
+    // Handle clicking outside modal
+    modals.forEach(modal => {
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.classList.add('hidden');
+                modal.classList.remove('visible');
+                setTimeout(() => {
+                    modal.style.display = 'none';
+                    document.body.style.overflow = 'auto';
+                }, 300);
+            }
+        });
+    });
+}
+
+// Typewriter Effect for Hero Subtitle
+function initTypewriter() {
+    const heroSubtitle = document.querySelector('.hero-subtitle');
+    if (!heroSubtitle) return;
+    
+    const text = heroSubtitle.textContent;
+    heroSubtitle.textContent = '';
+    let index = 0;
+    
+    const typeInterval = setInterval(() => {
+        if (index < text.length) {
+            heroSubtitle.textContent += text.charAt(index);
+            index++;
+        } else {
+            clearInterval(typeInterval);
+        }
+    }, 30);
+}
+
+// Mobile touch gestures for testimonials and projects
+function initTouchGestures() {
+    // Testimonials swipe functionality
+    const testimonialsContainer = document.querySelector('.testimonials-container');
+    if (testimonialsContainer) {
+        let startX = 0;
+        let currentX = 0;
+        let isDragging = false;
+
+        testimonialsContainer.addEventListener('touchstart', (e) => {
+            startX = e.touches[0].clientX;
+            isDragging = true;
+        });
+
+        testimonialsContainer.addEventListener('touchmove', (e) => {
+            if (!isDragging) return;
+            currentX = e.touches[0].clientX;
+            const diff = startX - currentX;
+
+            // Prevent default scrolling if horizontal swipe
+            if (Math.abs(diff) > 10) {
+                e.preventDefault();
+            }
+        });
+
+        testimonialsContainer.addEventListener('touchend', (e) => {
+            if (!isDragging) return;
+            isDragging = false;
+
+            const diff = startX - currentX;
+            const threshold = 50;
+
+            if (Math.abs(diff) > threshold) {
+                if (diff > 0) {
+                    // Swipe left - next testimonial
+                    nextTestimonial();
+                } else {
+                    // Swipe right - previous testimonial
+                    prevTestimonial();
+                }
+            }
+        });
+    }
+
+    // Projects swipe functionality
+    const projectsGrid = document.querySelector('.projects-grid');
+    if (projectsGrid) {
+        let startX = 0;
+        let currentX = 0;
+        let isDragging = false;
+
+        projectsGrid.addEventListener('touchstart', (e) => {
+            startX = e.touches[0].clientX;
+            isDragging = true;
+        });
+
+        projectsGrid.addEventListener('touchmove', (e) => {
+            if (!isDragging) return;
+            currentX = e.touches[0].clientX;
+            const diff = startX - currentX;
+
+            // Add visual feedback during swipe
+            if (Math.abs(diff) > 10) {
+                projectsGrid.style.transform = `translateX(${-diff * 0.1}px)`;
+            }
+        });
+
+        projectsGrid.addEventListener('touchend', (e) => {
+            if (!isDragging) return;
+            isDragging = false;
+
+            // Reset transform
+            projectsGrid.style.transform = '';
+
+            const diff = startX - currentX;
+            const threshold = 50;
+
+            if (Math.abs(diff) > threshold) {
+                // On mobile, swipe could scroll to next/prev project
+                // For now, we'll just add a subtle scroll effect
+                const scrollAmount = diff > 0 ? 300 : -300;
+                projectsGrid.scrollBy({
+                    left: scrollAmount,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    }
+}
+
+// Testimonial navigation functions (for touch gestures)
+function nextTestimonial() {
+    const testimonials = document.querySelectorAll('.testimonial-card');
+    const activeTestimonial = document.querySelector('.testimonial-card.active');
+
+    if (activeTestimonial) {
+        const currentIndex = Array.from(testimonials).indexOf(activeTestimonial);
+        const nextIndex = (currentIndex + 1) % testimonials.length;
+
+        activeTestimonial.classList.remove('active');
+        testimonials[nextIndex].classList.add('active');
+    }
+}
+
+function prevTestimonial() {
+    const testimonials = document.querySelectorAll('.testimonial-card');
+    const activeTestimonial = document.querySelector('.testimonial-card.active');
+
+    if (activeTestimonial) {
+        const currentIndex = Array.from(testimonials).indexOf(activeTestimonial);
+        const prevIndex = currentIndex === 0 ? testimonials.length - 1 : currentIndex - 1;
+
+        activeTestimonial.classList.remove('active');
+        testimonials[prevIndex].classList.add('active');
+    }
+}
+
+// Particles.js initialization for hero background
+function initParticles() {
+    const particlesContainer = document.getElementById('particles-js');
+    if (!particlesContainer || typeof particlesJS === 'undefined') return;
+
+    particlesJS('particles-js', {
+        particles: {
+            number: {
+                value: 80,
+                density: {
+                    enable: true,
+                    value_area: 800
+                }
+            },
+            color: {
+                value: '#00ccff'
+            },
+            shape: {
+                type: 'circle',
+                stroke: {
+                    width: 0,
+                    color: '#000000'
+                },
+                polygon: {
+                    nb_sides: 5
+                }
+            },
+            opacity: {
+                value: 0.5,
+                random: false,
+                anim: {
+                    enable: false,
+                    speed: 1,
+                    opacity_min: 0.1,
+                    sync: false
+                }
+            },
+            size: {
+                value: 3,
+                random: true,
+                anim: {
+                    enable: false,
+                    speed: 40,
+                    size_min: 0.1,
+                    sync: false
+                }
+            },
+            line_linked: {
+                enable: true,
+                distance: 150,
+                color: '#00ccff',
+                opacity: 0.4,
+                width: 1
+            },
+            move: {
+                enable: true,
+                speed: 2,
+                direction: 'none',
+                random: false,
+                straight: false,
+                out_mode: 'out',
+                bounce: false,
+                attract: {
+                    enable: false,
+                    rotateX: 600,
+                    rotateY: 1200
+                }
+            }
+        },
+        interactivity: {
+            detect_on: 'canvas',
+            events: {
+                onhover: {
+                    enable: true,
+                    mode: 'repulse'
+                },
+                onclick: {
+                    enable: true,
+                    mode: 'push'
+                },
+                resize: true
+            },
+            modes: {
+                grab: {
+                    distance: 400,
+                    line_linked: {
+                        opacity: 1
+                    }
+                },
+                bubble: {
+                    distance: 400,
+                    size: 40,
+                    duration: 2,
+                    opacity: 8,
+                    speed: 3
+                },
+                repulse: {
+                    distance: 200,
+                    duration: 0.4
+                },
+                push: {
+                    particles_nb: 4
+                },
+                remove: {
+                    particles_nb: 2
+                }
+            }
+        },
+        retina_detect: true
+    });
+}
+
+// Parallax Scroll Effect
+function initParallax() {
+    const heroSection = document.querySelector('.hero');
+    if (!heroSection) return;
+    
+    window.addEventListener('scroll', () => {
+        const scrollY = window.pageYOffset;
+        heroSection.style.backgroundPosition = `center ${scrollY * 0.5}px`;
+    });
+}
+
+// Initialize all functionality
+// (Moved to DOMContentLoaded at top of file)
 
 // Export functions for testing (if needed)
 if (typeof module !== 'undefined' && module.exports) {
