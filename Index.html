@@ -158,11 +158,14 @@
                 </div>
                 
                 <div class="hero-links">
-                    <a href="https://www.linkedin.com/in/armstrong-nzotta-734250354" target="_blank" rel="noopener" title="Visit LinkedIn">
-                        <i class="fab fa-linkedin"></i> LinkedIn
+                    <a href="https://www.linkedin.com/in/armstrong-nzotta-734250354" target="_blank" rel="noopener" title="Visit LinkedIn" aria-label="Visit LinkedIn Profile">
+                        <i class="fab fa-linkedin" aria-hidden="true"></i> LinkedIn
                     </a>
-                    <a href="https://github.com" target="_blank" rel="noopener" title="Visit GitHub">
-                        <i class="fab fa-github"></i> GitHub
+                    <a href="https://github.com/armsurch" target="_blank" rel="noopener" title="Visit GitHub" aria-label="Visit GitHub Profile">
+                        <i class="fab fa-github" aria-hidden="true"></i> GitHub
+                    </a>
+                    <a href="https://twitter.com/armstrongnzotta" target="_blank" rel="noopener" title="Visit Twitter" aria-label="Visit Twitter Profile">
+                        <i class="fab fa-twitter" aria-hidden="true"></i> Twitter
                     </a>
                 </div>
             </div>
@@ -191,19 +194,32 @@
                     Hands-on background in fiber optics, splicing, structured cabling, and high-availability network deployment. Demonstrates strong analytical and troubleshooting skills in resolving complex connectivity and security issues while maintaining system integrity and uptime. Committed to building secure, scalable, and efficient IT infrastructures that align with evolving business and cybersecurity demands.
                 </p>
                 
-                <div class="text-center">
-                    <div class="stats-container">
-                        <div class="stat-item">
-                            <div class="stat-number">10,000+</div>
-                            <div class="stat-label">Citizens Served</div>
+                <div class="personal-info-grid">
+                    <div class="personal-info-card fade-in">
+                        <h3 class="info-title"><i class="fas fa-user-circle"></i> Personal Details</h3>
+                        <ul class="info-list">
+                            <li><strong>Nationality:</strong> Nigeria</li>
+                        </ul>
+                    </div>
+                    <div class="personal-info-card fade-in">
+                        <h3 class="info-title"><i class="fas fa-language"></i> Languages</h3>
+                        <div class="language-item">
+                            <div class="lang-info">
+                                <span>English</span>
+                                <span>Fluent</span>
+                            </div>
+                            <div class="lang-bar">
+                                <div class="lang-fill" data-width="90"></div>
+                            </div>
                         </div>
-                        <div class="stat-item">
-                            <div class="stat-number">99.8%</div>
-                            <div class="stat-label">System Uptime</div>
-                        </div>
-                        <div class="stat-item">
-                            <div class="stat-number">50+</div>
-                            <div class="stat-label">Staff Trained</div>
+                        <div class="language-item">
+                            <div class="lang-info">
+                                <span>Igbo</span>
+                                <span>Fluent</span>
+                            </div>
+                            <div class="lang-bar">
+                                <div class="lang-fill" data-width="90"></div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -347,19 +363,19 @@
                     <div class="language-item">
                         <span class="language-name">English (Fluent)</span>
                         <div class="proficiency-bar-mini">
-                            <div class="proficiency-fill-mini" style="width: 100%"></div>
+                            <div class="proficiency-fill-mini" data-proficiency="100"></div>
                         </div>
                     </div>
                     <div class="language-item">
                         <span class="language-name">Igbo (Native)</span>
                         <div class="proficiency-bar-mini">
-                            <div class="proficiency-fill-mini" style="width: 100%"></div>
+                            <div class="proficiency-fill-mini" data-proficiency="100"></div>
                         </div>
                     </div>
                     <div class="language-item">
                         <span class="language-name">Yoruba (Conversational)</span>
                         <div class="proficiency-bar-mini">
-                            <div class="proficiency-fill-mini" style="width: 70%"></div>
+                            <div class="proficiency-fill-mini" data-proficiency="70"></div>
                         </div>
                     </div>
                 </div>
@@ -432,7 +448,7 @@
             <div class="timeline-item fade-in">
                 <div class="timeline-content">
                     <h3>Sep 2025 - Present</h3>
-                    <h4>CybersSecurity Analyst</h4>
+                    <h4>Cybersecurity Analyst</h4>
                     <p><strong>Lextech Ecosystem Limited</strong></p>
                     <ul>
                         <li>• Conduct penetration and exploit testing on company products to identify and mitigate vulnerabilities</li>
@@ -947,10 +963,6 @@
                     <div class="contact-icon">
                         <i class="fas fa-map-marker-alt"></i>
                     </div>
-                    <div class="contact-details">
-                        <h4>Location</h4>
-                        <p>Nigeria</p>
-                    </div>
                 </div>
                 
                 <div class="contact-item">
@@ -1038,7 +1050,6 @@
                 <div class="footer-section">
                     <h4>Contact Info</h4>
                     <p><i class="fas fa-envelope"></i> armstrongnzotta8@gmail.com</p>
-                    <p><i class="fas fa-map-marker-alt"></i> Nigeria</p>
                 </div>
             </div>
             
@@ -1074,91 +1085,9 @@
         <i class="fas fa-arrow-up"></i>
     </button>
 
-    <!-- Modal Containers (for buttons functionality) -->
-    <div id="proposalModal" class="modal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <h2>Generate Project Proposal</h2>
-            <p>This feature will generate a customized project proposal based on your requirements.</p>
-            <form id="proposalForm">
-                <div class="form-group">
-                    <label for="projectType">Project Type</label>
-                    <select id="projectType" name="projectType" required>
-                        <option value="">Select project type</option>
-                        <option value="network">Network Infrastructure</option>
-                        <option value="fiber">Fiber Optic Deployment</option>
-                        <option value="government">Government IT Systems</option>
-                        <option value="security">Security Implementation</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="organization">Organization Name</label>
-                    <input type="text" id="organization" name="organization" required>
-                </div>
-                <div class="form-group">
-                    <label for="requirements">Project Requirements</label>
-                    <textarea id="requirements" name="requirements" rows="4" required></textarea>
-                </div>
-                <button type="submit" class="btn btn-primary">Generate Proposal</button>
-            </form>
-        </div>
-    </div>
-
-    <div id="resumeModal" class="modal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <h2>Generate Resume</h2>
-            <p>Select the format for your customized resume download.</p>
-            <div class="resume-options">
-                <button class="btn btn-primary" onclick="downloadResume('pdf')">
-                    <i class="fas fa-file-pdf"></i> Download PDF Resume
-                </button>
-                <button class="btn btn-secondary" onclick="downloadResume('word')">
-                    <i class="fas fa-file-word"></i> Download Word Resume
-                </button>
-            </div>
-        </div>
-    </div>
-
-    <div id="contactModal" class="modal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <h2>Quick Contact</h2>
-            <p>Send a quick message or inquiry.</p>
-            <form id="quickContactForm">
-                <div class="form-group">
-                    <label for="quickName">Your Name</label>
-                    <input type="text" id="quickName" name="quickName" required>
-                </div>
-                <div class="form-group">
-                    <label for="quickEmail">Your Email</label>
-                    <input type="email" id="quickEmail" name="quickEmail" required>
-                </div>
-                <div class="form-group">
-                    <label for="quickMessage">Message</label>
-                    <textarea id="quickMessage" name="quickMessage" rows="3" required></textarea>
-                </div>
-                <button type="submit" class="btn btn-primary">Send Message</button>
-            </form>
-        </div>
-    </div>
-
     <!-- JavaScript Libraries -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js" defer></script>
     <script src="app.js" defer></script>
-    
-    <!-- Service Worker Registration -->
-    <script defer>
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', function() {
-                navigator.serviceWorker.register('sw.js').then(function(registration) {
-                    console.log('SW registered: ', registration);
-                }).catch(function(registrationError) {
-                    console.log('SW registration failed: ', registrationError);
-                });
-            });
-        }
-    </script>
 
 </body>
 </html>

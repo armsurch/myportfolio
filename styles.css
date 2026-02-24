@@ -449,6 +449,87 @@ body {
     color: white;
 }
 
+/* Personal Info and Language Styles */
+.personal-info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin: 3rem 0;
+}
+
+.personal-info-card {
+    background: var(--card-bg);
+    padding: 2rem;
+    border-radius: var(--border-radius);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: var(--shadow-small);
+    transition: var(--transition);
+}
+
+.personal-info-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-medium);
+    border-color: var(--secondary-color);
+}
+
+.info-title {
+    color: var(--secondary-color);
+    font-size: 1.3rem;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 0.8rem;
+}
+
+.info-list {
+    list-style: none;
+}
+
+.info-list li {
+    margin-bottom: 1rem;
+    color: var(--text-muted);
+    font-size: 1.05rem;
+}
+
+.info-list li strong {
+    color: var(--text-primary);
+    width: 120px;
+    display: inline-block;
+}
+
+.language-item {
+    margin-bottom: 1.5rem;
+}
+
+.lang-info {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.6rem;
+    color: var(--text-primary);
+    font-weight: 500;
+}
+
+.lang-bar {
+    height: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.lang-fill {
+    height: 100%;
+    background: var(--gradient-secondary);
+    border-radius: 10px;
+    width: 100%;
+}
+
+/* Language fill widths via data attributes */
+.lang-fill[data-width="90"] {
+    width: 90%;
+}
+
 /* Section Styles */
 .section {
     padding: 5rem 0;
@@ -3870,6 +3951,12 @@ img.loaded {
         height: 100%;
         background: var(--gradient-secondary);
         border-radius: 3px;
+        width: 100%;
+    }
+
+    /* Proficiency fill widths via data attributes */
+    .proficiency-fill-mini[data-proficiency="70"] {
+        width: 70%;
     }
 
     .language-level {
