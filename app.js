@@ -62,12 +62,13 @@ window.addEventListener('load', () => {
 
 // Theme Toggle Functionality
 let currentTheme = localStorage.getItem('theme') || 'dark';
+// Ensure we always apply to <body>
 document.body.setAttribute('data-theme', currentTheme);
 updateThemeButton();
 
 if (themeToggle) {
     themeToggle.addEventListener('click', () => {
-        currentTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        currentTheme = document.body.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
         document.body.setAttribute('data-theme', currentTheme);
         localStorage.setItem('theme', currentTheme);
         updateThemeButton();
@@ -80,6 +81,7 @@ if (themeToggle) {
         }
     });
 }
+
 
 function updateThemeButton() {
     if (themeIcon && themeText) {
@@ -284,17 +286,24 @@ const nextBtn = document.getElementById('nextBtn');
 const indicators = document.querySelectorAll('.indicator');
 let currentSlide = 0;
 const totalSlides = indicators.length;
-const hasCarousel = testimonialsContainer && prevBtn && nextBtn && totalSlides > 0;
+const hasCarousel = Boolean(testimonialsContainer && prevBtn && nextBtn);
+const hasIndicators = indicators && indicators.length > 0;
 
-if (!hasCarousel) {
-    console.info('Testimonials carousel is disabled because required carousel controls or indicators are missing.');
+// Only warn in development; otherwise keep console clean.
+const isLocalhost = typeof location !== 'undefined' && /localhost|127\.0\.0\.1/i.test(location.hostname);
+if (!hasCarousel && isLocalhost) {
+    console.info('Testimonials carousel disabled: missing container/controls.');
 }
+
+// Allow carousel to run even if indicators are missing.
+const canAutoAdvance = hasCarousel && totalSlides > 0;
 
 // Auto-play carousel
 let carouselInterval;
-if (hasCarousel) {
+if (canAutoAdvance) {
     carouselInterval = setInterval(nextSlide, 5000);
 }
+
 
 function updateCarousel() {
     if (!hasCarousel) return;
@@ -302,14 +311,17 @@ function updateCarousel() {
     const translateX = -currentSlide * 100;
     testimonialsContainer.style.transform = `translateX(${translateX}%)`;
 
-    // Update indicators
-    indicators.forEach((indicator, index) => {
-        indicator.classList.toggle('active', index === currentSlide);
-    });
+    // Update indicators only if present
+    if (hasIndicators) {
+        indicators.forEach((indicator, index) => {
+            indicator.classList.toggle('active', index === currentSlide);
+        });
+    }
 }
 
 function nextSlide() {
     if (!hasCarousel) return;
+    if (totalSlides === 0) return;
     currentSlide = (currentSlide + 1) % totalSlides;
     updateCarousel();
 }
@@ -350,25 +362,27 @@ if (hasCarousel) {
     });
 
     // Indicator clicks
-    indicators.forEach((indicator, index) => {
-        indicator.addEventListener('click', () => {
-            currentSlide = index;
-            updateCarousel();
-            resetCarouselInterval();
-            if (typeof gtag !== 'undefined') {
-                gtag('event', 'testimonial_indicator', {
-                    'slide': index
-                });
-            }
+    if (hasIndicators) {
+        indicators.forEach((indicator, index) => {
+            indicator.addEventListener('click', () => {
+                currentSlide = index;
+                updateCarousel();
+                resetCarouselInterval();
+                if (typeof gtag !== 'undefined') {
+                    gtag('event', 'testimonial_indicator', {
+                        'slide': index
+                    });
+                }
+            });
         });
-    });
+    }
 }
 
 function resetCarouselInterval() {
     if (carouselInterval) {
         clearInterval(carouselInterval);
     }
-    if (hasCarousel) {
+    if (canAutoAdvance) {
         carouselInterval = setInterval(nextSlide, 5000);
     }
 }
@@ -382,7 +396,9 @@ if (hasCarousel) {
     });
 
     testimonialsContainer.addEventListener('mouseleave', () => {
-        carouselInterval = setInterval(nextSlide, 5000);
+        if (canAutoAdvance) {
+            carouselInterval = setInterval(nextSlide, 5000);
+        }
     });
 }
 
