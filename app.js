@@ -49,6 +49,18 @@ document.addEventListener('DOMContentLoaded', function() {
   initTypewriter();
   initParallax();
   initParticles();
+
+// Prevent runtime crash from missing elements
+  // Some pages may not render every optional widget, so guard classList usage.
+  // Also harden against the specific “Cannot read properties of null (reading 'classList')” error.
+  try {
+    const hero = document.querySelector('.hero');
+    if (hero && hero.classList) {
+      hero.classList.add('ready');
+    }
+  } catch (e) {
+    console.warn('DOM init guard prevented error:', e);
+  }
 });
 
 // Loading Screen - backup for window load event

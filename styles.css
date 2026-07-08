@@ -1237,6 +1237,32 @@ body {
     box-shadow: 0 28px 80px rgba(0, 0, 0, 0.26);
 }
 
+/* Fix hover disappearing content on specific project cards */
+.project-card:hover .project-content,
+.project-card:hover .project-footer,
+.project-card:hover .project-tags,
+.project-card:hover .project-impact,
+.project-card:hover .view-details {
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+}
+
+/* Mobile: disable hover-dependent styling so layout never “disappears” */
+@media (hover: none) and (pointer: coarse) {
+    .project-card:hover .project-content,
+    .project-card:hover .project-footer,
+    .project-card:hover .project-tags,
+    .project-card:hover .project-impact,
+    .project-card:hover .view-details {
+        opacity: initial;
+        visibility: initial;
+        transform: none;
+    }
+}
+
+
+
 .project-header-wrapper {
     position: relative;
     overflow: hidden;
