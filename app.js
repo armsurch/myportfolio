@@ -43,8 +43,7 @@ document.addEventListener('DOMContentLoaded', function() {
   
   // Initialize all functionality
   setupModals();
-  initImageLoading();
-  
+  setupQuickContactForm();
   // Animation initialization
   enhanceModalAnimations();
   initTypewriter();
@@ -241,6 +240,43 @@ function filterProjects(searchTerm, filter) {
     });
 }
 
+// Gallery tab filter functionality
+const galleryTabs = document.querySelectorAll('.gallery-tab');
+const galleryItemElements = document.querySelectorAll('.gallery-item');
+const galleryViewAll = document.querySelector('.gallery-view-all');
+
+function filterGallery(filter) {
+    galleryItemElements.forEach(item => {
+        const category = item.getAttribute('data-category');
+        const isVisible = filter === 'all' || category === filter;
+        if (isVisible) {
+            item.classList.remove('hidden');
+        } else {
+            item.classList.add('hidden');
+        }
+    });
+}
+
+galleryTabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+        galleryTabs.forEach(btn => btn.classList.remove('active'));
+        tab.classList.add('active');
+
+        const filter = tab.textContent.trim().toLowerCase().replace(/\s+/g, '-');
+        filterGallery(filter);
+    });
+});
+
+if (galleryViewAll) {
+    galleryViewAll.addEventListener('click', (event) => {
+        event.preventDefault();
+        galleryTabs.forEach(btn => btn.classList.remove('active'));
+        const allTab = document.querySelector('.gallery-tab:first-child');
+        if (allTab) allTab.classList.add('active');
+        filterGallery('all');
+    });
+}
+
 // Testimonials Carousel
 const testimonialsContainer = document.getElementById('testimonialsContainer');
 const prevBtn = document.getElementById('prevBtn');
@@ -248,23 +284,23 @@ const nextBtn = document.getElementById('nextBtn');
 const indicators = document.querySelectorAll('.indicator');
 let currentSlide = 0;
 const totalSlides = indicators.length;
+const hasCarousel = testimonialsContainer && prevBtn && nextBtn && totalSlides > 0;
 
-// Check if carousel elements exist
-if (!testimonialsContainer || !prevBtn || !nextBtn || !indicators.length) {
-    console.warn('Some carousel elements are missing. Carousel functionality may not work properly.');
+if (!hasCarousel) {
+    console.info('Testimonials carousel is disabled because required carousel controls or indicators are missing.');
 }
 
 // Auto-play carousel
 let carouselInterval;
-if (totalSlides > 0) {
+if (hasCarousel) {
     carouselInterval = setInterval(nextSlide, 5000);
 }
 
 function updateCarousel() {
-    if (testimonialsContainer) {
-        const translateX = -currentSlide * 100;
-        testimonialsContainer.style.transform = `translateX(${translateX}%)`;
-    }
+    if (!hasCarousel) return;
+
+    const translateX = -currentSlide * 100;
+    testimonialsContainer.style.transform = `translateX(${translateX}%)`;
 
     // Update indicators
     indicators.forEach((indicator, index) => {
@@ -273,17 +309,19 @@ function updateCarousel() {
 }
 
 function nextSlide() {
+    if (!hasCarousel) return;
     currentSlide = (currentSlide + 1) % totalSlides;
     updateCarousel();
 }
 
 function prevSlide() {
+    if (!hasCarousel) return;
     currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
     updateCarousel();
 }
 
 // Carousel controls
-if (nextBtn) {
+if (hasCarousel) {
     nextBtn.addEventListener('click', () => {
         nextSlide();
         resetCarouselInterval();
@@ -291,9 +329,7 @@ if (nextBtn) {
             gtag('event', 'testimonial_next');
         }
     });
-}
 
-if (prevBtn) {
     prevBtn.addEventListener('click', () => {
         prevSlide();
         resetCarouselInterval();
@@ -301,45 +337,44 @@ if (prevBtn) {
             gtag('event', 'testimonial_prev');
         }
     });
-}
 
-// Keyboard navigation for carousel (Left/Right arrows)
-window.addEventListener('keydown', (e) => {
-    if (!testimonialsContainer) return;
-    if (e.key === 'ArrowRight') {
-        nextSlide();
-        resetCarouselInterval();
-    } else if (e.key === 'ArrowLeft') {
-        prevSlide();
-        resetCarouselInterval();
-    }
-});
-
-// Indicator clicks
-indicators.forEach((indicator, index) => {
-    indicator.addEventListener('click', () => {
-        currentSlide = index;
-        updateCarousel();
-        resetCarouselInterval();
-        if (typeof gtag !== 'undefined') {
-            gtag('event', 'testimonial_indicator', {
-                'slide': index
-            });
+    // Keyboard navigation for carousel (Left/Right arrows)
+    window.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowRight') {
+            nextSlide();
+            resetCarouselInterval();
+        } else if (e.key === 'ArrowLeft') {
+            prevSlide();
+            resetCarouselInterval();
         }
     });
-});
+
+    // Indicator clicks
+    indicators.forEach((indicator, index) => {
+        indicator.addEventListener('click', () => {
+            currentSlide = index;
+            updateCarousel();
+            resetCarouselInterval();
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'testimonial_indicator', {
+                    'slide': index
+                });
+            }
+        });
+    });
+}
 
 function resetCarouselInterval() {
     if (carouselInterval) {
         clearInterval(carouselInterval);
     }
-    if (totalSlides > 0) {
+    if (hasCarousel) {
         carouselInterval = setInterval(nextSlide, 5000);
     }
 }
 
 // Pause carousel on hover
-if (testimonialsContainer) {
+if (hasCarousel) {
     testimonialsContainer.addEventListener('mouseenter', () => {
         if (carouselInterval) {
             clearInterval(carouselInterval);
@@ -347,9 +382,7 @@ if (testimonialsContainer) {
     });
 
     testimonialsContainer.addEventListener('mouseleave', () => {
-        if (totalSlides > 0) {
-            carouselInterval = setInterval(nextSlide, 5000);
-        }
+        carouselInterval = setInterval(nextSlide, 5000);
     });
 }
 
@@ -386,17 +419,21 @@ document.querySelectorAll('.fade-in, .slide-in-left, .slide-in-right').forEach(e
 // Form validation and submission enhancement
 const contactForm = document.getElementById('contactForm');
 if (contactForm) {
-    // Real-time validation
-    const inputs = contactForm.querySelectorAll('input, textarea');
+    setupFormValidation(contactForm);
+}
+
+function setupFormValidation(form) {
+    if (!form) return;
+
+    const inputs = form.querySelectorAll('input, textarea');
     inputs.forEach(input => {
         input.addEventListener('blur', validateField);
         input.addEventListener('input', clearFieldError);
     });
 
-    contactForm.addEventListener('submit', async (e) => {
+    form.addEventListener('submit', async (e) => {
         e.preventDefault();
 
-        // Validate all fields
         let isValid = true;
         inputs.forEach(input => {
             if (!validateField.call(input)) {
@@ -405,59 +442,84 @@ if (contactForm) {
         });
 
         if (!isValid) {
-            showFormError('Please correct the errors above and try again.');
+            showFormError('Please correct the errors above and try again.', form);
             return;
         }
 
-        const submitBtn = contactForm.querySelector('button[type="submit"]');
-        const originalText = submitBtn.innerHTML;
+        const submitBtn = form.querySelector('button[type="submit"]');
+        const originalText = submitBtn ? submitBtn.innerHTML : 'Sending...';
 
-        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
-        submitBtn.disabled = true;
+        if (submitBtn) {
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+            submitBtn.disabled = true;
+        }
 
         try {
-            const formData = new FormData(contactForm);
-            const response = await fetch(contactForm.action, {
-                method: 'POST',
-                body: formData,
-                headers: { 'Accept': 'application/json' }
-            });
+            const formData = new FormData(form);
+            const actionUrl = (form.getAttribute('action') || '').trim();
 
-            if (response.ok) {
-                showFormSuccess();
+            if (actionUrl) {
+                const response = await fetch(actionUrl, {
+                    method: 'POST',
+                    body: formData,
+                    headers: { 'Accept': 'application/json' }
+                });
+
+                if (!response.ok) {
+                    throw new Error('Submission failed');
+                }
+            }
+
+            showFormSuccess(form);
+
+            if (submitBtn) {
                 submitBtn.innerHTML = '<i class="fas fa-check"></i> Message Sent!';
                 submitBtn.style.background = '#28a745';
-                contactForm.reset();
-            } else {
-                throw new Error('Submission failed');
             }
+
+            form.reset();
         } catch (err) {
             console.error('Form submission error:', err);
-            showFormError('There was a problem sending your message. Please try again.');
-            submitBtn.innerHTML = originalText;
-            submitBtn.disabled = false;
+            showFormError('There was a problem sending your message. Please try again.', form);
+            if (submitBtn) {
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+            }
         }
 
-        // Reset button after 3 seconds
-        setTimeout(() => {
-            submitBtn.innerHTML = originalText;
-            submitBtn.disabled = false;
-            submitBtn.style.background = '';
-        }, 3000);
+        if (submitBtn) {
+            setTimeout(() => {
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+                submitBtn.style.background = '';
+            }, 3000);
+        }
 
-        // Analytics tracking
         if (typeof gtag !== 'undefined') {
-            gtag('event', 'contact_form_submit');
+            gtag('event', 'contact_form_submit', {
+                'form_id': form.id
+            });
         }
     });
+}
+
+function setupQuickContactForm() {
+    const quickContactForm = document.getElementById('quickContactForm');
+    if (!quickContactForm) return;
+    setupFormValidation(quickContactForm);
 }
 
 // Field validation function
 function validateField() {
     const field = this;
-    const fieldName = field.name;
+    let fieldName = field.name;
     const value = field.value.trim();
     const fieldGroup = field.closest('.form-group');
+
+    // Normalize quick form field names to shared validation rules
+    if (fieldName.startsWith('quick')) {
+        fieldName = fieldName.replace(/^quick/i, '').toLowerCase();
+    }
 
     // Remove existing error messages
     clearFieldError.call(field);
@@ -546,8 +608,9 @@ function clearFieldError() {
 }
 
 // Show form error
-function showFormError(message) {
-    const existingError = contactForm.querySelector('.form-error');
+function showFormError(message, form = contactForm) {
+    if (!form) return;
+    const existingError = form.querySelector('.form-error');
     if (existingError) {
         existingError.remove();
     }
@@ -555,7 +618,7 @@ function showFormError(message) {
     const errorDiv = document.createElement('div');
     errorDiv.className = 'form-error';
     errorDiv.innerHTML = `<i class="fas fa-exclamation-triangle"></i> ${message}`;
-    contactForm.insertBefore(errorDiv, contactForm.firstChild);
+    form.insertBefore(errorDiv, form.firstChild);
 
     // Auto-remove after 5 seconds
     setTimeout(() => {
@@ -566,12 +629,11 @@ function showFormError(message) {
 }
 
 // Enhanced form success animation
-function showFormSuccess() {
-    const contactForm = document.getElementById('contactForm');
-    if (!contactForm) return;
+function showFormSuccess(form = contactForm) {
+    if (!form) return;
 
     // Add success animation
-    contactForm.classList.add('form-success');
+    form.classList.add('form-success');
 
     // Create checkmark animation
     const successMessage = document.createElement('div');
@@ -584,14 +646,14 @@ function showFormSuccess() {
         </div>
     `;
 
-    contactForm.parentNode.insertBefore(successMessage, contactForm.nextSibling);
+    form.parentNode.insertBefore(successMessage, form.nextSibling);
 
     // Remove form and success message after animation
     setTimeout(() => {
         successMessage.style.animation = 'slideOutUp 0.4s ease-out forwards';
         setTimeout(() => {
             successMessage.remove();
-            contactForm.classList.remove('form-success');
+            form.classList.remove('form-success');
         }, 400);
     }, 4000);
 }
@@ -923,6 +985,25 @@ function setupModals() {
     if (openProposalBtn && proposalModal) {
         openProposalBtn.addEventListener('click', () => {
             proposalModal.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        });
+    }
+
+    // Contact modal functionality
+    const contactModal = document.getElementById('contactModal');
+    const openContactBtn = document.getElementById('openContactModal');
+    if (openContactBtn && contactModal) {
+        openContactBtn.addEventListener('click', () => {
+            contactModal.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        });
+    }
+
+    // Footer CTA opens contact modal as well
+    const footerContactBtn = document.getElementById('footerContactBtn');
+    if (footerContactBtn && contactModal) {
+        footerContactBtn.addEventListener('click', () => {
+            contactModal.style.display = 'block';
             document.body.style.overflow = 'hidden';
         });
     }
@@ -1346,6 +1427,97 @@ function initParallax() {
 
 // Initialize all functionality
 // (Moved to DOMContentLoaded at top of file)
+
+// ====================================
+// Config showcase simplified: no tab switching needed
+// ====================================
+
+// ====================================
+// New Feature: Lightbox Gallery
+// ====================================
+const galleryData = [
+    { src: 'img/Networking-Setup.png', title: 'Network Rack Installation', desc: 'Structured cabling and rack setup for government office', category: 'networking' },
+    { src: 'img/Unifi-AP.png', title: 'UniFi AP Deployment', desc: 'Enterprise wireless access point installation and optimization', category: 'networking' },
+    { src: 'img/Server-Rack.png', title: 'Server Room Setup', desc: 'Server and networking equipment in a climate-controlled rack room', category: 'infrastructure' },
+    { src: 'img/SIEM.png', title: 'System Monitoring Dashboard', desc: 'SIEM dashboard with real-time security and performance insights', category: 'dashboards' },
+    { src: 'img/Starlink-Deployment.png', title: 'Remote Starlink Deployment', desc: 'Satellite internet installation for remote judiciary facility', category: 'starlink' },
+    { src: 'img/Network-Configuration.png', title: 'Router Configuration Panel', desc: 'Router configuration and network management interface', category: 'systems' },
+    { src: 'img/CCTV.png', title: 'CCTV Surveillance System', desc: 'IP CCTV deployment with remote monitoring and storage integration', category: 'security' },
+    { src: 'img/Fiber-optic.png', title: 'Fiber Optic Infrastructure', desc: 'Fiber deployment and splicing for high-speed backbone connectivity', category: 'infrastructure' },
+    { src: 'img/Work-Station.png', title: 'Workstation Deployment', desc: 'Secure endpoint setup with workstation management and monitoring', category: 'systems' },
+    { src: 'img/bio-Attendance.png', title: 'Biometric Attendance Integration', desc: 'Biometric time and attendance system integration with access control', category: 'integration' }
+];
+let currentLightboxIndex = 0;
+
+function openLightbox(index) {
+    currentLightboxIndex = index;
+    document.getElementById('lightbox').classList.add('active');
+    updateLightbox();
+    document.body.style.overflow = 'hidden';
+}
+
+function closeLightbox() {
+    document.getElementById('lightbox').classList.remove('active');
+    document.body.style.overflow = 'auto';
+}
+
+function changeLightbox(direction) {
+    currentLightboxIndex = (currentLightboxIndex + direction + galleryData.length) % galleryData.length;
+    updateLightbox();
+}
+
+function updateLightbox() {
+    const item = galleryData[currentLightboxIndex];
+    const content = document.getElementById('lightboxContent');
+    content.innerHTML = `
+        <img src="${item.src}" alt="${item.title}" loading="lazy" />
+        <div class="lightbox-caption">
+            <strong>${item.title}</strong>
+            <p>${item.desc}</p>
+        </div>
+    `;
+}
+
+// Keyboard support for lightbox
+document.addEventListener('keydown', function(e) {
+    if (!document.getElementById('lightbox').classList.contains('active')) return;
+    if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'ArrowLeft') changeLightbox(-1);
+    if (e.key === 'ArrowRight') changeLightbox(1);
+});
+
+// ====================================
+// New Feature: Blog Read More
+// ====================================
+document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.blog-card').forEach(card => {
+        const content = card.querySelector('.blog-content p');
+        const fullContent = card.querySelector('.blog-content-full');
+        if (fullContent) {
+            const btn = document.createElement('button');
+            btn.className = 'blog-read-more';
+            btn.innerHTML = 'Read more <i class="fas fa-arrow-right"></i>';
+            btn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                card.classList.toggle('expanded');
+                btn.innerHTML = card.classList.contains('expanded')
+                    ? 'Show less <i class="fas fa-arrow-up"></i>'
+                    : 'Read more <i class="fas fa-arrow-right"></i>';
+            });
+            card.querySelector('.blog-content').appendChild(btn);
+        }
+    });
+});
+
+// ====================================
+// Dynamic Copyright Year
+// ====================================
+document.addEventListener('DOMContentLoaded', function() {
+    const yearElements = document.querySelectorAll('.footer-bottom p:first-child');
+    yearElements.forEach(el => {
+        el.textContent = el.textContent.replace(/\d{4}/, new Date().getFullYear().toString());
+    });
+});
 
 // Export functions for testing (if needed)
 if (typeof module !== 'undefined' && module.exports) {
