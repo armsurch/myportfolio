@@ -41,14 +41,16 @@ document.addEventListener('DOMContentLoaded', function() {
     AOS.init();
   }
   
-  // Initialize all functionality
-  setupModals();
-  setupQuickContactForm();
-  // Animation initialization
-  enhanceModalAnimations();
-  initTypewriter();
-  initParallax();
-  initParticles();
+  // Initialize all functionality (guard against missing references)
+  if (typeof setupModals === 'function') setupModals();
+  if (typeof setupQuickContactForm === 'function') setupQuickContactForm();
+
+  // Animation initialization (guard against missing references)
+  if (typeof enhanceModalAnimations === 'function') enhanceModalAnimations();
+  if (typeof initTypewriter === 'function') initTypewriter();
+  if (typeof initParallax === 'function') initParallax();
+  if (typeof initParticles === 'function') initParticles();
+
 
 // Prevent runtime crash from missing elements
   // Some pages may not render every optional widget, so guard classList usage.
@@ -765,14 +767,17 @@ function initImageLoading() {
 }
 
 // Global error handler
+// Don’t show a user-facing notification for all TypeErrors — this can appear during
+// partial DOM rendering and makes the page look broken.
 window.addEventListener('error', (e) => {
-    console.error('Global error:', e.error);
+    if (e.error) {
+        console.error('Global error:', e.error);
 
-    // Show user-friendly error notification for critical errors
-    if (e.error && e.error.name === 'TypeError') {
-        showGlobalNotification('A script error occurred. Some features may not work properly.', 'warning');
+        // Previously we showed a popup for any TypeError. Remove that to prevent
+        // “script error occurred” from showing when a non-critical element is missing.
     }
 });
+
 
 // Unhandled promise rejection handler
 window.addEventListener('unhandledrejection', (e) => {
@@ -803,7 +808,7 @@ function showGlobalNotification(message, type = 'info') {
 // Add loading animation for images
 
 // Initialize skill bar animations for visible elements
-document.addEventListener('DOMContentLoaded', () => {
+function initVisibleSkillBars() {
     const visibleSkillFills = document.querySelectorAll('.skill-fill');
     visibleSkillFills.forEach(fill => {
         const width = fill.getAttribute('data-width');
@@ -813,10 +818,11 @@ document.addEventListener('DOMContentLoaded', () => {
             }, 500);
         }
     });
-});
+}
 
 // Keyboard navigation support
 document.addEventListener('keydown', (e) => {
+
     // ESC key closes mobile menu
     if (e.key === 'Escape' && navMenu && navMenu.classList.contains('active')) {
         navMenu.classList.remove('active');
