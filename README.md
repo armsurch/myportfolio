@@ -27,12 +27,11 @@ Portfolio/
 ├── 📄 Proposal.html                # Network proposal page
 ├── 📁 img/                         # Images folder
 │   ├── 🖼️ mine.jpg                 # Profile photo
-│   ├── 🖼️ mine.png                 # Favicon/icon
-│   ├── 🖼️ network.jpg              # Network infrastructure
-│   ├── 🖼️ TP Link.png              # TP-Link equipment
-│   ├── 🖼️ Mikrotic.png             # MikroTik equipment
-│   ├── 🖼️ Professional ICT Portfolio Showcase.png
-│   └── 🖼️ My.png                   # Additional profile image
+│   ├── 🖼️ ME.jpeg                  # Additional profile image
+│   ├── 🖼️ Networking-Setup.png     # Network infrastructure
+│   ├── 🖼️ Server-Rack.png          # Server room setup
+│   ├── 🖼️ Starlink-Deployment.png  # Starlink deployment
+│   └── 🖼️ CCTV.png                 # Security system image
 └── 📁 Pdf/                         # PDF files
     └── 📄 Arms.pdf                 # Resume file
 ```

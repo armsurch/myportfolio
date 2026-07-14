@@ -21,12 +21,11 @@ Portfolio/
 ├── .gitignore
 ├── img/
 │   ├── mine.jpg
-│   ├── mine.png
-│   ├── network.jpg
-│   ├── TP Link.png
-│   ├── Mikrotic.png
-│   ├── Professional ICT Portfolio Showcase.png
-│   └── My.png
+│   ├── ME.jpeg
+│   ├── Networking-Setup.png
+│   ├── Server-Rack.png
+│   ├── Starlink-Deployment.png
+│   └── CCTV.png
 └── Pdf/
     └── Arms.pdf
 ```

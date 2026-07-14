@@ -1,14 +1,13 @@
 // Service Worker for Portfolio
 // Version 1.0.0
 
-const CACHE_NAME = 'armstrong-portfolio-v3';
+const CACHE_NAME = 'armstrong-portfolio-v4';
 const urlsToCache = [
     'Index.html',
     'styles.css',
     'app.js',
     'manifest.json',
     'img/mine.jpg',
-    'img/mine.png',
     'img/Networking-Setup.png',
     'img/Unifi-AP.png',
     'img/Server-Rack.png',
@@ -46,6 +45,15 @@ self.addEventListener('install', (event) => {
 
 // Fetch event - serve cached content when offline
 self.addEventListener('fetch', (event) => {
+    if (event.request.method !== 'GET') {
+        return;
+    }
+
+    const requestUrl = new URL(event.request.url);
+    if (requestUrl.pathname.startsWith('/api/')) {
+        return;
+    }
+
     event.respondWith(
         caches.match(event.request)
         .then((response) => {
@@ -114,7 +122,7 @@ async function syncContactForm() {
         const formData = await getStoredFormData();
         if (formData) {
             // Submit form data
-            const response = await fetch('/submit-contact', {
+            const response = await fetch('/api/contact', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -136,8 +144,8 @@ async function syncContactForm() {
 self.addEventListener('push', (event) => {
     const options = {
         body: event.data ? event.data.text() : 'New update available!',
-        icon: '/img/mine.png',
-        badge: '/img/mine.png',
+        icon: '/img/mine.jpg',
+        badge: '/img/mine.jpg',
         vibrate: [100, 50, 100],
         data: {
             dateOfArrival: Date.now(),
@@ -146,12 +154,12 @@ self.addEventListener('push', (event) => {
         actions: [{
                 action: 'explore',
                 title: 'View Portfolio',
-                icon: '/img/mine.png'
+                icon: '/img/mine.jpg'
             },
             {
                 action: 'close',
                 title: 'Close',
-                icon: '/img/mine.png'
+                icon: '/img/mine.jpg'
             }
         ]
     };

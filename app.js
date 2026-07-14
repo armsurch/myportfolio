@@ -190,7 +190,10 @@ tabButtons.forEach(button => {
 
         // Add active class to clicked button and corresponding content
         button.classList.add('active');
-        document.getElementById(targetTab).classList.add('active');
+        const targetContent = document.getElementById(targetTab);
+        if (targetContent) {
+            targetContent.classList.add('active');
+        }
 
         // Analytics tracking
         if (typeof gtag !== 'undefined') {
@@ -485,14 +488,17 @@ function setupFormValidation(form) {
         }
 
         try {
-            const formData = new FormData(form);
+            const payload = getContactPayload(form);
             const actionUrl = (form.getAttribute('action') || '').trim();
 
             if (actionUrl) {
                 const response = await fetch(actionUrl, {
                     method: 'POST',
-                    body: formData,
-                    headers: { 'Accept': 'application/json' }
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(payload)
                 });
 
                 if (!response.ok) {
@@ -537,6 +543,17 @@ function setupQuickContactForm() {
     const quickContactForm = document.getElementById('quickContactForm');
     if (!quickContactForm) return;
     setupFormValidation(quickContactForm);
+}
+
+function getContactPayload(form) {
+    const data = Object.fromEntries(new FormData(form).entries());
+
+    return {
+        name: data.name || data.quickName || '',
+        email: data.email || data.quickEmail || '',
+        subject: data.subject || 'Quick portfolio inquiry',
+        message: data.message || data.quickMessage || ''
+    };
 }
 
 // Field validation function
@@ -861,7 +878,7 @@ window.addEventListener('load', () => {
 window.addEventListener('error', (e) => {
     if (typeof gtag !== 'undefined') {
         gtag('event', 'javascript_error', {
-            'error_message': e.error.message,
+            'error_message': e.error?.message || e.message || 'Unknown error',
             'error_filename': e.filename,
             'error_line': e.lineno
         });
@@ -1484,14 +1501,20 @@ const galleryData = [
 let currentLightboxIndex = 0;
 
 function openLightbox(index) {
+    const lightbox = document.getElementById('lightbox');
+    if (!lightbox) return;
+
     currentLightboxIndex = index;
-    document.getElementById('lightbox').classList.add('active');
+    lightbox.classList.add('active');
     updateLightbox();
     document.body.style.overflow = 'hidden';
 }
 
 function closeLightbox() {
-    document.getElementById('lightbox').classList.remove('active');
+    const lightbox = document.getElementById('lightbox');
+    if (!lightbox) return;
+
+    lightbox.classList.remove('active');
     document.body.style.overflow = 'auto';
 }
 
@@ -1503,6 +1526,8 @@ function changeLightbox(direction) {
 function updateLightbox() {
     const item = galleryData[currentLightboxIndex];
     const content = document.getElementById('lightboxContent');
+    if (!content || !item) return;
+
     content.innerHTML = `
         <img src="${item.src}" alt="${item.title}" loading="lazy" />
         <div class="lightbox-caption">
@@ -1514,7 +1539,9 @@ function updateLightbox() {
 
 // Keyboard support for lightbox
 document.addEventListener('keydown', function(e) {
-    if (!document.getElementById('lightbox').classList.contains('active')) return;
+    const lightbox = document.getElementById('lightbox');
+    if (!lightbox || !lightbox.classList.contains('active')) return;
+
     if (e.key === 'Escape') closeLightbox();
     if (e.key === 'ArrowLeft') changeLightbox(-1);
     if (e.key === 'ArrowRight') changeLightbox(1);

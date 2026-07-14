@@ -4,7 +4,7 @@
   "description": "[View Live Portfolio](https://armsportfolio.vercel.app/)",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node --check app.js && node --check sw.js && node --check api/contact.js"
   },
   "keywords": [],
   "author": "",
